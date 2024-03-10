@@ -1,10 +1,9 @@
 ------------------------------------------------------------------------------------------------------------------------------
 To run frontend:
-- Run 'cd C:\Users\gtkac\IO_Band_Website\frontend' then 'npm run dev'.
+- Run 'cd C:\Users\gtkac\IO_Band_Website\frontend; npm run dev'.
 
 To run backend:
-- Run 'cd C:\Users\gtkac\IO_Band_Website\env' then '.\Scripts\activate' to start virtual environment.
-- Then run 'cd C:\Users\gtkac\IO_Band_Website\backend' then 'python manage.py runserver' from 'backend' folder to start django dev server.
+- Run 'cd C:\Users\gtkac\IO_Band_Website\env; .\Scripts\activate; cd C:\Users\gtkac\IO_Band_Website\backend; python manage.py runserver'.
 
 To access Django site administration:
 - Go to URL 'http://127.0.0.1:8000/admin/'.

@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   {
     path: "music",
     element: <Music />,
-    // loader: rootLoader,
+    loader: rootLoader,
   },
   {
     path: "video",
@@ -31,14 +31,14 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "music/:id",
+    path: "music/:name",
     element: <Album />,
     loader: albumLoader
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  //<React.StrictMode>
+  <React.StrictMode>
     <RouterProvider router={router} />
-  //{/* </React.StrictMode> */}
+  </React.StrictMode>
 );

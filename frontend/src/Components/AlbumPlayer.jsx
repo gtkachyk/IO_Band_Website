@@ -1,6 +1,6 @@
 import parse from 'html-react-parser';
 
-function AlbumPlayer({album, source_tags, div_tags, audio_path}){
+function AlbumPlayer({album, source_tags, div_tags}){
     return(
         <div className="container">
             <audio id="audio" preload="none" tabIndex="0">
@@ -40,17 +40,6 @@ function AlbumPlayer({album, source_tags, div_tags, audio_path}){
 
             <div className="play-list" id={"play-list-" + album.id}>
                 {parse(div_tags)}
-                {/* {album_songs.map((song, index) => (
-                    <div key={index} className="play-list-row" data-track-row={index + 1}>
-                        <div className="small-toggle-btn">
-                            <i className="small-play-btn"><span className="screen-reader-text">Small toggle button</span></i>
-                        </div>
-                        <div className="track-number">{index + 1}.&nbsp;</div>
-                        <div className="track-title">
-                            <a className="playlist-track" href="#" data-play-track={index + 1} style={{PointerEvents: 'none'}}>{song.name}</a>
-                        </div>
-                    </div>
-                ))} */}
             </div>
         </div>
     );

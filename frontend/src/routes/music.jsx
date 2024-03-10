@@ -1,5 +1,5 @@
 import NavBar from "../Components/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { getAlbums } from "../albums";
 import React, { useState, useEffect } from 'react';
 import bg from '/src/images/IO Map (Custom).jpg';
@@ -13,24 +13,28 @@ function Music(){
     useEffect(() => { document.body.style.backgroundImage = `url('${bg}')`}, []);
 
     // Get albums from db.
-    const [data, setData] = useState([])
-    useEffect(() => {
-      async function fetchData() {
-        try{
-          const response = await fetch(`${import.meta.env.VITE_API_URL}albums`);
-          if (!response.ok){
-            throw new Error('Network response was not ok');
-          }
-          const result = await response.json();
-          setData(result);
-        } catch (error){
-          console.error('Error fetching data:', error);
-        }
-      }
+    // const [data, setData] = useState([])
+    // useEffect(() => {
+    //   async function fetchData() {
+    //     try{
+    //       const response = await fetch(`${import.meta.env.VITE_API_URL}albums`);
+    //       if (!response.ok){
+    //         throw new Error('Network response was not ok');
+    //       }
+    //       const result = await response.json();
+    //       setData(result);
+    //     } catch (error){
+    //       console.error('Error fetching data:', error);
+    //     }
+    //   }
   
-      fetchData();
-    }, [])
-    const albums = JSON.parse(JSON.stringify(data));
+    //   fetchData();
+    // }, [])
+    // const albums = JSON.parse(JSON.stringify(data));
+
+    const {albums} = useLoaderData();
+
+    console.log(albums)
 
     return(
         <>
@@ -43,8 +47,8 @@ function Music(){
                         <ul>
                             {albums.map((album) => (
                                 <li key={album.id}>
-                                    <Link reloadDocument to={`${album.id}`}> {/* album.id gets passed to album.jsx.loader as params.albumID */}
-                                        <img src = {'../' + album.path + '/images/album_preview_artwork_' + album.id + '.jpg'}></img>{album.name}
+                                    <Link reloadDocument to={`${album.name}`}> {/* album.id gets passed to album.jsx.loader as params.albumID */}
+                                        <img src = {'../' + album.path + '/images/album_preview_artwork_' + album.id + '.jpg'}></img>{album.display_name}
                                     </Link>
                                 </li>
                             ))}
