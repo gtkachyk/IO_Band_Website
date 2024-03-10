@@ -1,9 +1,9 @@
 import NavBar from "../Components/NavBar";
 import React, { useEffect } from 'react';
-import bg from '/src/images/IO Map (Custom).jpg';
 
 function Video(){
-    useEffect(() => { document.body.style.backgroundImage = `url('${bg}')`}, []);
+    const page_resource_path = "./public/images/video_page/";
+    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_video.jpg"}')`}, []);
     return(
         <>
             <NavBar></NavBar>

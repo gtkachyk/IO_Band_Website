@@ -7,10 +7,11 @@ import { faBandcamp } from '@fortawesome/free-brands-svg-icons'
 import { InstagramEmbed } from 'react-social-media-embed';
 // import IframeResizer from "iframe-resizer-react";
 import React, { useEffect } from 'react';
-import bg from '/src/images/IO Map (Custom).jpg';
 
 function Root() {
-    useEffect(() => { document.body.style.backgroundImage = `url('${bg}')`}, []);
+    // Set page background
+    const page_resource_path = "./public/images/home_page/";
+    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home.jpg"}')`}, []);
     return (
         <>
             <NavBar></NavBar>

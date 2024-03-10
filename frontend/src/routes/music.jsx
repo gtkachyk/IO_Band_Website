@@ -1,8 +1,7 @@
 import NavBar from "../Components/NavBar";
 import { Link, useLoaderData } from "react-router-dom";
 import { getAlbums } from "../albums";
-import React, { useState, useEffect } from 'react';
-import bg from '/src/images/IO Map (Custom).jpg';
+import React, { useEffect } from 'react';
 
 export async function loader() {
   const albums = await getAlbums();
@@ -10,36 +9,14 @@ export async function loader() {
 }
 
 function Music(){
-    useEffect(() => { document.body.style.backgroundImage = `url('${bg}')`}, []);
-
-    // Get albums from db.
-    // const [data, setData] = useState([])
-    // useEffect(() => {
-    //   async function fetchData() {
-    //     try{
-    //       const response = await fetch(`${import.meta.env.VITE_API_URL}albums`);
-    //       if (!response.ok){
-    //         throw new Error('Network response was not ok');
-    //       }
-    //       const result = await response.json();
-    //       setData(result);
-    //     } catch (error){
-    //       console.error('Error fetching data:', error);
-    //     }
-    //   }
-  
-    //   fetchData();
-    // }, [])
-    // const albums = JSON.parse(JSON.stringify(data));
+    // Set page background
+    const page_resource_path = "./public/images/music_page/";
+    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_music.jpg"}')`}, []);
 
     const {albums} = useLoaderData();
-
-    console.log(albums)
-
     return(
         <>
             <NavBar></NavBar>
-            {/* <AlbumLinks></AlbumLinks> */}
             <div id="album-links">
                 <h1>Albums</h1> {/*This header is invisible and only exists to push the album links down past the nav bar.*/}
                 <nav>

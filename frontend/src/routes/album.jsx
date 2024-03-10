@@ -18,10 +18,10 @@ function Album(){
   if(album == undefined){
     return <>Loading...</>
   }
-  const album_relative_path = "../" + album.path;
+  const page_resource_path = "../" + album.path;
 
   // Set background
-  useEffect(() => { document.body.style.backgroundImage = `url('${album_relative_path + "/images/page_background_album_" + album.id + ".jpg"}')`}, []);
+  useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "/images/page_background_album_" + album.id + ".jpg"}')`}, []);
 
   // Get data for sub components
   const artwork_preview_pairs = generateDownloadableArtPreviewPairs(album);
@@ -48,7 +48,7 @@ function Album(){
                   </div>
                   <div className="tab-div">
                       <h2 className="tab-header">Tabs</h2>
-                      <TabList album_songs={album.songs} tabs_path={album_relative_path + '/tabs/'}></TabList>
+                      <TabList album_songs={album.songs} tabs_path={page_resource_path + '/tabs/'}></TabList>
                   </div>
               </div>
           </div>
