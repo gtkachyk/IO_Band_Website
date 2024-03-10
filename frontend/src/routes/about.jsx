@@ -7,7 +7,21 @@ function About(){
     return(
         <>
             <NavBar></NavBar>
-            <h1 id= "test-header"> This is the about page.</h1>
+            <div className="about-page-container">
+                <div className="about-page-content">
+                    <div className="about-page-top-padding">
+
+                    </div>
+                    <div className="about-page-featured-content-container">
+            
+                     </div>
+                     <div className="about-page-offensive-content-table-container">
+                     </div>
+                     <div className="about-page-bottom-padding">
+
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
