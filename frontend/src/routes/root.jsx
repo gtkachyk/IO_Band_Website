@@ -11,7 +11,7 @@ import React, { useEffect } from 'react';
 function Root() {
     // Set page background
     const page_resource_path = "./public/images/home_page/";
-    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home.jpg"}')`}, []);
+    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home_2.jpg"}')`}, []);
     return (
         <>
             <NavBar></NavBar>

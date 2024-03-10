@@ -111,7 +111,7 @@ form[action$="destroy"] button {
 #navbar {
   width: 100%;
   height: 6rem;
-  background-color: #c3ca9c;
+  background-color: #1d1c1c; /*changed from #c3ca9c*/
   opacity: 70%;
   display: flex;
   flex-direction: row;
@@ -158,7 +158,7 @@ form[action$="destroy"] button {
   padding: 0.25rem 7rem;
   border-radius: 8px;
 
-  color: inherit;
+  color: #fafafa; /*text color, changed from inherit*/
   text-decoration: none;
   font-size: xx-large;
   font-family:'Courier New', Courier, monospace;
@@ -166,7 +166,7 @@ form[action$="destroy"] button {
 }
 
 #navbar nav a:hover {
-  background: #c79936;
+  background: #494949; /*changed from #c79936*/
 }
 
 #navbar nav a.active {
