@@ -1,4 +1,5 @@
-console.log("Playlist.js loaded");
+
+// TODO: fix progress bar on click
 var audioPlayer = function() {
     "use strict";
   
@@ -156,7 +157,7 @@ var audioPlayer = function() {
             alert('An unknown error occurred.');
             break;
         }
-        trackLoaded = false;
+        _trackLoaded = false;
         _resetPlayStatus();
       }, false);
   
@@ -164,7 +165,7 @@ var audioPlayer = function() {
       _elements.playerButtons.largeToggleBtn.addEventListener("click", function(e) {
         if (_trackLoaded === false) {
           _currentTrack = parseInt(1);
-          _setTrack()
+          _setTrack();
         } else {
           _playBack();
         }
@@ -191,10 +192,10 @@ var audioPlayer = function() {
       }, false);
   
       //User is moving progress indicator.
-      _progressBarIndicator.addEventListener("mousedown", _mouseDown, false);
+      // _progressBarIndicator.addEventListener("mousedown", _mouseDown, false);
   
-      //User stops moving progress indicator.
-      window.addEventListener("mouseup", _mouseUp, false);
+      // //User stops moving progress indicator.
+      // window.addEventListener("mouseup", _mouseUp, false);
     };
   
     /**
@@ -419,6 +420,7 @@ var audioPlayer = function() {
           _elements.playerButtons.previousTrackBtn.className = "previous-track-btn";
         }
       }
+
     };
   
     /**
@@ -459,16 +461,8 @@ var audioPlayer = function() {
     };
   };
   
-  // (function() {
-  //   var player = new audioPlayer();
-  
-  //   player.initPlayer();
-  // })();
-
-function initializeAudioPlayer() {
+  (function() {
     var player = new audioPlayer();
+  
     player.initPlayer();
-    console.log("initializeAudioPlayer called");
-}
-
-document.addEventListener("DOMContentLoaded", initializeAudioPlayer);
+  })();

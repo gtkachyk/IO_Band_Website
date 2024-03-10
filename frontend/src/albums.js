@@ -106,9 +106,9 @@ export async function getAlbums() {
     return albums;
 };
 
-export async function getAlbum(name) {
+export async function getAlbum(id) {
     for(let i = 0; i < albums.length; i++){
-        if(albums[i].name == name){
+        if(albums[i].id == id){
             return albums[i];
         }
     }

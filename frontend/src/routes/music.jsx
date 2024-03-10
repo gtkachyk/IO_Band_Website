@@ -30,7 +30,7 @@ function Music(){
   
       fetchData();
     }, [])
-    var albums = JSON.parse(JSON.stringify(data));
+    const albums = JSON.parse(JSON.stringify(data));
 
     return(
         <>

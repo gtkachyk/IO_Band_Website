@@ -1,0 +1,44 @@
+------------------------------------------------------------------------------------------------------------------------------
+To run frontend:
+- Run 'cd C:\Users\gtkac\IO_Band_Website\frontend' then 'npm run dev'.
+
+To run backend:
+- Run 'cd C:\Users\gtkac\IO_Band_Website\env' then '.\Scripts\activate' to start virtual environment.
+- Then run 'cd C:\Users\gtkac\IO_Band_Website\backend' then 'python manage.py runserver' from 'backend' folder to start django dev server.
+
+To access Django site administration:
+- Go to URL 'http://127.0.0.1:8000/admin/'.
+    - If needed login with the following credentials:
+        - django super user username: gtkac
+        - password: bubbly.Lime.&.p0pco4n
+        - email: gtkachyk96@gmail.com
+
+To access Django REST framework API:
+- Go to URL 'http://127.0.0.1:8000/api/'
+
+Django apps:
+- To make new app, run 'manage.py startapp <app name>' from backend.
+- To migrate new app, run 'cd C:\Users\gtkac\IO_Band_Website\env' then '.\Scripts\activate' then 'cd C:\Users\gtkac\IO_Band_Website\backend' then 'python manage.py makemigrations' then 'python manage.py migrate'.
+------------------------------------------------------------------------------------------------------------------------------
+Random stackexchange post:
+
+I'll try to explain simply how it works as it'll help you decide the best solution for you.
+
+    Local system storage.
+
+You store the path in the database, and set the storage class on the field as, FileSystemStorage which means django will know to write and read from the hard disk of the same system your django app is running on. So basically you store normal files with references to their location in a directory.
+
+    Cloud storage.
+
+Similar to local system, but instead of a local path you save a uri location, and instead of the local system you'll fetch the file over the network either via http, or a custom protocol like s3. In order to achieve this you need to declare a custom storage class, where you define your custom save and delete methods to upload and delete from your cloud storage.
+
+You can write your own: https://docs.djangoproject.com/en/3.1/howto/custom-file-storage/
+
+Or use a library: https://github.com/jschneier/django-storages
+
+    Database storage
+
+If you know files are text, you can read them and save the text directly in the database with associated metadata. If they are binary you can store them as Blob type - the risk here is slow performance and risk of bloating the database. AFAIK it's a better practice to store binaries outside the database.
+------------------------------------------------------------------------------------------------------------------------------
+Random notes:
+- backend is the name of the django project, in the project folder, 'core' is its associated subdirectory.

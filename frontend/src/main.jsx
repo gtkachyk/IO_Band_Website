@@ -31,14 +31,14 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "music/:albumId",
+    path: "music/:id",
     element: <Album />,
     loader: albumLoader
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  //{/* </React.StrictMode> */}
 );
