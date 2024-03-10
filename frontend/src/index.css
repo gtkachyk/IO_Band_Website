@@ -27,6 +27,7 @@ html,
 body {
   background-color: #818181;
   background-position: center;
+  background-attachment: fixed; /* makes page background image not move when scrolling */
   height: 100%;
   margin: 0;
   line-height: 1.5;
