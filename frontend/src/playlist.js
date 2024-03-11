@@ -929,16 +929,17 @@ var audioPlayer = function() {
     };
   };
   
-  // (function() {
-  //   var player = new audioPlayer();
-  
-  //   player.initPlayer();
-  // })();
-
-function initializeAudioPlayer() {
+  (function() {
     var player = new audioPlayer();
+  
     player.initPlayer();
-    console.log("initializeAudioPlayer called");
-}
+  })();
 
-document.addEventListener("DOMContentLoaded", initializeAudioPlayer);
+// function initializeAudioPlayer() {
+//     console.log("initializeAudioPlayer called...");
+//     var player = new audioPlayer();
+//     player.initPlayer();
+//     console.log("audio player initialized...");
+// }
+
+// document.addEventListener("DOMContentLoaded", initializeAudioPlayer);
