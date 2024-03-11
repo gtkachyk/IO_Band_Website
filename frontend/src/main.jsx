@@ -10,7 +10,6 @@ import Music from "./routes/music"
 import Video from "./routes/video";
 import About from "./routes/about";
 import Album, {loader as albumLoader} from "./routes/album";
-import {loader as rootLoader} from "./routes/music";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +19,6 @@ const router = createBrowserRouter([
   {
     path: "music",
     element: <Music />,
-    loader: rootLoader,
   },
   {
     path: "video",

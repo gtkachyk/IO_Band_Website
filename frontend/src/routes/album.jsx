@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../albums";
 
 export async function loader({params}) {
+    console.log(params.name);
   const loader_album = await getAlbumByName(params.name);
   return {loader_album};
 }
@@ -90,7 +91,7 @@ function Album(){
             <NavBar></NavBar>
             <div className={"album-div-main"}>
                 <div className="album-page-content">
-                    <h1 className={"album-header-main"} id={"album-header-main-" + album.id}>{album.name}</h1>
+                    <h1 className={"album-header-main"} id={"album-header-main-" + album.id}>{album.display_name}</h1>
                     <div className="album-player-div">
                         <h2 className="album-player-header">Tracks</h2>
                         <AlbumPlayer album={album} source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>

@@ -1,19 +1,61 @@
 import NavBar from "../Components/NavBar";
-import { Link, useLoaderData } from "react-router-dom";
-import { getAlbums } from "../albums";
-import React, { useEffect } from 'react';
-
-export async function loader() {
-  const albums = await getAlbums();
-  return { albums };
-}
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 function Music(){
     // Set page background
     const page_resource_path = "./public/images/music_page/";
     useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_music.jpg"}')`}, []);
 
-    const {albums} = useLoaderData();
+    // Data for api interaction
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const fetchData = async (endpoints) => {
+        try {
+            const responses = await Promise.all(
+                endpoints.map(async (endpoint) => {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
+                    }
+                    return response.json();
+                })
+            );
+
+            setData(responses);
+            setLoading(false); // Set loading to false once all data is fetched
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+            setLoading(false); // Set loading to false in case of an error
+        }
+    };
+
+    // Get data from database
+    useEffect(() => {
+        fetchData(['albums/']);
+    }, []);
+
+    // Add playlist.js when loading is done
+    useEffect(() => {
+        if (!loading) {
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = '/src/playlist.js';
+            script.async = true;
+            document.body.appendChild(script);
+
+            return () => {
+                document.body.removeChild(script);
+            };
+        }
+    }, [loading]);
+    
+    if (loading) {
+        return (<>Loading...</>);
+    }
+
+    // Divide data
+    const albums = data[0];
     return(
         <>
             <NavBar></NavBar>
