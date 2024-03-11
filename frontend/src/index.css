@@ -241,9 +241,10 @@ form[action$="destroy"] button {
   justify-content: center;
   position: absolute;
   margin-left: 301px;
-  min-width: 15.7%;
-  max-width: 15.7%;
-  min-height: 40%;
+  min-width: 240px;
+  max-width: 240px;
+  min-height: 300px;
+  max-height: 300px;
   /* border: solid green; */
   font-size: 35px;
 }
