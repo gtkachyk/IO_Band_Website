@@ -17,10 +17,11 @@ function Root() {
             <NavBar></NavBar>
             <div className="home-page-container">
                 <div className="home-page-content">
-                    <div className="top-padding"><h2 className = "top-padding-text">Featured Content</h2></div>
+                    <div className="featured-content-title-div"><h2 className = "featured-content-title-h2">Featured Content</h2></div>
                     <div className="featured-content-container">
             
                      </div>
+                     <div className="offensive-content-title-div"><h2 className = "offensive-content-title-h2">Offensive Content</h2></div>
                      <div className="offensive-content-table-container">
                          {/* <table className="offensive-content-table">
                              <tr>
@@ -45,9 +46,7 @@ function Root() {
                              </tr>
                          </table> */}
                      </div>
-                     <div className="bottom-padding">
-
-                    </div>
+                     <div className="footer-div"></div>
                 </div>
             </div>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/font-awesome.min.css"></link>
