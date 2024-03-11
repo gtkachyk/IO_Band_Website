@@ -17,9 +17,7 @@ function Root() {
             <NavBar></NavBar>
             <div className="home-page-container">
                 <div className="home-page-content">
-                    <div className="top-padding">
-
-                    </div>
+                    <div className="top-padding"><h2 className = "top-padding-text">Featured Content</h2></div>
                     <div className="featured-content-container">
             
                      </div>
