@@ -8,9 +8,8 @@ import React, { useEffect, useState } from 'react';
 import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../albums";
 
 export async function loader({params}) {
-    console.log(params.name);
-  const loader_album = await getAlbumByName(params.name);
-  return {loader_album};
+    const loader_album = await getAlbumByName(params.name);
+    return {loader_album};
 }
 
 function Album(){

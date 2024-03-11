@@ -34,28 +34,12 @@ function Music(){
     useEffect(() => {
         fetchData(['albums/']);
     }, []);
-
-    // Add playlist.js when loading is done
-    useEffect(() => {
-        if (!loading) {
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = '/src/playlist.js';
-            script.async = true;
-            document.body.appendChild(script);
-
-            return () => {
-                document.body.removeChild(script);
-            };
-        }
-    }, [loading]);
     
     if (loading) {
         return (<>Loading...</>);
     }
-
-    // Divide data
     const albums = data[0];
+
     return(
         <>
             <NavBar></NavBar>
@@ -66,7 +50,7 @@ function Music(){
                         <ul>
                             {albums.map((album) => (
                                 <li key={album.id}>
-                                    <Link reloadDocument to={`${album.name}`}> {/* album.id gets passed to album.jsx.loader as params.albumID */}
+                                    <Link reloadDocument to={`${album.name}`}>
                                         <img src = {'../' + album.path + '/images/album_preview_artwork_' + album.id + '.jpg'}></img>{album.display_name}
                                     </Link>
                                 </li>

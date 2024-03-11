@@ -10,15 +10,6 @@ const demos = {
 
 const albums = [the_depths, demos];
 
-export async function getAlbumByID(id) {
-    for(let i = 0; i < albums.length; i++){
-        if(albums[i].id == id){
-            return albums[i];
-        }
-    }
-    return null;
-};
-
 export async function getAlbumByName(name) {
     for(let i = 0; i < albums.length; i++){
         if(albums[i].name == name){
