@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 function Video(){
     const page_resource_path = "./public/images/video_page/";
-    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_video.jpg"}')`}, []);
+    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_video_2.jpg"}')`}, []);
     return(
         <>
             <NavBar></NavBar>

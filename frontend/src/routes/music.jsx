@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 function Music(){
     // Set page background
     const page_resource_path = "./public/images/music_page/";
-    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_music.jpg"}')`}, []);
+    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_music_2.jpg"}')`}, []);
 
     // Data for api interaction
     const [data, setData] = useState([]);
@@ -51,7 +51,8 @@ function Music(){
                             {albums.map((album) => (
                                 <li key={album.id}>
                                     <Link reloadDocument to={`${album.name}`}>
-                                        <img src = {'../' + album.path + '/images/album_preview_artwork_' + album.id + '.jpg'}></img>{album.display_name}
+                                        <img src = {'../' + album.path + '/images/album_preview_artwork_' + album.id + '.jpg'}></img>
+                                        <h2 className="album-link-h2">{album.display_name}</h2>
                                     </Link>
                                 </li>
                             ))}
