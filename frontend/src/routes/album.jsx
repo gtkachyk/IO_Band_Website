@@ -5,7 +5,7 @@ import ArtworkList from "../Components/ArtworkList";
 import LyricSheetList from "../Components/LyricSheetList";
 import TabList from "../Components/TabList";
 import React, { useEffect, useState } from 'react';
-import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs} from "../albums";
+import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../albums";
 
 export async function loader({params}) {
   const loader_album = await getAlbumByName(params.name);
@@ -15,12 +15,13 @@ export async function loader({params}) {
 function Album(){
     // Get album object
     const {loader_album} = useLoaderData();
-    const [data, setData] = useState([]); // for test api call 
-    const [loading, setLoading] = useState(true); // for test api call
     if(loader_album == undefined){
       return <>Loading...</>
     }
 
+    // Data for api interaction
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const fetchData = async (endpoints) => {
         try {
             const responses = await Promise.all(
@@ -65,46 +66,31 @@ function Album(){
         return (<>Loading...</>);
     }
 
+    // Divide data
     const album = data[0];
     const songs = data[1];
     const page_resource_path = "../" + album.path;
 
     // Set page background
-    document.body.style.backgroundImage = `url('${page_resource_path + "/images/page_background_album_" + album.id + ".jpg"}')`
+    document.body.style.backgroundImage = `url('${page_resource_path + "/images/page_background_album_" + album.id + ".jpg"}')`;
 
     // Filter out songs that do not belong to album
-    var album_songs = [];
-    for(var i = 0; i < songs.length; i++){
-        if(songs[i].album === album.id){
-            album_songs.push(songs[i]);
-        }
-    }
+    const album_songs = getAlbumSongs(songs, album);
 
     // Generate tags
-    var source_tags = ``;
-    var div_tags = ``;
-    for(var i = 0; i < album_songs.length; i++){
-        source_tags += `<source src=${"\"..\\" + album.path + '/audio/' + album_songs[i].audio_file_name + "\""} type="audio/wav" data-track-number=${"\"" + album_songs[i].track_number + "\""}/>`;
-        div_tags += `<div className=\"play-list-row\" data-track-row=${"\"" + album_songs[i].track_number + "\""}><div className=\"small-toggle-btn\"><i className=\"small-play-btn\"><span className=\"screen-reader-text\">Small toggle button</span></i></div><div className=\"track-number\">${album_songs[i].track_number}.</div><div className=\"track-title\"><a className=\"playlist-track\" href=\"#\" data-play-track=${"\"" + album_songs[i].track_number + "\""} style=\"pointer-events: none\">${album_songs[i].name}</a></div></div>`;
-    }
+    const html_tags = generatePlaylistHTML(album, album_songs);
+    const source_tags = html_tags[0];
+    const div_tags = html_tags[1];
 
     // Create artwork pairs
-    const downloadable_artwork = album.downloadable_artwork.split(',');
-    const downloadable_artwork_folder_path = album.path + '/images/downloadable/';
-    var artwork_preview_pairs = [];
-    for(var i = 0; i < downloadable_artwork.length; i++){
-        const current_art = downloadable_artwork[i];
-        const current_art_split = current_art.split('.');
-        const current_art_file_extension = current_art_split[current_art_split.length - 1];
-        artwork_preview_pairs.push([downloadable_artwork_folder_path + current_art, downloadable_artwork_folder_path + current_art.substring(0, current_art.lastIndexOf('.')) + '_preview.' + current_art_file_extension]);
-    }
+    const artwork_preview_pairs = generateDownloadableArtPreviewPairs(album.downloadable_artwork, album.path);
 
     return(
         <>
             <NavBar></NavBar>
             <div className={"album-div-main"}>
                 <div className="album-page-content">
-                    <h1 className={"album-header-main"} id={"album-header-main-" + album.id}>{album.display_name}</h1>
+                    <h1 className={"album-header-main"} id={"album-header-main-" + album.id}>{album.name}</h1>
                     <div className="album-player-div">
                         <h2 className="album-player-header">Tracks</h2>
                         <AlbumPlayer album={album} source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>

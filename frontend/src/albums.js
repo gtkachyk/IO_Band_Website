@@ -42,10 +42,19 @@ export async function getAlbumByName(name) {
     return null;
 };
 
-export function generatePlaylistHTML(album){
+export function getAlbumSongs(songs, album){
+    var album_songs = [];
+    for(var i = 0; i < songs.length; i++){
+        if(songs[i].album === album.id){
+            album_songs.push(songs[i]);
+        }
+    }
+    return album_songs;
+}
+
+export function generatePlaylistHTML(album, album_songs){
     var source_tags = ``;
     var div_tags = ``;
-    const album_songs = album.songs;
     for(var i = 0; i < album_songs.length; i++){
         source_tags += `<source src=${"\"..\\" + album.path + '/audio/' + album_songs[i].audio_file_name + "\""} type="audio/wav" data-track-number=${"\"" + album_songs[i].track_number + "\""}/>`;
         div_tags += `<div className=\"play-list-row\" data-track-row=${"\"" + album_songs[i].track_number + "\""}><div className=\"small-toggle-btn\"><i className=\"small-play-btn\"><span className=\"screen-reader-text\">Small toggle button</span></i></div><div className=\"track-number\">${album_songs[i].track_number}.</div><div className=\"track-title\"><a className=\"playlist-track\" href=\"#\" data-play-track=${"\"" + album_songs[i].track_number + "\""} style=\"pointer-events: none\">${album_songs[i].name}</a></div></div>`;
@@ -53,9 +62,9 @@ export function generatePlaylistHTML(album){
     return [source_tags, div_tags];
 }
 
-export function generateDownloadableArtPreviewPairs(album){
-    const downloadable_artwork = album.downloadable_artwork.split(',');
-    const downloadable_artwork_folder_path = album.path + '/images/downloadable/';
+export function generateDownloadableArtPreviewPairs(downloadable_art_string, album_path){
+    const downloadable_artwork = downloadable_art_string.split(',');
+    const downloadable_artwork_folder_path = album_path + '/images/downloadable/';
     var artwork_preview_pairs = [];
     for(var i = 0; i < downloadable_artwork.length; i++){
         const current_art = downloadable_artwork[i];
