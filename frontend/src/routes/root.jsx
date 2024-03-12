@@ -4,7 +4,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { faItunes, faItunesNote, faSoundcloud, faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faBandcamp } from '@fortawesome/free-brands-svg-icons'
-import { InstagramEmbed } from 'react-social-media-embed';
+import { InstagramEmbed, TikTokEmbed } from 'react-social-media-embed';
 // import IframeResizer from "iframe-resizer-react";
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
@@ -12,12 +12,19 @@ import { Link } from "react-router-dom";
 
 function Root() {
 
+    // Featured audio media constants
+    const featured_album_id = "1";
+    const featured_audio_media = "http://localhost:5173/music/the_depths";
+
+    // Social media links
+    const featured_tiktok = "https://www.tiktok.com/embed/7305519091761073414";
+    const featured_instagram = "https://www.instagram.com/p/CrAjRCuu3Sr/";
+
     // Set page background
     const page_resource_path = "./public/images/home_page/";
     useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home_2.jpg"}')`}, []);
 
-    // Data for api interaction
-    const featured_album_id = "1";
+    // Get featured album
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const fetchData = async (endpoints) => {
@@ -33,14 +40,12 @@ function Root() {
             );
 
             setData(responses);
-            setLoading(false); // Set loading to false once all data is fetched
+            setLoading(false);
         } catch (error) {
             console.error('Error fetching data: ', error);
-            setLoading(false); // Set loading to false in case of an error
+            setLoading(false);
         }
     };
-
-    // Get data from database
     useEffect(() => {
         fetchData(['albums/' + featured_album_id]);
     }, []);
@@ -48,12 +53,9 @@ function Root() {
     if (loading) {
         return (<>Loading...</>);
     }
-
-    // Divide data
-    const album = data[0];
-    const featured_album_resource_path = "./" + album.path;
+    const featured_album = data[0];
+    const featured_album_resource_path = "./" + featured_album.path;
     const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
-    console.log(featured_album_preview_image_path);
 
     return (
         <>
@@ -66,18 +68,24 @@ function Root() {
                             <tbody>
                                 <tr>
                                     <th className="featured-table-col-1">
-                                    <h2 className = "featured-content-table-audio-h2">'Audio Based Media' - Out Now!</h2>
-                                        <div className="featured-content-table-audio-div" style={{ backgroundImage: `url('${featured_album_preview_image_path}')` }}></div>
+                                        <h2 className = "featured-content-table-audio-h2">'Audio Based Media' - Out Now!</h2>
+                                        <div className="featured-content-table-audio-div">
+                                            <a href={featured_audio_media}>
+                                                <div className="featured-content-table-audio-div-container" style={{ backgroundImage: `url('${featured_album_preview_image_path}')` }}>
+                                                    <span className="caption">{featured_album.display_name}</span>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </th> 
                                     <th className="featured-table-col-2">
-                                       <h2 className = "featured-content-table-social-h2">From the Network</h2>
-                                       <div className="featured-content-table-social-container">
-                                            <iframe src="https://www.tiktok.com/embed/7305519091761073414" width="300" height="579px" style={{ position: 'relative', top: '0'}}></iframe>
+                                        <h2 className = "featured-content-table-social-h2">From the Network</h2>
+                                        <div className="featured-content-table-social-container">
+                                            <iframe className="featured-content-table-tiktok" src={featured_tiktok}></iframe>
+                                            {/*<div className="featured-content-table-tiktok-cover"></div> Only used to get rid of small white line on top of iframe*/}
                                         </div>
-
                                     </th>
                                     {/* <th className="featured-table-col-3">
-                                        <InstagramEmbed url="https://www.instagram.com/p/CrAjRCuu3Sr/" width={374}/>
+                                        <InstagramEmbed url={featured_instagram} width={374}/>
                                     </th> */}
                                 </tr>
                             </tbody>
