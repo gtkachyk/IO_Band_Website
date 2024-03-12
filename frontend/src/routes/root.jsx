@@ -6,12 +6,55 @@ import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faBandcamp } from '@fortawesome/free-brands-svg-icons'
 import { InstagramEmbed } from 'react-social-media-embed';
 // import IframeResizer from "iframe-resizer-react";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+
 
 function Root() {
+
     // Set page background
     const page_resource_path = "./public/images/home_page/";
     useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home_2.jpg"}')`}, []);
+
+    // Data for api interaction
+    const featured_album_id = "1";
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const fetchData = async (endpoints) => {
+        try {
+            const responses = await Promise.all(
+                endpoints.map(async (endpoint) => {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
+                    }
+                    return response.json();
+                })
+            );
+
+            setData(responses);
+            setLoading(false); // Set loading to false once all data is fetched
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+            setLoading(false); // Set loading to false in case of an error
+        }
+    };
+
+    // Get data from database
+    useEffect(() => {
+        fetchData(['albums/' + featured_album_id]);
+    }, []);
+
+    if (loading) {
+        return (<>Loading...</>);
+    }
+
+    // Divide data
+    const album = data[0];
+    const featured_album_resource_path = "./" + album.path;
+    const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
+    console.log(featured_album_preview_image_path);
+
     return (
         <>
             <NavBar></NavBar>
@@ -19,7 +62,26 @@ function Root() {
                 <div className="home-page-content">
                     <div className="featured-content-title-div"><h2 className = "featured-content-title-h2">Featured Content</h2></div>
                     <div className="featured-content-container">
-            
+                        <table className="featured-content-table">
+                            <tbody>
+                                <tr>
+                                    <th className="featured-table-col-1">
+                                    <h2 className = "featured-content-table-audio-h2">'Audio Based Media' - Out Now!</h2>
+                                        <div className="featured-content-table-audio-div" style={{ backgroundImage: `url('${featured_album_preview_image_path}')` }}></div>
+                                    </th> 
+                                    <th className="featured-table-col-2">
+                                       <h2 className = "featured-content-table-social-h2">From the Network</h2>
+                                       <div className="featured-content-table-social-container">
+                                            <iframe src="https://www.tiktok.com/embed/7305519091761073414" width="300" height="579px" style={{ position: 'relative', top: '0'}}></iframe>
+                                        </div>
+
+                                    </th>
+                                    {/* <th className="featured-table-col-3">
+                                        <InstagramEmbed url="https://www.instagram.com/p/CrAjRCuu3Sr/" width={374}/>
+                                    </th> */}
+                                </tr>
+                            </tbody>
+                        </table>
                      </div>
                      <div className="offensive-content-title-div"><h2 className = "offensive-content-title-h2">Offensive Content</h2></div>
                      <div className="offensive-content-table-container">
