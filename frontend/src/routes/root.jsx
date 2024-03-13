@@ -1,4 +1,5 @@
 import NavBar from "../Components/NavBar";
+import SongRankingList from "../Components/SongRankingList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { faItunes, faItunesNote, faSoundcloud, faTiktok } from '@fortawesome/free-brands-svg-icons'
@@ -47,13 +48,14 @@ function Root() {
         }
     };
     useEffect(() => {
-        fetchData(['albums/' + featured_album_id]);
+        fetchData(['albums/' + featured_album_id, 'songs/']);
     }, []);
 
     if (loading) {
         return (<>Loading...</>);
     }
     const featured_album = data[0];
+    const songs = data[1];
     const featured_album_resource_path = "./" + featured_album.path;
     const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
 
@@ -68,7 +70,7 @@ function Root() {
                             <tbody>
                                 <tr>
                                     <th className="featured-table-col-1">
-                                        <h2 className = "featured-content-table-audio-h2">'Audio Based Media' - Out Now!</h2>
+                                        <h2 className = "featured-content-table-audio-h2">'{featured_album.display_name}' - Out Now!</h2>
                                         <div className="featured-content-table-audio-div">
                                             <a href={featured_audio_media}>
                                                 <div className="featured-content-table-audio-div-container" style={{ backgroundImage: `url('${featured_album_preview_image_path}')` }}>
@@ -93,28 +95,7 @@ function Root() {
                      </div>
                      <div className="offensive-content-title-div"><h2 className = "offensive-content-title-h2">Offensive Content</h2></div>
                      <div className="offensive-content-table-container">
-                         {/* <table className="offensive-content-table">
-                             <tr>
-                                 <th className="offensive-table-col-1">
-                                     <iframe  width="324" height="579"
-                                         src="https://www.tiktok.com/embed/7305519091761073414">
-                                     </iframe>
-                                 </th> 
-                                 <th className="offensive-table-col-2">
-                                     <IframeResizer 
-                                         log
-                                         src="https://www.youtube.com/embed/CpdagzjptPs?si=AammjKOio2kkXC5g"
-                                         style={{ width: '100%', minWidth: '761px', height: '579px'}}>
-                                     </IframeResizer>
-                                     <iframe width="761" height="579"
-                                         src="https://www.youtube.com/embed/CpdagzjptPs?si=AammjKOio2kkXC5g">
-                                     </iframe> 
-                                 </th>
-                                 <th className="offensive-table-col-3">
-                                     <InstagramEmbed url="https://www.instagram.com/p/CrAjRCuu3Sr/" width={374}/>
-                                 </th>
-                             </tr>
-                         </table> */}
+                        <SongRankingList songs={songs}></SongRankingList>
                      </div>
                      <div className="footer-div"></div>
                 </div>
