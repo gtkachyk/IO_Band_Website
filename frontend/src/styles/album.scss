@@ -1,11 +1,14 @@
-$album-pages-debug: true;
+$album-pages-debug:         false;
+$album-pages-title-debug:   false;
+$album-pages-table-debug:   false;
+$album-pages-columns-debug: false;
 
 /**********************/
 /***** Containers *****/
 /**********************/
 
 @mixin album-div-main-debug-border {
-    border: solid #668d85;
+    border: solid #fbff00;
 }
 
 .album-div-main {
@@ -33,6 +36,7 @@ $album-pages-debug: true;
   height: 500px;
   display: inline-block;
   height: fit-content;
+
   @if $album-pages-debug {
     @include album-page-content-debug-border;
   }
@@ -45,7 +49,8 @@ $album-pages-debug: true;
 .album-page-title-div {
   min-width: 100%;
   height: 75px;
-  @if $album-pages-debug {
+
+  @if $album-pages-title-debug {
     @include album-page-title-div-debug-border;
   }
 }
@@ -57,7 +62,7 @@ $album-pages-debug: true;
 .album-page-title-header {
   min-width: 100%;
   min-height: 100%;
-  color:#4d0505;
+  color: #ffffff;
   font-family: 'Courier New', Courier, monospace;
   font-style: italic;
   letter-spacing: 10px;
@@ -68,20 +73,22 @@ $album-pages-debug: true;
   text-shadow: 1.5px 1.5px #000000;
   font-weight: lighter;
   margin-top: 0px;
-  @if $album-pages-debug {
+
+  @if $album-pages-title-debug {
     @include album-page-title-header-debug-border;
   }
 }
 
 @mixin album-page-content-table-container-debug-border {
-    border: solid rgb(255, 255, 255);
+    border: solid rgb(51, 255, 0);
 }
 
 .album-page-content-table-container {
   min-width: 100%;
   min-height: 100%;
   display: flex;
-  @if $album-pages-debug {
+
+  @if $album-pages-table-debug {
     @include album-page-content-table-container-debug-border;
   }
 }
@@ -95,7 +102,8 @@ $album-pages-debug: true;
   max-height: 500px;
   min-width: 100%;
   max-width: 100%;
-  @if $album-pages-debug {
+
+  @if $album-pages-table-debug {
     @include album-page-content-table-debug-border;
   }
 }
@@ -113,7 +121,8 @@ $album-pages-debug: true;
   max-height: 500px;
   width: 405px;
   position: relative;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include album-player-column-debug-border;
   }
 }
@@ -128,7 +137,8 @@ $album-pages-debug: true;
   width: 100%;
   top: 0;
   margin-top: 0px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include album-player-header-debug-border;
   }
 }
@@ -143,7 +153,8 @@ $album-pages-debug: true;
   height: 91%;
   position: absolute;
   top: 42px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include album-player-div-debug-border;
   }
 }
@@ -161,7 +172,8 @@ $album-pages-debug: true;
   max-height: 500px;
   width: 345px;
   position: relative;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include art-column-debug-border;
   }
 }
@@ -176,7 +188,8 @@ $album-pages-debug: true;
   width: 100%;
   top: 0;
   margin-top: 0px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include artwork-header-debug-border;
   }
 }
@@ -191,7 +204,8 @@ $album-pages-debug: true;
   height: 91%;
   position: absolute;
   top: 42px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include artwork-div-debug-border;
   }
 }
@@ -204,7 +218,8 @@ $album-pages-debug: true;
   position: absolute;
   width: 345px;
   background-color: rgb(209, 209, 20, 0);
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include artwork-debug-border;
   }
 }
@@ -219,7 +234,8 @@ $album-pages-debug: true;
   gap: 1rem;
   list-style-type: none;
   margin-top: 0px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include art-list-debug-border;
   }
 }
@@ -237,7 +253,8 @@ $album-pages-debug: true;
   max-height: 500px;
   width: 345px;
   position: relative;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include lyrics-column-debug-border;
   }
 }
@@ -254,7 +271,8 @@ $album-pages-debug: true;
   width: 100%;
   top: 0;
   margin-top: 0px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include lyric-sheet-header-debug-border;
   }
 }
@@ -269,7 +287,8 @@ $album-pages-debug: true;
   height: 91%;
   position: absolute;
   top: 42px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include lyric-sheet-div-debug-border;
   }
 }
@@ -284,7 +303,8 @@ $album-pages-debug: true;
   margin-right: auto;
   position: relative;
   top: -20px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include lyrics-debug-border;
   }
 }
@@ -293,21 +313,23 @@ $album-pages-debug: true;
     border: solid orange;
 }
 
-#lyric-list{
+#lyric-list {
     display: grid;
     padding: 0.5rem;
     gap: 1rem;
     font-size: larger;
     color: #ffffff;
-    @if $album-pages-debug {
+
+    @if $album-pages-columns-debug {
         @include lyrics-list-debug-border;
     }
 }
   
-#lyrics-na{
+#lyrics-na {
     margin-top: 0px;
     color: #ffffff;
-    @if $album-pages-debug {
+
+    @if $album-pages-columns-debug {
         @include lyrics-list-debug-border;
     }
 }
@@ -325,7 +347,8 @@ $album-pages-debug: true;
     max-height: 500px;
     width: 345px;
     position: relative;
-    @if $album-pages-debug {
+
+    @if $album-pages-columns-debug {
       @include tabs-column-debug-border;
     }
 }
@@ -334,13 +357,14 @@ $album-pages-debug: true;
     border: solid rgb(0, 217, 255);
 }
 
-.tab-header{
+.tab-header {
   color: white;
   position: absolute;
   width: 100%;
   top: 0;
   margin-top: 0px;
-  @if $album-pages-debug {
+
+  @if $album-pages-columns-debug {
     @include tab-header-debug-border;
   }
 }
@@ -349,14 +373,15 @@ $album-pages-debug: true;
     border: solid rgb(255, 255, 255);
 }
 
-.tab-div{
+.tab-div {
   min-width: 345px;
   max-width: 345px;
   position: absolute;
   height: 91%;
   position: absolute;
   top: 42px;
-  @if $album-pages-debug {
+  
+  @if $album-pages-columns-debug {
     @include tab-div-debug-border;
   }
 }
@@ -371,7 +396,7 @@ $album-pages-debug: true;
   width: 100%;
   height: 100%;
 
-  @if $album-pages-debug {
+  @if $album-pages-columns-debug {
     @include tabs-debug-border;
   }
 }
@@ -380,7 +405,7 @@ $album-pages-debug: true;
     border: solid rgb(0, 218, 199);
 }
 
-#tab-list{
+#tab-list {
   display: grid;
   gap: 1rem;
   font-size: larger;
@@ -392,17 +417,17 @@ $album-pages-debug: true;
   top: 0;
   margin-top: 0px;
 
-  @if $album-pages-debug {
+  @if $album-pages-columns-debug {
     @include tabs-list-debug-border;
   }
 }
 
-#tabs-na{
+#tabs-na {
   position: absolute;
   top: 45px;
   color: #ffffff;
 
-  @if $album-pages-debug {
+  @if $album-pages-columns-debug {
     @include tabs-list-debug-border;
   }
 }
