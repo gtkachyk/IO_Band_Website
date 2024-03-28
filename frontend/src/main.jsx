@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import "./index.css";
+import "./styles/index.scss";
 import Root from "./routes/root";
 import Music from "./routes/music"
 import Video from "./routes/video";

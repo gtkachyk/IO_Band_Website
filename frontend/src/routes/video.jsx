@@ -1,5 +1,6 @@
 import NavBar from "../Components/NavBar";
 import React, { useEffect } from 'react';
+import '../styles/video.scss';
 
 function Video(){
     const page_resource_path = "./public/images/video_page/";

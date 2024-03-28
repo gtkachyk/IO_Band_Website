@@ -1,0 +1,46 @@
+.about-page-container {
+    background-size: cover;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    overflow: visible;  
+  
+    display: flex;
+    justify-content: center;
+  }
+  
+  .about-page-content{
+    position: relative;
+    display: inline-block;
+    height: fit-content;
+    top: 100px;
+    width: 1400px;
+    border: solid white;
+  }
+  
+  .about-page-top-padding {
+    min-width: 100%;
+    height: 100px;
+    border: solid blue;
+  }
+  
+  .about-page-featured-content-container {
+    margin-top: 5px;
+    min-width: 100%;
+    height: 520px;
+    border: solid purple;
+  }
+  
+  .about-page-offensive-content-table-container {
+    margin-top: 5px;
+    min-width: 100%;
+    height: 600px;
+    border: solid red;
+  }
+  
+  .about-page-bottom-padding {
+    margin-top: 5px;
+    min-width: 100%;
+    height: 100px;
+    border: solid yellow;
+  }

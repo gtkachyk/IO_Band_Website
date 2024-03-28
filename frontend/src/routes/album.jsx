@@ -6,6 +6,7 @@ import LyricSheetList from "../Components/LyricSheetList";
 import TabList from "../Components/TabList";
 import React, { useEffect, useState } from 'react';
 import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../albums";
+import '../styles/album.scss';
 
 export async function loader({params}) {
     const loader_album = await getAlbumByName(params.name);

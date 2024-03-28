@@ -1,0 +1,164 @@
+@import "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css";
+
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+html,
+body {
+  background-color: #818181;
+  background-position: center;
+  background-attachment: fixed; /* makes page background image not move when scrolling */
+  height: 100%;
+  margin: 0;
+  line-height: 1.5;
+  color: #121212;
+  z-index: 900;
+}
+
+html {
+  /* Making the html background transparent fixed issues with the background not fitting the viewport */
+  background: transparent;
+  background-color: transparent;
+}
+
+textarea,
+input,
+button {
+  font-size: 1rem;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  background-color: white;
+  line-height: 1.5;
+  margin: 0;
+}
+
+button {
+  color: #3992ff;
+  font-weight: 500;
+}
+
+textarea:hover,
+input:hover,
+button:hover {
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+}
+
+button:active {
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4);
+  transform: translateY(1px);
+}
+
+form[action$="destroy"] button {
+  color: #f44250;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/************************************************** Nav bar **************************************************/
+#navbar {
+  width: 100%;
+  height: 6rem;
+  background-color: rgb(29, 28, 28, 0.7); /*changed from #c3ca9c*/
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  z-index: 950;
+}
+
+#navbar > * {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#navbar > div {
+  gap: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #000000;
+}
+
+#navbar nav {
+  flex: 1;
+  overflow: auto;
+}
+
+#navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+
+#navbar li {
+  display: inline-block;
+  margin: 1.25rem;
+}
+
+#navbar nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  gap: 1rem;
+  white-space: pre;
+  padding: 0.25rem 7rem;
+  border-radius: 8px;
+
+  color: rgb(250, 250, 250); /*text color, changed from inherit*/
+  text-decoration: none;
+  font-size: xx-large;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#navbar nav a:hover {
+  background: rgba(255, 255, 255, 0.15); /*changed from #c79936*/
+}
+
+#navbar nav a.active {
+  background: hsl(224, 98%, 58%);
+  color: white;
+}
+
+#navbar nav a.pending {
+  color: hsl(224, 98%, 58%);
+}

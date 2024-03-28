@@ -9,6 +9,7 @@ import { InstagramEmbed, TikTokEmbed } from 'react-social-media-embed';
 // import IframeResizer from "iframe-resizer-react";
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import '../styles/root.scss';
 
 
 function Root() {

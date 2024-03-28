@@ -1,5 +1,6 @@
 import NavBar from "../Components/NavBar";
 import React, { useEffect } from 'react';
+import '../styles/about.scss';
 
 function About(){
     const page_resource_path = "./public/images/about_page/";

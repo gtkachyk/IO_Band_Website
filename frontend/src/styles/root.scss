@@ -1,0 +1,383 @@
+.home-page-container {
+    background-size: cover;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    overflow: visible;  
+  
+    display: flex;
+    justify-content: center;
+  
+    /* color-scheme: normal; */
+  }
+  
+  .home-page-content{
+    position: relative;
+    display: inline-block;
+    height: fit-content;
+    top: 100px;
+    width: 1400px;
+    /* border: solid white; */
+    background-color: #80808067;
+  }
+  
+  .featured-content-title-div {
+    min-width: 100%;
+    height: 75px;
+    /* border: solid blue; */
+  }
+  
+  .featured-content-title-h2 {
+    min-width: 100%;
+    min-height: 100%;
+    color:#4d0505;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    letter-spacing: 10px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    text-shadow: 1.5px 1.5px #000000;
+    font-weight: lighter;
+    /* border: solid #000000; */
+    margin-top: 0px;
+  }
+  
+  .featured-content-container {
+    margin-top: 5px;
+    min-width: 100%;
+    height: 700px;
+    /* border: solid purple; */
+  }
+  
+  .featured-content-table{
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    /* border: solid rgb(13, 5, 112); */
+  }
+  
+  .featured-content-table-audio-h2 {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 5%;
+    max-height: 5%;
+    color:rgb(240, 240, 240);
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    letter-spacing: 10px;
+    font-size: 25px;
+    text-shadow: 1px 1px #47474786;
+    /* background-image: linear-gradient(to right, rgb(110, 0, 0, 0.75), rgb(0, 0, 0, 0.25)); */
+    /* border: solid #000000; */
+    position: absolute;
+    top: 0;
+    margin-top: 0px;
+  }
+  
+  .featured-table-col-1 {
+    min-width: 50%;
+    max-width: 50%;
+    min-height: 100%;
+    max-height: 100%;
+    /* border: solid rgb(219, 0, 190); */
+    position: relative;
+  }
+  
+  .featured-content-table-audio-div { /* TODO: add child to display images inside of this div */
+    min-width: 90%;
+    max-width: 90%;
+    min-height: 90%;
+    max-height: 90%;
+    position: absolute;
+    /* border: solid rgb(228, 0, 0); */
+    top: 0;
+    margin-top: 50px;
+    margin-left: 30px;
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+  
+  .featured-content-table-audio-div-container {
+    min-width: 579px;
+    max-width: 579px;
+    min-height: 579px;
+    max-height: 579px;
+    position: absolute;
+    /* border: solid rgb(0, 0, 0); */
+    top: 0;
+    left: 0;
+    margin-left: 21px;
+    border-radius: 8px;
+    border: solid rgb(0, 0, 0);
+    border-width: 2px;
+  }
+  
+  .featured-content-table-audio-div-container:hover {
+    opacity: 0.75;
+  }
+  
+  .caption {
+    position: absolute;
+    opacity: 0;
+    margin-top: 45%;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #000000;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+  }
+  
+  .featured-content-table-audio-div-container:hover .caption{
+    opacity: 0.75;
+  }
+  
+  .featured-content-table-social-h2 {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 5%;
+    max-height: 5%;
+    color:rgb(240, 240, 240);
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    letter-spacing: 10px;
+    font-size: 25px;
+    text-shadow: 1px 1px #47474786;
+    /* background-image: linear-gradient(to right, rgb(110, 0, 0, 0.75), rgb(0, 0, 0, 0.25)); */
+    /* border: solid #000000; */
+    position: absolute;
+    top: 0;
+    margin-top: 0px;
+  }
+  
+  .featured-table-col-2 {
+    min-width: 50%;
+    max-width: 50%;
+    min-height: 100%;
+    max-height: 100%;
+    /* border: solid rgb(155, 86, 86); */
+    position: relative;
+  }
+  
+  .featured-content-table-social-container {
+    /* background-image: linear-gradient(to bottom right, rgba(53, 53, 53, 0.445), rgba(15, 15, 15, 0.74)); */
+    /* border: solid #3992ff; */
+    min-width: 90%;
+    max-width: 90%;
+    min-height: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 0;
+    margin-top: 50px;
+    margin-left: 30px;
+    border-radius: 8px;
+    /* align-items: center;
+    align-content: center; */
+  }
+  
+  /* .featured-content-table-tiktok-cover {
+    width: 327px;
+    height: 578px;
+    position: absolute;
+    top: 1px;
+    left: 150px;
+    border-radius: 8px;
+    background-color: #ffffff00;
+    border: 2px solid rgb(0, 0, 0);
+    pointer-events: none;
+  } */
+  
+  .featured-content-table-tiktok {
+    width: 329px;
+    height: 580px;
+    position: 'relative';
+    top: '0';
+    /* border: none; */
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 8px;
+  }
+  
+  .featured-table-col-3 {
+    padding-left: 765px;
+    position: absolute;
+    width: auto;
+    /* border: solid rgb(119, 196, 119); */
+  }
+  
+  .offensive-content-title-div {
+    margin-top: 5px;
+    min-width: 100%;
+    height: 75px;
+    /* border: solid yellow; */
+  }
+  
+  .offensive-content-title-h2 {
+    min-width: 100%;
+    min-height: 100%;
+    color:#4d0505;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    letter-spacing: 10px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    text-shadow: 1.5px 1.5px #000000;
+    font-weight: lighter;
+    /* border: solid #3cff00; */
+    margin-top: 0px;
+  }
+  
+  .offensive-content-table-container {
+    margin-top: 5px;
+    min-width: 100%;
+    height: 700px;
+    border: solid red;
+  }
+  
+  .offensive-content-table{
+    /* position: absolute; */
+  }
+  .offensive-table-col-1 {
+    position: relative;
+    /* width: auto; */
+    border: solid rgb(219, 0, 190);
+  }
+  
+  .offensive-table-col-2 {
+    /* margin-top: 50px;
+    padding-left: 0px; */
+    /* position: absolute;
+    width: auto; */
+    border: solid rgb(155, 86, 86);
+  }
+  
+  .offensive-table-col-3 {
+    padding-left: 765px;
+    position: absolute;
+    width: auto;
+    /* border: solid rgb(119, 196, 119); */
+  }
+  
+  .song-ranking-list-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: solid green;
+  }
+  
+  .song-ratings-container {
+    display: flex;
+    padding: 12px 0;
+    border: solid white;
+  }
+  
+  .song-rating {
+    display: flex;
+    align-items: center;
+    cursor: default;
+  }
+  
+  .song-rating-selected > .song-rating-button, 
+  .song-rating-selected > .song-rating-count {
+    color: #009578;
+  }
+  
+  .song-rating:not(:last-child) {
+    margin-right: 12px;
+  }
+  
+  .song-rating-button {
+    margin-right: 6px;
+    cursor: pointer;
+    color:#ffffff;
+  }
+  
+  .song-rating:not(.song-rating-selected) > .song-rating-button:hover {
+    color:#000000;
+  }
+  
+  .song-name {
+    font-size: 20px;
+    padding-left: 8px;
+    padding-bottom: 5px;
+    border: solid black;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .footer-div {
+    margin-top: 5px;
+    min-width: 100%;
+    height: 75px;
+    border: solid rgb(0, 255, 200);
+  }
+  
+  /************************* Icon bar *************************/
+  .icon-bar {
+    position: fixed;
+    top: 55%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  
+  .icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .icon-bar a:hover {
+    background-color: rgb(0, 0, 0, 0.75);
+    opacity: 1;
+  }
+  
+  .youtube {
+    background: rgb(187, 0, 0, 0.75);
+    color: white;
+  } 
+  
+  .instagram {
+    background: rgb(18, 86, 136, 0.75);
+    color: white;
+  } 
+  
+  .tiktok {
+    background: rgb(6, 79, 187, 0.75);
+    color: white;
+  } 
+  
+  .spotify {
+    background: rgb(39, 216, 104, 0.75);
+    color: white;
+  } 
+  
+  .bandcamp {
+    background: rgb(29, 160, 195, 0.75);
+    color: white;
+  } 
+  
+  .soundcloud {
+    background: rgb(255, 85, 0, 0.75);
+    color: white;
+  }
+  
+  .apple-music {
+    background: rgb(250, 88, 106, 0.75);
+    color: white;
+  }
