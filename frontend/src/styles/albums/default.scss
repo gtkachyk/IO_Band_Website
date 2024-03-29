@@ -1,16 +1,28 @@
+// The default style for album pages
 
 /**********************/
 /***** Containers *****/
 /**********************/
 
 .album-page-title-header {  
-    font-size: 40px;
-    color: #ffffff;
-    font-family: 'Courier New', Courier, monospace;
-    font-style: italic;
-    letter-spacing: 10px;
-    text-shadow: 1.5px 1.5px #000000;
-    font-weight: lighter;
+  font-size: 40px;
+  color: #ffffff;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+  text-shadow: 1.5px 1.5px #000000;
+  font-weight: lighter;
+}
+
+.horizontal-separator {
+  border: none;
+  border-top: 1px solid #6b6b6b;
+  bottom: 40px;
+}
+
+.vertical-divider {
+  border-left: 1px solid #6b6b6b;
+  height: 200px;
 }
 
 /********************************/
@@ -19,6 +31,8 @@
 
 .album-player-header {
   color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: lighter;
 }
 
 .container {
@@ -162,6 +176,8 @@
 
 .artwork-header{
   color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: lighter;
 }
 
 /*******************************/
@@ -170,6 +186,8 @@
 
 .lyric-sheet-header{
   color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: lighter;
 }
 
 .lyric-list {
@@ -177,7 +195,10 @@
 }
 
 .lyrics-na {
-  color: #ffffff;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  font-weight: lighter;
 }
 
 /************************/
@@ -186,6 +207,8 @@
 
 .tab-header {
   color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: lighter;
 }
 
 .tab-list {
@@ -193,5 +216,8 @@
 }
 
 .tabs-na {
-  color: #ffffff;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  font-weight: lighter;
 }

@@ -19,6 +19,7 @@ $album-pages-columns-debug: false;
   overflow: visible; 
   display: flex;
   justify-content: center;
+  background-image: linear-gradient(to bottom, rgba(230, 230, 230, 0.219) , rgba(0, 0, 0, 0.178));
 
   @if $album-pages-debug {
     @include album-div-main-debug-border;
@@ -33,7 +34,6 @@ $album-pages-columns-debug: false;
   position: relative;
   top: 100px;
   width: 1500px;
-  height: 500px;
   display: inline-block;
   height: fit-content;
 
@@ -99,6 +99,16 @@ $album-pages-columns-debug: false;
   @if $album-pages-table-debug {
     @include album-page-content-table-debug-border;
   }
+}
+
+.horizontal-separator {
+  position: relative;
+}
+
+.vertical-divider {
+  position: relative;
+  left: 65px;
+  bottom: 8px;
 }
 
 /********************************/
@@ -174,7 +184,7 @@ $album-pages-columns-debug: false;
     border: solid rgb(0, 217, 255);
 }
 
-.artwork-header{
+.artwork-header {
   position: absolute;
   width: 100%;
   top: 0;
@@ -189,7 +199,7 @@ $album-pages-columns-debug: false;
     border: solid rgb(76, 0, 255);
 }
 
-.artwork-div{
+.artwork-div {
   min-width: 345px;
   max-width: 345px;
   height: 91%;

@@ -1,16 +1,28 @@
-
 /**********************/
 /***** Containers *****/
 /**********************/
 
 .album-page-title-header {  
-    font-size: 40px;
-    color: #ffffff;
-    font-family: 'Courier New', Courier, monospace;
-    font-style: italic;
-    letter-spacing: 10px;
-    text-shadow: 1.5px 1.5px #000000;
-    font-weight: lighter;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  text-transform: uppercase;
+  color: #e2e2e2;
+  text-shadow: 0 8px 9px #6d00a0, 0px -2px 1px #c0c0c0;
+  font-weight: lighter;
+  font-style: oblique;
+  letter-spacing: 5px;
+  border-radius: 20px;
+  font-size: 40px;
+}
+
+.horizontal-separator {
+  border: none;
+  border-top: 1px solid #6b6b6b;
+  bottom: 40px;
+}
+
+.vertical-divider {
+  border-left: 1px solid #6b6b6b;
+  height: 200px;
 }
 
 /********************************/
@@ -19,6 +31,8 @@
 
 .album-player-header {
   color: white;
+  font-family: 'Courier New', Courier, monospace;
+  // background-color: rgba(0, 149, 119, 0.274);
 }
 
 .container {
@@ -162,6 +176,7 @@
 
 .artwork-header{
   color: white;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /*******************************/
@@ -170,6 +185,7 @@
 
 .lyric-sheet-header{
   color: white;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .lyric-list {
@@ -177,7 +193,10 @@
 }
 
 .lyrics-na {
-  color: #ffffff;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  font-weight: lighter;
 }
 
 /************************/
@@ -186,6 +205,9 @@
 
 .tab-header {
   color: white;
+  font-family: 'Courier New', Courier, monospace;
+  // background-image: linear-gradient(to left, rgba(255, 255, 255, 0.151) , rgba(0, 0, 0, 0.329));
+  border-radius: 10px;
 }
 
 .tab-list {
@@ -193,5 +215,8 @@
 }
 
 .tabs-na {
-  color: #ffffff;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  font-weight: lighter;
 }

@@ -96,7 +96,10 @@ function Album(){
             <NavBar></NavBar>
             <div className={"album-div-main"}>
                 <div className="album-page-content">
-                    <div className="album-page-title-div" id={"album-page-title-div-" + album.id}><h2 className = "album-page-title-header">{album.display_name}</h2></div>
+                    <div className="album-page-title-div" id={"album-page-title-div-" + album.id}>
+                        <h2 className = "album-page-title-header">{album.display_name}</h2>
+                        <hr className="horizontal-separator"/>
+                    </div>
                     <div className="album-page-content-table-container">
                         <table className="album-page-content-table">
                             <tbody>
@@ -107,6 +110,7 @@ function Album(){
                                             <AlbumPlayer album={album} source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>
                                         </div>
                                     </th>
+                                    <td className="vertical-divider"></td>
                                     <th className="art-column">
                                         <h2 className="artwork-header">Artwork</h2>
                                         <div className="artwork-div">
