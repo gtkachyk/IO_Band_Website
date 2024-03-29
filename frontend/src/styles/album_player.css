@@ -206,12 +206,14 @@
 
       .play-list-row {
         display: block;
-        margin: 10px 0;
+        /* margin: 10px 0; */
         width: 100%;
         /* border: solid cyan; */
 
         .track-title {
+          /* border: solid rgb(255, 0, 212); */
           .playlist-track {
+            /* border: solid rgb(0, 255, 42); */
             &:hover {
               text-decoration: underline;
             }
@@ -256,10 +258,20 @@
         }
         .track-number {
           display: inline-block;
+          font-size: 20px;
+          /* border: solid greenyellow; */
+          height: fit-content;
+        }
+
+        .track-number-inner {
+          margin-top: 0px;
+          margin-bottom: 0px;
         }
 
         .track-title {
           display: inline-block;
+
+          /* border: solid rgb(9, 0, 139); */
 
           .playlist-track {
             text-decoration: none;

@@ -6,7 +6,7 @@
   font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
   text-transform: uppercase;
   color: #e2e2e2;
-  text-shadow: 0 8px 9px #6d00a0, 0px -2px 1px #c0c0c0;
+  text-shadow: 0 8px 9px #6d00a086, 0px -2px 1px #c0c0c0;
   font-weight: lighter;
   font-style: oblique;
   letter-spacing: 5px;
@@ -190,6 +190,7 @@
 
 .lyric-list {
   color: #ffffff;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .lyrics-na {
@@ -206,12 +207,12 @@
 .tab-header {
   color: white;
   font-family: 'Courier New', Courier, monospace;
-  // background-image: linear-gradient(to left, rgba(255, 255, 255, 0.151) , rgba(0, 0, 0, 0.329));
   border-radius: 10px;
 }
 
 .tab-list {
   color: #ffffff;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .tabs-na {
