@@ -202,12 +202,13 @@
       display: block;
       margin: 0 auto 20px auto;
       width: 100%;
+      overflow-x: visible;
       /* border: solid greenyellow; */
 
       .play-list-row {
-        display: block;
-        /* margin: 10px 0; */
+        display: inline-block;
         width: 100%;
+        white-space: nowrap;
         /* border: solid cyan; */
 
         .track-title {

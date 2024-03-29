@@ -7,6 +7,7 @@ import TabList from "../Components/TabList";
 import React, { useEffect, useState } from 'react';
 import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../albums";
 import '../styles/album.scss';
+// import song_list from '/public/images/music_page/album_page/the_depths/audio/';
 
 export async function loader({params}) {
     const loader_album = await getAlbumByName(params.name);
@@ -120,7 +121,7 @@ function Album(){
                                     <th className="lyrics-column">
                                         <h2 className="lyric-sheet-header">Lyric Sheets</h2>
                                         <div className="lyric-sheet-div">
-                                            <LyricSheetList album_songs={album_songs} lyric_sheets_path={album.path + '/lyric_sheets/'}></LyricSheetList>
+                                            <LyricSheetList album_songs={album_songs} lyric_sheets_path={page_resource_path + '/lyric_sheets/'}></LyricSheetList>
                                         </div>
                                     </th>
                                     <th className="tabs-column">

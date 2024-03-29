@@ -19,11 +19,12 @@ function LyricSheetList({album_songs, lyric_sheets_path}){
     }
     var list = "";
     for(let i = 0; i < songs_filtered.length; i++){
-        var element = <LyricSheetListElement path={lyric_sheets_path + songs_filtered[i]}></LyricSheetListElement>;
+        var element = <LyricSheetListElement path={lyric_sheets_path + songs_filtered[i].lyric_sheet_file_name}></LyricSheetListElement>;
         list += ReactDOMServer.renderToString(element);
     }
+
     return(
-        <div className="lyrics">
+        <div className="lyric-list-container">
             <ul className="lyric-list">
                 {parse(list)}
             </ul>

@@ -3,7 +3,6 @@ import ReactDOMServer from 'react-dom/server';
 import parse from 'html-react-parser';
 import React, { useEffect, useState } from 'react';
 
-
 function TabList({album_songs, tabs_path}){
     // FIlter out songs with blank tab_file_names and songs that don't belong to 'album'.
     var songs_filtered = [];
@@ -24,7 +23,7 @@ function TabList({album_songs, tabs_path}){
         list += ReactDOMServer.renderToString(element);
     }
     return(
-        <div className="tabs">
+        <div className="tab-list-container">
             <ul className="tab-list">
                 {parse(list)}
             </ul>

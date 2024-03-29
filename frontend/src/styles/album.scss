@@ -267,7 +267,7 @@ $album-pages-columns-debug: false;
     border: solid rgb(0, 217, 255);
 }
 
-.lyric-sheet-header{
+.lyric-sheet-header {
   white-space: nowrap;
   overflow: hidden;
   position: absolute;
@@ -284,7 +284,7 @@ $album-pages-columns-debug: false;
     border: solid rgb(255, 255, 255);
 }
 
-.lyric-sheet-div{
+.lyric-sheet-div {
   min-width: 345px;
   max-width: 345px;
   height: 91%;
@@ -300,12 +300,10 @@ $album-pages-columns-debug: false;
     border: solid rgb(43, 255, 0);
 }
 
-.lyrics {
-  background-color: rgb(209, 209, 20, 0);
-  width: fit-content;
-  margin-right: auto;
-  position: relative;
-  top: -20px;
+.lyric-list-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 
   @if $album-pages-columns-debug {
     @include lyrics-debug-border;
@@ -318,9 +316,15 @@ $album-pages-columns-debug: false;
 
 .lyric-list {
     display: grid;
-    padding: 0.5rem;
     gap: 1rem;
     font-size: larger;
+    position: absolute;
+    list-style: inside;
+    padding-left: 80px;
+    width: 100%;
+    top: 0;
+    margin-top: 0px;
+    justify-items: start;
 
     @if $album-pages-columns-debug {
         @include lyrics-list-debug-border;
@@ -378,7 +382,6 @@ $album-pages-columns-debug: false;
   max-width: 345px;
   position: absolute;
   height: 91%;
-  position: absolute;
   top: 42px;
   
   @if $album-pages-columns-debug {
@@ -390,7 +393,7 @@ $album-pages-columns-debug: false;
     border: solid rgb(225, 0, 255);
 }
 
-.tabs {
+.tab-list-container {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -410,10 +413,11 @@ $album-pages-columns-debug: false;
   font-size: larger;
   position: absolute;
   list-style: inside;
-  padding-left: 10px;
+  padding-left: 87px;
   width: 100%;
   top: 0;
   margin-top: 0px;
+  justify-items: start;
 
   @if $album-pages-columns-debug {
     @include tabs-list-debug-border;
