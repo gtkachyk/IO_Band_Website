@@ -1,3 +1,5 @@
+/* Code adapted from https://codepen.io/craigstroman/pen/aOyRYx */
+
 @mixin clearfix() {
     *zoom: 1;
     &:before, &:after {
@@ -14,17 +16,17 @@
   }
   
   @mixin media($type) {
-    @if $type == tablet {/* Small devices (tablets, 768px and up) */
+    @if $type == tablet { /* Small devices (tablets, 768px and up) */
       @media (min-width: 768px) and (max-width: 991px) {
         @content;
       } 
     }
-    @else if $type == mediumDesktop {/* Medium devices (desktops, 992px and up) */
+    @else if $type == mediumDesktop { /* Medium devices (desktops, 992px and up) */
       @media (min-width: 992px) and (max-width: 1100px) {
         @content;
       }     
     }
-    @else if $type == largeDesktop {/* Large devices (large desktops, 1200px and up) */
+    @else if $type == largeDesktop { /* Large devices (large desktops, 1200px and up) */
       @media (min-width: 1200px) {
         @content;
       }       
@@ -44,7 +46,6 @@
     display: inline-block !important;
   }
   
-  /*Playlist player code, customizable parts are commented*/
   .container {
     font-family: arial, helvetica, sans-serif;
     font-size: 1em;
@@ -53,12 +54,14 @@
     max-width: 100%;
     margin-left: 30px;
     /* border: solid blue; */
+
     .player {
       height: 60px;
       margin: 0;
       position: relative;
       width: 400px;
       /* border: solid #ff0000; */
+
       @include media(tablet) {
         width: 470px;
       }
@@ -86,7 +89,8 @@
             &:before {
               content: "\f04b";
               font: 1.5em/1.75 "FontAwesome";
-            }               
+            }
+
             cursor: pointer; 
             display: inline-block;
             position: relative;
@@ -97,7 +101,8 @@
             &:before {
               content: "\f04c";
               font: 1.5em/1.75 "FontAwesome";
-            }   
+            }
+
             cursor: pointer;
             display: inline-block;
             position: relative;
@@ -105,55 +110,27 @@
           }
       }
 
-      /*Large play and pause button*/
-      #large-toggle-btn-1{
-        border: 1px solid white;
-      }
-      #large-toggle-btn-2{
-        border: 1px solid black;
-      }
-      #large-play-btn-1{
-        color: white;
-      }
-      #large-play-btn-2{
-        color: rgb(0, 0, 0);
-      }
-
       .info-box {
         bottom: 10px;
         left: 65px;
         position: absolute;
         top: 15px;
+
         .track-info-box {
           float: left;
           font-size: 12px;
           margin: 0 0 6px 0;
           visibility: hidden;
-          width: 400px; 
+          width: 400px;
+
           .track-title-text {
             display: inline-block;
-          }
-
-          /*Track title*/
-          #track-title-text-1 {
-            color: white;
-          }
-          #track-title-text-2 {
-            color: black;
           }
 
           .audio-time {
             display: inline-block;
             padding: 0 0 0 5px;
             width: 80px;
-          }
-
-          /*Track times*/
-          #audio-time-1{
-            color: white;
-          }
-          #audio-time-2{
-            color: black;
           }
 
           @include clearfix();
@@ -163,23 +140,25 @@
         float: left;
         min-width: 270px;
         position: relative;
+
         .progress-cell {
           height: 12px;
           position: relative;
+
           .progress {
             background: white;
             border: 1px solid #d9d9d9;
             height: 8px;
             position: relative;
             width: auto;
+
             .progress-buffer {
               background: #337ab7;
               height: 100%;
               width: 0;
             }
+
             .progress-indicator {
-              background: white;
-              border: 1px solid #bebebe;
               border-radius: 3px;
               cursor: pointer;
               height: 10px;
@@ -201,8 +180,8 @@
           &:before {
             content: "\f049";
             font: 1em "FontAwesome";
-            /* color: white; */
-          }             
+          }  
+
           cursor: pointer;
           display: inline-block;
         }
@@ -215,20 +194,6 @@
           cursor: pointer;
           display: inline-block;        
         }  
-
-        /*Track switching buttons*/
-        #next-track-btn-1{
-          color: white;
-        }
-        #next-track-btn-2{
-          color: black;
-        }
-        #previous-track-btn-1{
-          color: white;
-        }
-        #previous-track-btn-2{
-          color: black;
-        }
       }
       @include clearfix();
     }
@@ -238,16 +203,19 @@
       margin: 0 auto 20px auto;
       width: 100%;
       /* border: solid greenyellow; */
+
       .play-list-row {
         display: block;
         margin: 10px 0;
         width: 100%;
         /* border: solid cyan; */
+
         .track-title {
           .playlist-track {
             &:hover {
               text-decoration: underline;
             }
+
             text-decoration: none;
           }
         }
@@ -267,7 +235,8 @@
             &:before {
               content: "\f04b";
               font: 0.85em "FontAwesome";
-            }            
+            } 
+
             display: inline-block;
             position: relative;
             top: -15%;
@@ -277,7 +246,8 @@
             &:before {
               content: "\f04c";
               font: 0.85em "FontAwesome";
-            }            
+            }  
+
             display: inline-block;
             position: relative;
             top: -15%;
@@ -287,63 +257,19 @@
         .track-number {
           display: inline-block;
         }
+
         .track-title {
           display: inline-block;
+
           .playlist-track {
             text-decoration: none;
+
             &:hover {
               text-decoration: underline;
             }
           }
         }
-        /* .track-title.active-track {
-          font-weight: bold;
-        } */
         @include clearfix();
-      }
-    }
-
-    /*Playlist tracks*/
-    #play-list-1{
-      .playlist-track {
-        color: white;
-      }
-      .small-toggle-btn {
-        border: 1px solid white;
-        .small-play-btn {
-          &:before {
-            color: white;
-          }            
-        } 
-        .small-pause-btn {
-          &:before {
-            color: white;
-          }            
-        } 
-      }
-      .track-number {
-        color: white;
-      }
-    }
-    #play-list-2{
-      .playlist-track {
-        color: black;
-      }
-      .small-toggle-btn {
-        border: 1px solid black;
-        .small-play-btn {
-          &:before {
-            color: black;
-          }            
-        } 
-        .small-pause-btn {
-          &:before {
-            color: black;
-          }            
-        } 
-      }
-      .track-number {
-        color: black;
       }
     }
   }

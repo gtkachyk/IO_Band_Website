@@ -15,7 +15,7 @@ function TabList({album_songs, tabs_path}){
 
     if(songs_filtered.length == 0){
         return(
-            <h3 id="tabs-na"> N/A </h3>
+            <h3 className="tabs-na"> N/A </h3>
         );
     }
     var list = "";
@@ -25,7 +25,7 @@ function TabList({album_songs, tabs_path}){
     }
     return(
         <div className="tabs">
-            <ul id="tab-list">
+            <ul className="tab-list">
                 {parse(list)}
             </ul>
         </div>

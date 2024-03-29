@@ -62,17 +62,10 @@ $album-pages-columns-debug: false;
 .album-page-title-header {
   min-width: 100%;
   min-height: 100%;
-  color: #ffffff;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
+  margin-top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
-  text-shadow: 1.5px 1.5px #000000;
-  font-weight: lighter;
-  margin-top: 0px;
 
   @if $album-pages-title-debug {
     @include album-page-title-header-debug-border;
@@ -132,7 +125,6 @@ $album-pages-columns-debug: false;
 }
 
 .album-player-header{
-  color: white;
   position: absolute;
   width: 100%;
   top: 0;
@@ -183,7 +175,6 @@ $album-pages-columns-debug: false;
 }
 
 .artwork-header{
-  color: white;
   position: absolute;
   width: 100%;
   top: 0;
@@ -217,7 +208,6 @@ $album-pages-columns-debug: false;
 .artwork {
   position: absolute;
   width: 345px;
-  background-color: rgb(209, 209, 20, 0);
 
   @if $album-pages-columns-debug {
     @include artwork-debug-border;
@@ -264,7 +254,6 @@ $album-pages-columns-debug: false;
 }
 
 .lyric-sheet-header{
-  color: white;
   white-space: nowrap;
   overflow: hidden;
   position: absolute;
@@ -313,21 +302,19 @@ $album-pages-columns-debug: false;
     border: solid orange;
 }
 
-#lyric-list {
+.lyric-list {
     display: grid;
     padding: 0.5rem;
     gap: 1rem;
     font-size: larger;
-    color: #ffffff;
 
     @if $album-pages-columns-debug {
         @include lyrics-list-debug-border;
     }
 }
   
-#lyrics-na {
+.lyrics-na {
     margin-top: 0px;
-    color: #ffffff;
 
     @if $album-pages-columns-debug {
         @include lyrics-list-debug-border;
@@ -358,7 +345,6 @@ $album-pages-columns-debug: false;
 }
 
 .tab-header {
-  color: white;
   position: absolute;
   width: 100%;
   top: 0;
@@ -391,7 +377,6 @@ $album-pages-columns-debug: false;
 }
 
 .tabs {
-  background-color: rgb(209, 209, 20, 0);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -405,11 +390,10 @@ $album-pages-columns-debug: false;
     border: solid rgb(0, 218, 199);
 }
 
-#tab-list {
+.tab-list {
   display: grid;
   gap: 1rem;
   font-size: larger;
-  color: #ffffff;
   position: absolute;
   list-style: inside;
   padding-left: 10px;
@@ -422,10 +406,9 @@ $album-pages-columns-debug: false;
   }
 }
 
-#tabs-na {
+.tabs-na {
   position: absolute;
   top: 45px;
-  color: #ffffff;
 
   @if $album-pages-columns-debug {
     @include tabs-list-debug-border;

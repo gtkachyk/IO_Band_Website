@@ -20,6 +20,11 @@ function Album(){
       return <>Loading...</>
     }
 
+    // Import scss for this album
+    let styles;
+    const album_scss = `../styles/albums/${loader_album.name}.scss`;
+    import(album_scss).then((res) => {styles = res;});
+
     // Data for api interaction
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);

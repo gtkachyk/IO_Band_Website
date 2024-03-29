@@ -1,0 +1,197 @@
+
+/**********************/
+/***** Containers *****/
+/**********************/
+
+.album-page-title-header {  
+    font-size: 40px;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    letter-spacing: 10px;
+    text-shadow: 1.5px 1.5px #000000;
+    font-weight: lighter;
+}
+
+/********************************/
+/***** Album player content *****/
+/********************************/
+
+.album-player-header {
+  color: white;
+}
+
+.container {
+  .player {
+    .large-toggle-btn {
+        font-size: 1.5em;
+        border: 1px solid white;
+
+        .large-play-btn {
+          color: white;
+
+          &:before {
+            content: "\f04b";
+            font: 1.5em/1.75 "FontAwesome";
+          }               
+        }
+
+        .large-pause-btn {
+          color: white;
+
+          &:before {
+            content: "\f04c";
+            font: 1.5em/1.75 "FontAwesome";
+          }           
+        }
+    }
+
+    .info-box {
+      .track-info-box {
+        font-size: 12px;
+
+        .track-title-text {
+          color: white;
+        }
+
+        .audio-time {
+          color: white;
+        }
+      }      
+    }
+    .progress-box {
+      .progress-cell {
+        .progress {
+          background: white;
+          border: 1px solid #d9d9d9;
+
+          .progress-buffer {
+            background: #337ab7;
+          }
+
+          .progress-indicator {
+            background: white;
+            border: 1px solid #bebebe;
+          }
+        }
+      }
+    }
+    .controls-box {
+      .previous-track-btn {
+        color: white;
+
+        &:before {
+          content: "\f049";
+          font: 1em "FontAwesome";
+        }             
+      }
+
+      .next-track-btn {
+          color: white;
+
+          &:before {
+          content: "\f050";
+          font: 1em "FontAwesome";
+        }                  
+      }  
+    }
+  }
+  
+  .play-list {
+    .play-list-row {
+      .track-title {
+        .playlist-track {
+          color: white;
+
+          &:hover {
+            text-decoration: underline;
+          }
+          text-decoration: none;
+        }
+      }
+      .small-toggle-btn {
+        border: 1px solid white;
+
+        .small-play-btn {
+          color: white;
+
+          &:before {
+            content: "\f04b";
+            font: 0.85em "FontAwesome";
+          }            
+        } 
+
+        .small-pause-btn {
+          color: white;
+
+          &:before {
+            content: "\f04c";
+            font: 0.85em "FontAwesome";
+          }            
+        } 
+
+      }
+
+      .track-number {
+        color: white;
+        display: inline-block;
+      }
+
+      .track-title {
+        display: inline-block;
+
+        .playlist-track {
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .track-title.active-track {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/***********************/
+/***** Art content *****/
+/***********************/
+
+.artwork-header{
+  color: white;
+}
+
+/*******************************/
+/***** Lyric sheet content *****/
+/*******************************/
+
+.lyric-sheet-header{
+  color: white;
+}
+
+.lyric-list {
+  color: #ffffff;
+}
+
+.lyrics-na {
+  color: #ffffff;
+}
+
+/************************/
+/***** Tabs content *****/
+/************************/
+
+.tab-header {
+  color: white;
+}
+
+.tab-list {
+  color: #ffffff;
+}
+
+.tabs-na {
+  color: #ffffff;
+}

@@ -14,7 +14,7 @@ function LyricSheetList({album_songs, lyric_sheets_path}){
 
     if(songs_filtered.length == 0){
         return(
-            <h3 id="lyrics-na"> N/A </h3>
+            <h3 className="lyrics-na"> N/A </h3>
         );
     }
     var list = "";
@@ -24,7 +24,7 @@ function LyricSheetList({album_songs, lyric_sheets_path}){
     }
     return(
         <div className="lyrics">
-            <ul id="lyric-list">
+            <ul className="lyric-list">
                 {parse(list)}
             </ul>
         </div>
