@@ -1,9 +1,14 @@
 import NavBar from "../Components/NavBar";
+import SongRankingList from "../Components/SongRankingList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faItunesNote, faSoundcloud, faTiktok } from '@fortawesome/free-brands-svg-icons'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faItunes, faItunesNote, faSoundcloud, faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faBandcamp } from '@fortawesome/free-brands-svg-icons'
+import { InstagramEmbed, TikTokEmbed } from 'react-social-media-embed';
+// import IframeResizer from "iframe-resizer-react";
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import '../styles/root.scss';
 
 
@@ -59,46 +64,41 @@ function Root() {
         <>
             <NavBar></NavBar>
             <div className="home-page-container">
-                <div className="home-page-content-container">
-                    <div className="featured-content-title-container"><h2 className = "featured-content-title">Featured Content</h2></div>
+                <div className="home-page-content">
+                    <div className="featured-content-title-div"><h2 className = "featured-content-title-h2">Featured Content</h2></div>
                     <div className="featured-content-container">
                         <table className="featured-content-table">
                             <tbody>
                                 <tr>
-                                    <th className="featured-col-1">
-                                        <h2 className = "featured-col-1-title">'{featured_album.display_name}' - Out Now!</h2>
-                                        <div className="featured-col-1-content-container">
+                                    <th className="featured-table-col-1">
+                                        <h2 className = "featured-content-table-audio-h2">'{featured_album.display_name}' - Out Now!</h2>
+                                        <div className="featured-content-table-audio-div">
                                             <a href={featured_audio_media}>
-                                                <div className="featured-col-1-link-div" style={{ backgroundImage: `url('${featured_album_preview_image_path}')` }}>
-                                                    <span className="featured-col-1-link-caption">{featured_album.display_name}</span>
+                                                <div className="featured-content-table-audio-div-container" style={{ backgroundImage: `url('${featured_album_preview_image_path}')` }}>
+                                                    <span className="caption">{featured_album.display_name}</span>
                                                 </div>
                                             </a>
                                         </div>
                                     </th> 
-                                    <th className="featured-col-2">
-                                        <h2 className = "featured-col-2-title">From the Network</h2>
-                                        <div className="featured-col-2-content-container">
-                                            <iframe className="featured-col-2-tiktok" src={featured_tiktok}></iframe>
+                                    <th className="featured-table-col-2">
+                                        <h2 className = "featured-content-table-social-h2">From the Network</h2>
+                                        <div className="featured-content-table-social-container">
+                                            <iframe className="featured-content-table-tiktok" src={featured_tiktok}></iframe>
+                                            {/*<div className="featured-content-table-tiktok-cover"></div> Only used to get rid of small white line on top of iframe*/}
                                         </div>
                                     </th>
+                                    {/* <th className="featured-table-col-3">
+                                        <InstagramEmbed url={featured_instagram} width={374}/>
+                                    </th> */}
                                 </tr>
                             </tbody>
                         </table>
                      </div>
-                     <div className="offensive-content-title-container"><h2 className = "offensive-content-title">Offensive Content</h2></div>
+                     <div className="offensive-content-title-div"><h2 className = "offensive-content-title-h2">Offensive Content</h2></div>
                      <div className="offensive-content-container">
-                        <table className="offensive-content-table">
-                            <tbody>
-                                <tr>
-                                    <th className="offensive-col-1"> {/* Slide show */}
-                                    </th> 
-                                    <th className="offensive-col-2"> {/* Guestbook */}
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <SongRankingList songs={songs}></SongRankingList>
                      </div>
-                     <div className="footer"></div>
+                     <div className="footer-div"></div>
                 </div>
             </div>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/font-awesome.min.css"></link>

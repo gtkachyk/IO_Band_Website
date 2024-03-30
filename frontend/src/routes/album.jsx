@@ -7,14 +7,13 @@ import TabList from "../Components/TabList";
 import React, { useEffect, useState } from 'react';
 import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../albums";
 import '../styles/album.scss';
-// import song_list from '/public/images/music_page/album_page/the_depths/audio/';
 
 export async function loader({params}) {
     const loader_album = await getAlbumByName(params.name);
     return {loader_album};
 }
 
-function Album(){
+function Album() {
     // Get album object
     const {loader_album} = useLoaderData();
     if(loader_album == undefined){
@@ -92,7 +91,7 @@ function Album(){
     // Create artwork pairs
     const artwork_preview_pairs = generateDownloadableArtPreviewPairs(album.downloadable_artwork, album.path);
 
-    return(
+    return (
         <>
             <NavBar></NavBar>
             <div className={"album-div-main"}>

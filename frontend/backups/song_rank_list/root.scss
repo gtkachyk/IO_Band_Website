@@ -4,13 +4,14 @@
     min-width: 100%;
     position: absolute;
     overflow: visible;  
+  
     display: flex;
     justify-content: center;
   
     /* color-scheme: normal; */
   }
   
-  .home-page-content-container {
+  .home-page-content{
     position: relative;
     display: inline-block;
     height: fit-content;
@@ -20,13 +21,13 @@
     background-color: #80808067;
   }
   
-  .featured-content-title-container {
+  .featured-content-title-div {
     min-width: 100%;
     height: 75px;
     /* border: solid blue; */
   }
   
-  .featured-content-title {
+  .featured-content-title-h2 {
     min-width: 100%;
     min-height: 100%;
     color:#4d0505;
@@ -50,7 +51,7 @@
     /* border: solid purple; */
   }
   
-  .featured-content-table {
+  .featured-content-table{
     min-height: 100%;
     max-height: 100%;
     min-width: 100%;
@@ -58,7 +59,7 @@
     /* border: solid rgb(13, 5, 112); */
   }
   
-  .featured-col-1-title {
+  .featured-content-table-audio-h2 {
     min-width: 100%;
     max-width: 100%;
     min-height: 5%;
@@ -69,13 +70,14 @@
     letter-spacing: 10px;
     font-size: 25px;
     text-shadow: 1px 1px #47474786;
+    /* background-image: linear-gradient(to right, rgb(110, 0, 0, 0.75), rgb(0, 0, 0, 0.25)); */
     /* border: solid #000000; */
     position: absolute;
     top: 0;
     margin-top: 0px;
   }
   
-  .featured-col-1 {
+  .featured-table-col-1 {
     min-width: 50%;
     max-width: 50%;
     min-height: 100%;
@@ -84,7 +86,7 @@
     position: relative;
   }
   
-  .featured-col-1-content-container { /* TODO: add child to display images inside of this div */
+  .featured-content-table-audio-div { /* TODO: add child to display images inside of this div */
     min-width: 90%;
     max-width: 90%;
     min-height: 90%;
@@ -98,7 +100,7 @@
     border-radius: 8px;
   }
   
-  .featured-col-1-link-div {
+  .featured-content-table-audio-div-container {
     min-width: 579px;
     max-width: 579px;
     min-height: 579px;
@@ -113,11 +115,11 @@
     border-width: 2px;
   }
   
-  .featured-col-1-link-div:hover {
+  .featured-content-table-audio-div-container:hover {
     opacity: 0.75;
   }
   
-  .featured-col-1-link-caption {
+  .caption {
     position: absolute;
     opacity: 0;
     margin-top: 45%;
@@ -131,11 +133,11 @@
     font-style: italic;
   }
   
-  .featured-col-1-link-div:hover .featured-col-1-link-caption {
+  .featured-content-table-audio-div-container:hover .caption{
     opacity: 0.75;
   }
   
-  .featured-col-2-title {
+  .featured-content-table-social-h2 {
     min-width: 100%;
     max-width: 100%;
     min-height: 5%;
@@ -146,13 +148,14 @@
     letter-spacing: 10px;
     font-size: 25px;
     text-shadow: 1px 1px #47474786;
+    /* background-image: linear-gradient(to right, rgb(110, 0, 0, 0.75), rgb(0, 0, 0, 0.25)); */
     /* border: solid #000000; */
     position: absolute;
     top: 0;
     margin-top: 0px;
   }
   
-  .featured-col-2 {
+  .featured-table-col-2 {
     min-width: 50%;
     max-width: 50%;
     min-height: 100%;
@@ -161,7 +164,8 @@
     position: relative;
   }
   
-  .featured-col-2-content-container {
+  .featured-content-table-social-container {
+    /* background-image: linear-gradient(to bottom right, rgba(53, 53, 53, 0.445), rgba(15, 15, 15, 0.74)); */
     /* border: solid #3992ff; */
     min-width: 90%;
     max-width: 90%;
@@ -172,9 +176,23 @@
     margin-top: 50px;
     margin-left: 30px;
     border-radius: 8px;
+    /* align-items: center;
+    align-content: center; */
   }
   
-  .featured-col-2-tiktok {
+  /* .featured-content-table-tiktok-cover {
+    width: 327px;
+    height: 578px;
+    position: absolute;
+    top: 1px;
+    left: 150px;
+    border-radius: 8px;
+    background-color: #ffffff00;
+    border: 2px solid rgb(0, 0, 0);
+    pointer-events: none;
+  } */
+  
+  .featured-content-table-tiktok {
     width: 329px;
     height: 580px;
     position: 'relative';
@@ -184,14 +202,21 @@
     border-radius: 8px;
   }
   
-  .offensive-content-title-container {
+  .featured-table-col-3 {
+    padding-left: 765px;
+    position: absolute;
+    width: auto;
+    /* border: solid rgb(119, 196, 119); */
+  }
+  
+  .offensive-content-title-div {
     margin-top: 5px;
     min-width: 100%;
     height: 75px;
     /* border: solid yellow; */
   }
   
-  .offensive-content-title {
+  .offensive-content-title-h2 {
     min-width: 100%;
     min-height: 100%;
     color:#4d0505;
@@ -215,20 +240,16 @@
     border: solid red;
   }
   
-  .offensive-content-table {
-    min-height: 100%;
-    max-height: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    border: solid rgb(13, 5, 112);
+  .offensive-content-table{
+    /* position: absolute; */
   }
-  .offensive-col-1 {
+  .offensive-table-col-1 {
     position: relative;
     /* width: auto; */
     border: solid rgb(219, 0, 190);
   }
   
-  .offensive-col-2 {
+  .offensive-table-col-2 {
     /* margin-top: 50px;
     padding-left: 0px; */
     /* position: absolute;
@@ -236,7 +257,67 @@
     border: solid rgb(155, 86, 86);
   }
   
-  .footer {
+  .offensive-table-col-3 {
+    padding-left: 765px;
+    position: absolute;
+    width: auto;
+    /* border: solid rgb(119, 196, 119); */
+  }
+  
+  .song-ranking-list-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: solid green;
+  }
+  
+  .song-ratings-container {
+    display: flex;
+    padding: 12px 0;
+    border: solid white;
+  }
+  
+  .song-rating {
+    display: flex;
+    align-items: center;
+    cursor: default;
+  }
+  
+  .song-rating-selected > .song-rating-button, 
+  .song-rating-selected > .song-rating-count {
+    color: #009578;
+  }
+  
+  .song-rating:not(:last-child) {
+    margin-right: 12px;
+  }
+  
+  .song-rating-button {
+    margin-right: 6px;
+    cursor: pointer;
+    color:#ffffff;
+  }
+  
+  .song-rating:not(.song-rating-selected) > .song-rating-button:hover {
+    color:#000000;
+  }
+  
+  .song-name {
+    font-size: 20px;
+    padding-left: 8px;
+    padding-bottom: 5px;
+    border: solid black;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .footer-div {
     margin-top: 5px;
     min-width: 100%;
     height: 75px;
