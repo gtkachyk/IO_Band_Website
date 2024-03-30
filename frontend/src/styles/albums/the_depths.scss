@@ -170,20 +170,34 @@
   }
 }
 
+.album-player-na {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  font-weight: lighter;
+}
+
 /***********************/
 /***** Art content *****/
 /***********************/
 
-.artwork-header{
+.artwork-header {
   color: white;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.artwork-na {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  font-weight: lighter;
 }
 
 /*******************************/
 /***** Lyric sheet content *****/
 /*******************************/
 
-.lyric-sheet-header{
+.lyric-sheet-header {
   color: white;
   font-family: 'Courier New', Courier, monospace;
 }

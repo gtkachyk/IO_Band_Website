@@ -24,7 +24,7 @@ function Album(){
     // Import scss for this album
     let styles;
     const album_scss = `../styles/albums/${loader_album.name}.scss`;
-    import(album_scss).then((res) => {styles = res;});
+    import(album_scss).then((res) => {styles = res;}).catch((error) => {import(`../styles/albums/default.scss`).then((res) => {styles = res;})});
 
     // Data for api interaction
     const [data, setData] = useState([]);

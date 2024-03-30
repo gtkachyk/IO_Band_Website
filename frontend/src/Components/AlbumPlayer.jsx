@@ -3,6 +3,12 @@ import '../styles/album_player.css';
 
 function AlbumPlayer({album, source_tags, div_tags}){
 
+    if(source_tags.length == 0 || div_tags.length == 0){
+        return(
+            <h3 className="album-player-na"> N/A </h3>
+        );
+    }
+
     /* Code adapted from https://codepen.io/craigstroman/pen/aOyRYx */
     return(
         <div className="container">

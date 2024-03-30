@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 function ArtworkList({downloadable_artwork}){
     if(downloadable_artwork.length == 0){
         return(
-            <h3 id="artwork-na"> N/A </h3>
+            <h3 className="artwork-na"> N/A </h3>
         );
     }
     var list = "";

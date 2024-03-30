@@ -59,6 +59,9 @@ export function generatePlaylistHTML(album, album_songs){
 }
 
 export function generateDownloadableArtPreviewPairs(downloadable_art_string, album_path){
+    if (downloadable_art_string.length == 0){
+        return "";
+    }
     const downloadable_artwork = downloadable_art_string.split(',');
     const downloadable_artwork_folder_path = album_path + '/images/downloadable/';
     var artwork_preview_pairs = [];
