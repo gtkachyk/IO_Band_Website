@@ -240,8 +240,32 @@ $album-pages-columns-debug: false;
   }
 }
 
-.art-list-element {
-  border-radius: 6px;
+.art-list-element-hover-div {
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+  border-radius: 8px;
+  border: solid rgb(0, 0, 0);
+  border-width: 2px;
+  margin-left: 112px;
+}
+
+.art-list-element-hover-div:hover {
+  opacity: 0.75;
+}
+
+.art-list-caption {
+  opacity: 0;
+  color: black;
+  pointer-events: none;
+  position: relative;
+  top: 30px;
+  font-style: italic;
+}
+
+.art-list-element-hover-div:hover .art-list-caption {
+  opacity: 0.75;
 }
 
 /*******************************/
