@@ -26,7 +26,8 @@ class SongViewSet(ModelViewSet):
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
     
-class FilteredSongViewSet(ModelViewSet):
-    queryset = Song.objects.exclude(tab_file_name='')
-    serializer_class = SongSerializer
+## An example of a view set that includes only songs without tabs
+# class FilteredSongViewSet(ModelViewSet):
+#     queryset = Song.objects.exclude(tab_file_name='')
+#     serializer_class = SongSerializer
     
