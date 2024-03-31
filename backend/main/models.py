@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 class Album(models.Model):
     id = models.IntegerField(primary_key = True)
@@ -33,3 +34,8 @@ class Song(models.Model):
     def __str__(self):
         return f"song: {self.name}"
     
+class GuestBookEntry(models.Model):
+    user_uuid = models.UUIDField(null=True)
+    name = models.CharField(max_length=50)
+    message = models.CharField(max_length=400)
+    date = models.CharField(max_length = 100)

@@ -2,11 +2,13 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import AlbumViewSet
 from .views import SongViewSet
+from .views import GuestBookEntryViewSet
 # from .views import FilteredSongViewSet
 
 main_router = DefaultRouter()
 main_router.register(r'albums', AlbumViewSet, basename='album')
 main_router.register(r'songs', SongViewSet, basename='song')
+main_router.register(r'guest_book_entries', GuestBookEntryViewSet, basename='guest_book_entry')
 # main_router.register(r'filtered_songs', FilteredSongViewSet, basename='filtered_song')
 
 urlpatterns = [

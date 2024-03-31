@@ -3,12 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faItunesNote, faSoundcloud, faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faBandcamp } from '@fortawesome/free-brands-svg-icons'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../styles/root.scss';
-
+import { v4 as uuidv4 } from 'uuid';
+import Axios from "axios";
 
 function Root() {
-
+    // Generate uuid
+    const uuidRef = useRef(uuidv4());
+    console.log("uuidRef.current = " + uuidRef.current);
+    
     // Featured audio media constants
     const featured_album_id = "1";
     const featured_audio_media = "http://localhost:5173/music/the_depths";
@@ -55,6 +59,38 @@ function Root() {
     const featured_album_resource_path = "./" + featured_album.path;
     const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
 
+    // Functions for sending guest book entries
+    const postGuestBookEntry = (user_uuid, name, message, date) => {
+        Axios.post(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
+            'user_uuid': user_uuid,
+            'name': name,
+            'message': message,
+            'date': date
+        },
+        {
+            headers: {
+                "Authorization": `AUTHORIZATION_KEY`,
+                "Content-Type": 'application/json'
+            }
+        })
+        .then(res => console.log(res))
+        .catch(error => console.error(error))
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const name = event.target.elements.name.value;
+        const message = event.target.elements.message.value;
+        const date = new Date().toLocaleDateString() + " at " + new Date().toLocaleTimeString();
+
+        // Send post request
+        postGuestBookEntry(uuidRef.current, name, message, date);
+
+        // Clear form fields
+        event.target.reset();
+    }
+
     return (
         <>
             <NavBar></NavBar>
@@ -91,8 +127,17 @@ function Root() {
                             <tbody>
                                 <tr>
                                     <th className="offensive-col-1"> {/* Slide show */}
-                                    </th> 
+                                    </th>
                                     <th className="offensive-col-2"> {/* Guestbook */}
+                                        <h2 className ="offensive-col-2-title">Guestbook</h2>
+                                        <div className ="offensive-col-2-content-container">
+                                            <textarea className="guestbook-display" readOnly></textarea>
+                                            <form className="guestbook-form" onSubmit={handleSubmit}>
+                                                <input className="guestbook-name" type="text" id="name" name="name" placeholder="Name" required />
+                                                <textarea className="guestbook-message" id="message" name="message" maxLength="400" placeholder="Message" required />
+                                                <button className="guestbook-submit" type="submit">Submit</button>
+                                            </form>
+                                        </div>
                                     </th>
                                 </tr>
                             </tbody>
