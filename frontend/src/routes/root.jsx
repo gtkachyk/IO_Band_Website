@@ -6,9 +6,14 @@ import { faBandcamp } from '@fortawesome/free-brands-svg-icons'
 import React, { useEffect, useState, useRef } from 'react';
 import '../styles/root.scss';
 import { v4 as uuidv4 } from 'uuid';
-import Axios from "axios";
+import { fetchData, displayGuestBookEntries } from '../js/api';
 
 function Root() {
+    // State variables
+    const [guestBookEntries, setGuestBookEntries, postGuestBookEntry] = displayGuestBookEntries();
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     // Generate uuid
     const uuidRef = useRef(uuidv4());
     console.log("uuidRef.current = " + uuidRef.current);
@@ -26,57 +31,21 @@ function Root() {
     useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home_2.jpg"}')`}, []);
 
     // Get featured album
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const fetchData = async (endpoints) => {
-        try {
-            const responses = await Promise.all(
-                endpoints.map(async (endpoint) => {
-                    const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
-                    }
-                    return response.json();
-                })
-            );
-
-            setData(responses);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching data: ', error);
-            setLoading(false);
-        }
-    };
     useEffect(() => {
-        fetchData(['albums/' + featured_album_id, 'songs/']);
+        fetchData(['albums/' + featured_album_id, 'songs/'], setData, setLoading);
     }, []);
 
     if (loading) {
         return (<>Loading...</>);
     }
+
+    // Process data from api
     const featured_album = data[0];
     const songs = data[1];
     const featured_album_resource_path = "./" + featured_album.path;
     const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
 
-    // Functions for sending guest book entries
-    const postGuestBookEntry = (user_uuid, name, message, date) => {
-        Axios.post(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
-            'user_uuid': user_uuid,
-            'name': name,
-            'message': message,
-            'date': date
-        },
-        {
-            headers: {
-                "Authorization": `AUTHORIZATION_KEY`,
-                "Content-Type": 'application/json'
-            }
-        })
-        .then(res => console.log(res))
-        .catch(error => console.error(error))
-    }
-
+    // Function for submitting a guestbook post
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -84,10 +53,7 @@ function Root() {
         const message = event.target.elements.message.value;
         const date = new Date().toLocaleDateString() + " at " + new Date().toLocaleTimeString();
 
-        // Send post request
         postGuestBookEntry(uuidRef.current, name, message, date);
-
-        // Clear form fields
         event.target.reset();
     }
 
@@ -101,7 +67,7 @@ function Root() {
                         <table className="featured-content-table">
                             <tbody>
                                 <tr>
-                                    <th className="featured-col-1">
+                                    <th className="featured-col-1"> {/* Featured music */}
                                         <h2 className = "featured-col-1-title">'{featured_album.display_name}' - Out Now!</h2>
                                         <div className="featured-col-1-content-container">
                                             <a href={featured_audio_media}>
@@ -111,7 +77,7 @@ function Root() {
                                             </a>
                                         </div>
                                     </th> 
-                                    <th className="featured-col-2">
+                                    <th className="featured-col-2"> {/* Featured social media */}
                                         <h2 className = "featured-col-2-title">From the Network</h2>
                                         <div className="featured-col-2-content-container">
                                             <iframe className="featured-col-2-tiktok" src={featured_tiktok}></iframe>
@@ -131,7 +97,7 @@ function Root() {
                                     <th className="offensive-col-2"> {/* Guestbook */}
                                         <h2 className ="offensive-col-2-title">Guestbook</h2>
                                         <div className ="offensive-col-2-content-container">
-                                            <textarea className="guestbook-display" readOnly></textarea>
+                                            <textarea className="guestbook-display" readOnly value={guestBookEntries.map(entry => `${entry.name}: ${entry.message}`).join('\n')}></textarea>
                                             <form className="guestbook-form" onSubmit={handleSubmit}>
                                                 <input className="guestbook-name" type="text" id="name" name="name" placeholder="Name" required />
                                                 <textarea className="guestbook-message" id="message" name="message" maxLength="400" placeholder="Message" required />

@@ -5,7 +5,7 @@ import ArtworkList from "../Components/ArtworkList";
 import LyricSheetList from "../Components/LyricSheetList";
 import TabList from "../Components/TabList";
 import React, { useEffect, useState } from 'react';
-import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../albums";
+import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../js/albums";
 import '../styles/album.scss';
 
 export async function loader({params}) {
@@ -58,7 +58,7 @@ function Album() {
         if (!loading) {
             const script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = '/src/playlist.js';
+            script.src = '/src/js/playlist.js';
             script.async = true;
             document.body.appendChild(script);
 
