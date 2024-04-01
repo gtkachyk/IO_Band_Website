@@ -24,9 +24,10 @@ export const fetchData = async (endpoints, setData, setLoading) => {
 export const displayGuestBookEntries = () => {
     const [guestBookEntries, setGuestBookEntries] = useState([]);
 
-    const postGuestBookEntry = (user_uuid, name, message, date) => {
+    const postGuestBookEntry = (user_uuid, ip, name, message, date) => {
         Axios.post(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
             'user_uuid': user_uuid,
+            'ip': ip,
             'name': name,
             'message': message,
             'date': date

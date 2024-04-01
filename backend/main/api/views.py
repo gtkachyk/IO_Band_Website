@@ -1,47 +1,49 @@
-from urllib import response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.mixins import UpdateModelMixin
-from ..models import Album
-from ..models import Song
-from ..models import GuestBookEntry
-from .serializers import AlbumSerializer
-from .serializers import SongSerializer
-from .serializers import GuestBookEntrySerializer
-import os
-from django.http import JsonResponse
-from django.views.decorators.http import require_GET
-from rest_framework.decorators import action
-from django.shortcuts import get_object_or_404
+from ..models import Album, Song, GuestBookEntry
+from .serializers import AlbumSerializer, SongSerializer, GuestBookEntrySerializer
 from rest_framework.response import Response
 from rest_framework import status
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 class AlbumViewSet(ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
 
 class SongViewSet(ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
     
 class GuestBookEntryViewSet(ModelViewSet):
     queryset = GuestBookEntry.objects.all()
     serializer_class = GuestBookEntrySerializer
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
     
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def create(self, request, *args, **kwargs):
+        logger.info(f'Full Request: {request.data}')
+
+        request_data = request.data
+        user_uuid = request_data.get("user_uuid")
+        ip = request_data.get("ip")
+        name = request_data.get("name")
+        message = request_data.get("message")
+        date = request_data.get("date")
+
+        # Get all rows such that row.ip = ip. If more than 5 rows are returned, block post request
+        if GuestBookEntry.objects.filter(ip=ip).count() >= 5:
+            return Response({"error": "Too many entries from this IP address"}, status=status.HTTP_429_TOO_MANY_REQUESTS)
+
+        return super().create(request, *args, **kwargs)
     
 ## An example of a view set that includes only songs without tabs
 # class FilteredSongViewSet(ModelViewSet):

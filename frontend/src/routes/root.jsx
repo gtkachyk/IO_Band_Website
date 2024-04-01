@@ -7,32 +7,56 @@ import React, { useEffect, useState, useRef } from 'react';
 import '../styles/root.scss';
 import { v4 as uuidv4 } from 'uuid';
 import { fetchData, displayGuestBookEntries } from '../js/api';
+import { TikTokEmbed } from 'react-social-media-embed';
 
 function Root() {
     // State variables
     const [guestBookEntries, setGuestBookEntries, postGuestBookEntry] = displayGuestBookEntries();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [public_ip, setIPAddress] = useState('');
 
     // Generate uuid
     const uuidRef = useRef(uuidv4());
-    console.log("uuidRef.current = " + uuidRef.current);
     
     // Featured audio media constants
     const featured_album_id = "1";
     const featured_audio_media = "http://localhost:5173/music/the_depths";
 
     // Social media links
-    const featured_tiktok = "https://www.tiktok.com/embed/7305519091761073414";
+    const featured_tiktok = "https://www.tiktok.com/@intentionaloffence/video/7305519091761073414";
     const featured_instagram = "https://www.instagram.com/p/CrAjRCuu3Sr/";
 
     // Set page background
     const page_resource_path = "./public/images/home_page/";
     useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home_2.jpg"}')`}, []);
 
-    // Get featured album
+    // Get data from api
     useEffect(() => {
-        fetchData(['albums/' + featured_album_id, 'songs/'], setData, setLoading);
+        fetchData(['albums/' + featured_album_id, 'songs/', 'guest_book_entries/'], setData, setLoading);
+    }, []);
+
+    // Add root.js when loading is done
+    useEffect(() => {
+        if (!loading) {
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = '/src/js/root.js';
+            script.async = true;
+            document.body.appendChild(script);
+
+            return () => {
+                document.body.removeChild(script);
+            };
+        }
+    }, [loading]);
+
+    // Get client public ip
+    useEffect(() => {
+        fetch('https://api.ipify.org?format=json')
+          .then(response => response.json())
+          .then(data => setIPAddress(data.ip))
+          .catch(error => console.log(error))
     }, []);
 
     if (loading) {
@@ -42,6 +66,7 @@ function Root() {
     // Process data from api
     const featured_album = data[0];
     const songs = data[1];
+    const guest_book_posts = data[2];
     const featured_album_resource_path = "./" + featured_album.path;
     const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
 
@@ -49,11 +74,12 @@ function Root() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        const ip = public_ip;
         const name = event.target.elements.name.value;
         const message = event.target.elements.message.value;
         const date = new Date().toLocaleDateString() + " at " + new Date().toLocaleTimeString();
 
-        postGuestBookEntry(uuidRef.current, name, message, date);
+        postGuestBookEntry(uuidRef.current, ip, name, message, date);
         event.target.reset();
     }
 
@@ -80,7 +106,7 @@ function Root() {
                                     <th className="featured-col-2"> {/* Featured social media */}
                                         <h2 className = "featured-col-2-title">From the Network</h2>
                                         <div className="featured-col-2-content-container">
-                                            <iframe className="featured-col-2-tiktok" src={featured_tiktok}></iframe>
+                                            <TikTokEmbed className="featured-col-2-tiktok" url={featured_tiktok}/>
                                         </div>
                                     </th>
                                 </tr>
@@ -97,7 +123,7 @@ function Root() {
                                     <th className="offensive-col-2"> {/* Guestbook */}
                                         <h2 className ="offensive-col-2-title">Guestbook</h2>
                                         <div className ="offensive-col-2-content-container">
-                                            <textarea className="guestbook-display" readOnly value={guestBookEntries.map(entry => `${entry.name}: ${entry.message}`).join('\n')}></textarea>
+                                            <textarea className="guestbook-display" id="guestbook-display-textarea" readOnly value={guest_book_posts.map(post => `${"-------------------------------------------------------------------------------------------\n"}${"Dearest band,                                                                  " + post.date + "\n\n"}${post.message + "\n\n"}${"Sincerely, \n" + post.name + "\n"}`).join('\n')}></textarea>
                                             <form className="guestbook-form" onSubmit={handleSubmit}>
                                                 <input className="guestbook-name" type="text" id="name" name="name" placeholder="Name" required />
                                                 <textarea className="guestbook-message" id="message" name="message" maxLength="400" placeholder="Message" required />

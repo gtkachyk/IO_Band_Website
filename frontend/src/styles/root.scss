@@ -16,7 +16,7 @@
     height: fit-content;
     top: 100px;
     width: 1400px;
-    /* border: solid white; */
+    // border: solid white;
     background-color: #80808067;
   }
   
@@ -162,7 +162,7 @@
   }
   
   .featured-col-2-content-container {
-    /* border: solid #3992ff; */
+    // border: solid #3992ff;
     min-width: 90%;
     max-width: 90%;
     min-height: 90%;
@@ -177,9 +177,9 @@
   .featured-col-2-tiktok {
     width: 329px;
     height: 580px;
-    position: 'relative';
+    position: 'absolute';
+    margin-left: 150.5px;
     top: '0';
-    /* border: none; */
     border: 2px solid rgb(0, 0, 0);
     border-radius: 8px;
   }
@@ -273,8 +273,8 @@
 
   .guestbook-display {
     border: solid #000000;
-    min-width: 100%;
-    max-width: 100%;
+    min-width: 614px;
+    max-width: 614px;
     min-height: 55%;
     max-height: 55%;
     position: absolute;
