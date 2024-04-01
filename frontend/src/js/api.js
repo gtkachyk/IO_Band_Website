@@ -21,29 +21,31 @@ export const fetchData = async (endpoints, setData, setLoading) => {
     }
 };
 
-export const displayGuestBookEntries = () => {
-    const [guestBookEntries, setGuestBookEntries] = useState([]);
-
-    const postGuestBookEntry = (user_uuid, ip, name, message, date) => {
-        Axios.post(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
-            'user_uuid': user_uuid,
-            'ip': ip,
-            'name': name,
-            'message': message,
-            'date': date
-        },
-        {
+export const postGuestBookEntry = async (user_uuid, ip, name, message, date, time, setError, setErrorMessage) => {
+    try{
+        const response = await fetch(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
+            method: 'POST', 
             headers: {
-                "Authorization": `AUTHORIZATION_KEY`,
-                "Content-Type": 'application/json'
-            }
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'user_uuid': user_uuid,
+                'ip': ip,
+                'name': name,
+                'message': message,
+                'date': date,
+                'time': time
+            })
         })
-        .then(res => {
-            // Add the new entry to guestBookEntries state
-            setGuestBookEntries([...guestBookEntries, { id: user_uuid, name, message, date }]);
-        })
-        .catch(error => console.error(error))
+        if(!response.ok){
+            throw new Error("HTTP " + response.status + " " + response.statusText);
+        }
+        setError(false);
     }
-
-    return [guestBookEntries, setGuestBookEntries, postGuestBookEntry];
+    catch (error) {
+        console.log(error);
+        setErrorMessage(error);
+        setError(true);
+    }
 }

@@ -6,12 +6,13 @@ import { faBandcamp } from '@fortawesome/free-brands-svg-icons'
 import React, { useEffect, useState, useRef } from 'react';
 import '../styles/root.scss';
 import { v4 as uuidv4 } from 'uuid';
-import { fetchData, displayGuestBookEntries } from '../js/api';
+import { fetchData, postGuestBookEntry } from '../js/api';
 import { TikTokEmbed } from 'react-social-media-embed';
 
 function Root() {
     // State variables
-    const [guestBookEntries, setGuestBookEntries, postGuestBookEntry] = displayGuestBookEntries();
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [public_ip, setIPAddress] = useState('');
@@ -59,6 +60,15 @@ function Root() {
           .catch(error => console.log(error))
     }, []);
 
+    // Check if an error occurred
+    useEffect(() => {
+        if (error) {
+            setError(false);
+            alert(errorMessage);
+            setErrorMessage('');
+        }
+    }, [error]);
+
     if (loading) {
         return (<>Loading...</>);
     }
@@ -71,15 +81,16 @@ function Root() {
     const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
 
     // Function for submitting a guestbook post
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const ip = public_ip;
         const name = event.target.elements.name.value;
         const message = event.target.elements.message.value;
-        const date = new Date().toLocaleDateString() + " at " + new Date().toLocaleTimeString();
+        const date = new Date().toLocaleDateString();
+        const time = new Date().toLocaleTimeString();
 
-        postGuestBookEntry(uuidRef.current, ip, name, message, date);
+        await postGuestBookEntry(uuidRef.current, public_ip, name, message, date, time, setError, setErrorMessage);
+
         event.target.reset();
     }
 
@@ -123,9 +134,9 @@ function Root() {
                                     <th className="offensive-col-2"> {/* Guestbook */}
                                         <h2 className ="offensive-col-2-title">Guestbook</h2>
                                         <div className ="offensive-col-2-content-container">
-                                            <textarea className="guestbook-display" id="guestbook-display-textarea" readOnly value={guest_book_posts.map(post => `${"-------------------------------------------------------------------------------------------\n"}${"Dearest band,                                                                  " + post.date + "\n\n"}${post.message + "\n\n"}${"Sincerely, \n" + post.name + "\n"}`).join('\n')}></textarea>
+                                            <textarea className="guestbook-display" id="guestbook-display-textarea" readOnly value={guest_book_posts.map(post => `${"-------------------------------------------------------------------------------------------\n"}${"Dearest band,                                                                  " + post.date + " at " + post.time + "\n\n"}${post.message + "\n\n"}${"Sincerely, \n" + post.name + "\n"}`).join('\n')}></textarea>
                                             <form className="guestbook-form" onSubmit={handleSubmit}>
-                                                <input className="guestbook-name" type="text" id="name" name="name" placeholder="Name" required />
+                                                <input className="guestbook-name" type="text" id="name" name="name" maxLength="50" placeholder="Name" required />
                                                 <textarea className="guestbook-message" id="message" name="message" maxLength="400" placeholder="Message" required />
                                                 <button className="guestbook-submit" type="submit">Submit</button>
                                             </form>

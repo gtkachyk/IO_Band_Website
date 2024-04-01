@@ -39,4 +39,5 @@ class GuestBookEntry(models.Model):
     ip = models.CharField(max_length=20, default="")
     name = models.CharField(max_length=50)
     message = models.CharField(max_length=400)
-    date = models.CharField(max_length = 100)
+    date = models.CharField(max_length=10)
+    time = models.CharField(max_length=13, default="")

@@ -16,4 +16,4 @@ class SongSerializer(ModelSerializer):
 class GuestBookEntrySerializer(ModelSerializer):
     class Meta:
         model = GuestBookEntry
-        fields = ('id', 'user_uuid', 'ip', 'name', 'message', 'date')
+        fields = ('id', 'user_uuid', 'ip', 'name', 'message', 'date', 'time')
