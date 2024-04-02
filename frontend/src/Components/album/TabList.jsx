@@ -1,7 +1,7 @@
 import TabListElement from './TabListElement';
 import ReactDOMServer from 'react-dom/server';
 import parse from 'html-react-parser';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function TabList({album_songs, tabs_path}){
     // FIlter out songs with blank tab_file_names and songs that don't belong to 'album'.

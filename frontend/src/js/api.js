@@ -1,7 +1,4 @@
-import Axios from "axios";
-import { useState } from 'react';
-import { scrollToBottom } from "./root";
-
+import { scrollToBottom } from "./guestbook";
 
 export const fetchData = async (endpoints, setData, setLoading) => {
     try {
@@ -23,7 +20,7 @@ export const fetchData = async (endpoints, setData, setLoading) => {
 };
 
 export const postGuestBookEntry = async (user_uuid, ip, name, message, date, time, setError, setErrorMessage) => {
-    try{
+    try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
             method: 'POST', 
             headers: {

@@ -1,0 +1,56 @@
+.social-media-bar {
+    position: fixed;
+    top: 55%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+  
+.social-media-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.social-media-bar a:hover {
+  background-color: rgb(0, 0, 0, 0.75);
+  opacity: 1;
+}
+
+.youtube {
+  background: rgb(187, 0, 0, 0.75);
+  color: white;
+} 
+
+.instagram {
+  background: rgb(18, 86, 136, 0.75);
+  color: white;
+} 
+
+.tiktok {
+  background: rgb(6, 79, 187, 0.75);
+  color: white;
+} 
+
+.spotify {
+  background: rgb(39, 216, 104, 0.75);
+  color: white;
+} 
+
+.bandcamp {
+  background: rgb(29, 160, 195, 0.75);
+  color: white;
+} 
+
+.soundcloud {
+  background: rgb(255, 85, 0, 0.75);
+  color: white;
+}
+
+.apple-music {
+  background: rgb(250, 88, 106, 0.75);
+  color: white;
+}

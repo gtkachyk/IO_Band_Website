@@ -1,5 +1,5 @@
 import parse from 'html-react-parser';
-import '../styles/album_player.css';
+import '../../styles/album/album_player.css';
 
 function AlbumPlayer({album, source_tags, div_tags}){
 

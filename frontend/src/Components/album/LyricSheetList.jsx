@@ -1,7 +1,7 @@
 import LyricSheetListElement from './LyricSheetListElement';
 import ReactDOMServer from 'react-dom/server';
 import parse from 'html-react-parser';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function LyricSheetList({album_songs, lyric_sheets_path}){
     // FIlter out songs with blank lyric_sheet_file_name and songs that don't belong to 'album'.

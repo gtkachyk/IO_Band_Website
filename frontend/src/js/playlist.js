@@ -1,6 +1,5 @@
 /* Code adapted from https://codepen.io/craigstroman/pen/aOyRYx */
 
-console.log("Playlist.js loaded");
 var audioPlayer = function() {
     "use strict";
   
@@ -86,12 +85,12 @@ var audioPlayer = function() {
         _elements.playerButtons.previousTrackBtn.disabled = true;
       }
   
-      //Adding event listeners to playlist clickable elements.
+      // Adding event listeners to playlist clickable elements.
       for (var i = 0; i < _elements.playListRows.length; i++) {
         var smallToggleBtn = _elements.playerButtons.smallToggleBtn[i];
         var playListLink = _elements.playListRows[i].children[2].children[0];
   
-        //Playlist link clicked.
+        // Playlist link clicked.
         playListLink.addEventListener("click", function(e) {
           e.preventDefault();
           var selectedTrack = parseInt(this.parentNode.parentNode.getAttribute("data-track-row"));
@@ -110,7 +109,7 @@ var audioPlayer = function() {
           }
         }, false);
   
-        //Small toggle button clicked.
+        // Small toggle button clicked.
         smallToggleBtn.addEventListener("click", function(e) {
           e.preventDefault();
           var selectedTrack = parseInt(this.parentNode.getAttribute("data-track-row"));
@@ -131,15 +130,15 @@ var audioPlayer = function() {
         }, false);
       }
   
-      //Audio time has changed so update it.
+      // Audio time has changed so update it.
       _elements.audio.addEventListener("timeupdate", _trackTimeChanged, false);
   
-      //Audio track has ended playing.
+      // Audio track has ended playing.
       _elements.audio.addEventListener("ended", function(e) {
         _trackHasEnded();
       }, false);
   
-      //Audio error. 
+      // Audio error. 
       _elements.audio.addEventListener("error", function(e) {
         switch (e.target.error.code) {
           case e.target.error.MEDIA_ERR_ABORTED:
@@ -162,7 +161,7 @@ var audioPlayer = function() {
         _resetPlayStatus();
       }, false);
   
-      //Large toggle button clicked.
+      // Large toggle button clicked.
       _elements.playerButtons.largeToggleBtn.addEventListener("click", function(e) {
         if (_trackLoaded === false) {
           _currentTrack = parseInt(1);
@@ -172,7 +171,7 @@ var audioPlayer = function() {
         }
       }, false);
   
-      //Next track button clicked.
+      // Next track button clicked.
       _elements.playerButtons.nextTrackBtn.addEventListener("click", function(e) {
         if (this.disabled !== true) {
           _currentTrack++;
@@ -182,7 +181,7 @@ var audioPlayer = function() {
         }
       }, false);
   
-      //Previous track button clicked.
+      // Previous track button clicked.
       _elements.playerButtons.previousTrackBtn.addEventListener("click", function(e) {
         if (this.disabled !== true) {
           _currentTrack--;
@@ -192,10 +191,10 @@ var audioPlayer = function() {
         }
       }, false);
   
-      //User is moving progress indicator.
-      _progressBarIndicator.addEventListener("mousedown", _mouseDown, false);
+      // User is moving progress indicator (disabled for now because it is bugged)
+      // _progressBarIndicator.addEventListener("mousedown", _mouseDown, false); 
   
-      //User stops moving progress indicator.
+      // User stops moving progress indicator.
       window.addEventListener("mouseup", _mouseUp, false);
     };
   
@@ -400,7 +399,7 @@ var audioPlayer = function() {
         _elements.playerButtons.smallToggleBtn[_currentTrack - 1].children[0].className = "small-play-btn";
       }
   
-      //Update next and previous buttons accordingly
+      // Update next and previous buttons accordingly
       if (_currentTrack === 1) {
         _elements.playerButtons.previousTrackBtn.disabled = true;
         _elements.playerButtons.previousTrackBtn.className = "previous-track-btn disabled";
@@ -466,12 +465,3 @@ var audioPlayer = function() {
   
     player.initPlayer();
   })();
-
-// function initializeAudioPlayer() {
-//     console.log("initializeAudioPlayer called...");
-//     var player = new audioPlayer();
-//     player.initPlayer();
-//     console.log("audio player initialized...");
-// }
-
-// document.addEventListener("DOMContentLoaded", initializeAudioPlayer);

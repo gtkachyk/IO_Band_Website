@@ -1,12 +1,12 @@
 import NavBar from "../Components/NavBar";
 import {useLoaderData} from "react-router-dom";
-import AlbumPlayer from "../Components/AlbumPlayer";
-import ArtworkList from "../Components/ArtworkList";
-import LyricSheetList from "../Components/LyricSheetList";
-import TabList from "../Components/TabList";
+import AlbumPlayer from "../Components/album/AlbumPlayer";
+import ArtworkList from "../Components/album/ArtworkList";
+import LyricSheetList from "../Components/album/LyricSheetList";
+import TabList from "../Components/album/TabList";
 import React, { useEffect, useState } from 'react';
 import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../js/albums";
-import '../styles/album.scss';
+import '../styles/album/album.scss';
 
 export async function loader({params}) {
     const loader_album = await getAlbumByName(params.name);
@@ -22,8 +22,8 @@ function Album() {
 
     // Import scss for this album
     let styles;
-    const album_scss = `../styles/albums/${loader_album.name}.scss`;
-    import(album_scss).then((res) => {styles = res;}).catch((error) => {import(`../styles/albums/default.scss`).then((res) => {styles = res;})});
+    const album_scss = `../styles/album/${loader_album.name}.scss`;
+    import(album_scss).then((res) => {styles = res;}).catch((error) => {import(`../styles/album/default.scss`).then((res) => {styles = res;})});
 
     // Data for api interaction
     const [data, setData] = useState([]);
