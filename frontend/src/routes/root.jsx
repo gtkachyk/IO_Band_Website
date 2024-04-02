@@ -69,17 +69,6 @@ function Root() {
         }
     }, [error]);
 
-    if (loading) {
-        return (<>Loading...</>);
-    }
-
-    // Process data from api
-    const featured_album = data[0];
-    const songs = data[1];
-    const guest_book_posts = data[2];
-    const featured_album_resource_path = "./" + featured_album.path;
-    const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
-
     // Function for submitting a guestbook post
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -89,10 +78,31 @@ function Root() {
         const date = new Date().toLocaleDateString();
         const time = new Date().toLocaleTimeString();
 
-        await postGuestBookEntry(uuidRef.current, public_ip, name, message, date, time, setError, setErrorMessage);
-
-        event.target.reset();
+        try {
+            await postGuestBookEntry(uuidRef.current, public_ip, name, message, date, time, setError, setErrorMessage);
+            fetchData(['guest_book_entries/'], setData, setLoading);
+            event.target.reset();
+        }
+        catch (error){
+            console.error('Error submitting guest book entry: ', error);
+        }
     }
+
+    if (loading) {
+        return (<>Loading...</>);
+    }
+
+    // Process data from api
+    const featured_album = data[0];
+    const songs = data[1];
+
+    // Guestbook data is stored at data[2] after the initial api call and data[0] after guestbook form submission
+    var guest_book_posts = data[2];
+    if (guest_book_posts == undefined){
+        guest_book_posts = data[0];
+    }
+    const featured_album_resource_path = "./" + featured_album.path;
+    const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
 
     return (
         <>
