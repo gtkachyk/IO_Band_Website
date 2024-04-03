@@ -1,9 +1,11 @@
 .guestbook-display {
-    border: solid #000000;
-    min-width: 614px;
-    max-width: 614px;
-    min-height: 55%;
-    max-height: 55%;
+    // border: solid #9dff00;
+    // min-width: 614px; // I think this value was calculated
+    // max-width: 614px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 620px;
+    max-height: 620px;
     position: absolute;
     top: 0;
     left: 0;
@@ -13,25 +15,29 @@
   }
 
   .guestbook-form {
-    border: solid #000000;
+    // border: solid #000000;
+    // min-width: 614px;
+    // max-width: 614px;
     min-width: 100%;
     max-width: 100%;
-    min-height: 45%;
-    max-height: 45%;
+    min-height: 300px;
+    max-height: 300px;
     position: absolute;
     bottom: 0;
     margin-top: 50px;
     border-radius: 8px;
+    // border: solid #ff00dd;
   }
 
   .guestbook-name {
     min-width: 100%;
     max-width: 100%;
-    top: 20px;
+    bottom: 0px + 40px + 190px;
     left: 0;
     position: absolute;
     background-color: #252525;
     color: #ffffff;
+    // border: solid #cc0000;
   }
 
   .guestbook-message {
@@ -42,15 +48,16 @@
     min-height: 180px;
     max-height: 180px;
     position: absolute;
-    top: 70px;
+    bottom: 0px + 40px;
     left: 0;
     background-color: #252525;
     color: #ffffff;
+    // border: solid #ffffff;
   }
 
   .guestbook-submit {
     position: absolute;
-    bottom: 20px;
+    bottom: 0px;
     right: 0;
     min-width: 80px;
     max-width: 80px;

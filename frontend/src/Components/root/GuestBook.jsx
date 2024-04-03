@@ -70,7 +70,7 @@ function GuestBook () {
 
     return (
         <>
-            <textarea className="guestbook-display" id="guestbook-display-textarea" readOnly value={guest_book_posts.map(post => `${"-------------------------------------------------------------------------------------------\n"}${"Dearest band,                                                                  " + post.date + " at " + post.time + "\n\n"}${post.message + "\n\n"}${"Sincerely, \n" + post.name + "\n"}`).join('\n')}></textarea>
+            <textarea className="guestbook-display" id="guestbook-display-textarea" readOnly value={guest_book_posts.map(post => `${"------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"}${"Dearest band,                                                                                                                                                                                    " + post.date + " at " + post.time + "\n\n"}${post.message + "\n\n"}${"Sincerely, \n" + post.name + "\n"}`).join('\n')}></textarea>
             <form className="guestbook-form" onSubmit={handleSubmit}>
                 <input className="guestbook-name" type="text" id="name" name="name" maxLength="50" placeholder="Name" required />
                 <textarea className="guestbook-message" id="message" name="message" maxLength="400" placeholder="Message" required />

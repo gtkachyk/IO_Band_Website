@@ -1,6 +1,7 @@
 import NavBar from "../Components/NavBar";
 import SocialMediaBar from "../Components/root/SocialMediaBar";
 import GuestBook from "../Components/root/GuestBook";
+import Slideshow from "../Components/root/Slideshow";
 import React, { useEffect, useState } from 'react';
 import '../styles/root/root.scss';
 import { fetchData } from '../js/api';
@@ -72,12 +73,18 @@ function Root() {
                         <table className="offensive-content-table">
                             <tbody>
                                 <tr>
-                                    <th className="offensive-col-1"> {/* Slide show */}
-                                    </th>
-                                    <th className="offensive-col-2"> {/* Guestbook */}
-                                        <h2 className ="offensive-col-2-title">Guestbook</h2>
-                                        <div className ="offensive-col-2-content-container">
+                                    <th className="offensive-row-1"> {/* Guestbook */}
+                                        <h2 className ="offensive-row-1-title">Guestbook</h2>
+                                        <div className ="offensive-row-1-content-container">
                                             <GuestBook></GuestBook>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th className="offensive-row-2">
+                                        <h2 className ="offensive-row-2-title">Grotesque Beings</h2>
+                                        <div className ="offensive-row-2-content-container">
+                                            <Slideshow></Slideshow>
                                         </div>
                                     </th>
                                 </tr>

@@ -1,0 +1,49 @@
+/* Code adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto */
+
+.mySlides {
+    display: none;
+    // border: solid #00d9ff;
+    min-width: 100%;
+    max-width: 100%;
+    position: absolute;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.slideshow-container {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    position: relative;
+    display: inline-block;
+    // border: solid #ff0000;
+}
+
+.slideshow-img {
+    position: relative;
+    display: inline-block;
+    height: fit-content;
+    border-radius: 8px;
+    // border: solid #00ff37;
+}
+  
+.active {
+  background-color: #717171;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
