@@ -1,31 +1,24 @@
 import '../../styles/root/slideshow.scss';
-import { useEffect } from 'react';
+import { startSlideshow, generateSlideshowHTML } from '../../js/slideshow';
+import { useEffect, useRef } from 'react';
+import parse from 'html-react-parser';
 
 function Slideshow (){
+    const initialized = useRef(false) // Prevents hook logic from firing twice if double rendered
+
     useEffect(() => {
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = '../../src/js/slideshow.js';
-        script.async = true;
-        document.body.appendChild(script)   
-        return () => {
-            document.body.removeChild(script);
-        };
+        if (!initialized.current) {
+            startSlideshow();
+            initialized.current = true
+        }
     }, []);
 
-    /* Code adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto */
+    const html = generateSlideshowHTML();
+
     return (
         <>
             <div className="slideshow-container">
-                <div className="mySlides fade">
-                  <img className="slideshow-img" src="../public/images/home_page/images/slideshow/serj.jpg"></img>
-                </div>
-                <div className="mySlides fade">
-                  <img className="slideshow-img" src="../public/images/home_page/images/slideshow/alien_2.jpg"></img>
-                </div>
-                <div className="mySlides fade">
-                  <img className="slideshow-img" src="../public/images/home_page/images/slideshow/alien_3.jpg"></img>
-                </div>
+              {parse(html)}
             </div>
         </>
     );

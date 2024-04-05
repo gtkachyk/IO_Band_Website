@@ -1,10 +1,11 @@
 import NavBar from "../Components/NavBar";
 import React, { useEffect } from 'react';
 import '../styles/video.scss';
+import { video } from '../assets/video.js';
 
 function Video(){
-    const page_resource_path = "./public/images/video_page/";
-    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_video_2.jpg"}')`}, []);
+    // Set page background
+    useEffect(() => { document.body.style.backgroundImage = `url('${video.background_image}')`}, []);
     return(
         <>
             <NavBar></NavBar>

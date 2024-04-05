@@ -2,38 +2,20 @@ import NavBar from "../Components/NavBar";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import '../styles/music.scss';
+import { fetchData } from '../js/api';
+import { music } from '../assets/music.js';
 
 function Music(){
     // Set page background
-    const page_resource_path = "./public/images/music_page/";
-    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_music_2.jpg"}')`}, []);
+    useEffect(() => { document.body.style.backgroundImage = `url('${music.background_image}')`}, []);
 
-    // Data for api interaction
+    // State variables
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const fetchData = async (endpoints) => {
-        try {
-            const responses = await Promise.all(
-                endpoints.map(async (endpoint) => {
-                    const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
-                    }
-                    return response.json();
-                })
-            );
-
-            setData(responses);
-            setLoading(false); // Set loading to false once all data is fetched
-        } catch (error) {
-            console.error('Error fetching data: ', error);
-            setLoading(false); // Set loading to false in case of an error
-        }
-    };
 
     // Get data from database
     useEffect(() => {
-        fetchData(['albums/']);
+        fetchData(['albums/'], setData, setLoading);
     }, []);
     
     if (loading) {
@@ -50,9 +32,9 @@ function Music(){
                     {albums.length ? (
                         <ul>
                             {albums.map((album) => (
-                                <li key={album.id}>
+                                <li key={album.name}>
                                     <Link reloadDocument to={`${album.name}`}>
-                                        <img src = {'../' + album.path + '/images/album_preview_artwork_' + album.id + '.jpg'}></img>
+                                        <img src = {'../public/images/albums/' + album.name + '/music_link.jpg'}></img>
                                         <h2 className="album-link-h2">{album.display_name}</h2>
                                     </Link>
                                 </li>

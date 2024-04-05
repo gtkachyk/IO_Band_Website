@@ -1,19 +1,10 @@
 ideas.txt
-frontend/public/images/home_page/images/charcoal_background_dark.jpg
-frontend/public/images/home_page/images/charcoal_background_light.jpg
 notes.txt
-frontend/src/styles/albums/test.scss
-frontend/public/images/music_page/album_page/the_depths/audio/04_Let_the_Colosseum_Crumble_Instrumental_(Mix 1).wav
-frontend/public/images/music_page/album_page/the_depths/audio/05_Mirage_Mix_2.wav
-frontend/public/images/music_page/album_page/the_depths/audio/06_The_Invasion_Mix_2.wav
-frontend/public/images/music_page/album_page/the_depths/audio/07_Unidentifiable_Catch_(Instrumental)_(Mix 3).wav
-frontend/public/images/music_page/album_page/the_depths/audio/08_Welcome_to_the_Massacre.wav
-frontend/public/images/home_page/images/slideshow/alien_1.jpg
-frontend/public/images/home_page/images/slideshow/alien_2.jpg
-frontend/public/images/home_page/images/slideshow/alien_3.jpg
-frontend/public/images/home_page/images/slideshow/alien_4.jpg
-frontend/public/images/home_page/images/slideshow/alien_5.jpg
-frontend/public/images/home_page/images/slideshow/alien_6.jpg
-frontend/public/images/home_page/images/slideshow/alien_7.jpg
-frontend/public/images/home_page/images/slideshow/bullet.jpg
-frontend/public/images/home_page/images/slideshow/serj.jpg
+frontend/public/audio/the_depths/01_UFO.wav
+frontend/public/audio/the_depths/02_Whales_(Krillionaire Mix).wav
+frontend/public/audio/the_depths/03_Arctic_Expedition_(Instrumental)_Mix 5.wav
+frontend/public/audio/the_depths/04_Let_the_Colosseum_Crumble_Instrumental_(Mix 1).wav
+frontend/public/audio/the_depths/05_Mirage_Mix_2.wav
+frontend/public/audio/the_depths/06_The_Invasion_Mix_2.wav
+frontend/public/audio/the_depths/07_Unidentifiable_Catch_(Instrumental)_(Mix 3).wav
+frontend/public/audio/the_depths/08_Welcome_to_the_Massacre.wav

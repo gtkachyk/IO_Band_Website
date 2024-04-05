@@ -1,8 +1,8 @@
-function ArtworkListElement({paths}){
-    return(
+function ArtworkListElement({path}){
+    return (
         <li>
-            <a className="art-list-download-link" href={`${'../' + paths[0]}`} download>
-                <div className="art-list-element-hover-div" style={{ backgroundImage: `url('${'../' + paths[1]}')` }}>
+            <a className="art-list-download-link" href={`${path}`} download>
+                <div className="art-list-element-hover-div" style={{ backgroundImage: `url('${path}')` }}>
                     <span className="art-list-caption">Download</span>
                 </div>
             </a>

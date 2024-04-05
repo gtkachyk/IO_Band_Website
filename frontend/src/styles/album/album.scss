@@ -257,6 +257,7 @@ $album-pages-columns-debug: false;
   border: solid rgb(0, 0, 0);
   border-width: 2px;
   margin-left: 112px;
+  background-size: 100px; // The size of the preview image
 }
 
 .art-list-element-hover-div:hover {

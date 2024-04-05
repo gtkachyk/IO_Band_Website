@@ -6,7 +6,7 @@ from ..models import GuestBookEntry
 class AlbumSerializer(ModelSerializer):
     class Meta:
         model = Album
-        fields = ('id', 'name', 'display_name', 'path', 'downloadable_artwork')
+        fields = ('name', 'display_name', 'downloadable_artwork')
 
 class SongSerializer(ModelSerializer):
     class Meta:

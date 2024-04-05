@@ -6,6 +6,8 @@ from rest_framework import status
 import logging
 import ipaddress
 import datetime
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +24,12 @@ class SongViewSet(ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         return super().update(request, *args, **kwargs)
+    
+    def get_queryset(self):
+        album = self.request.query_params.get('album')
+        if album:
+            return Song.objects.filter(album=album)
+        return super().get_queryset()
 
 def is_valid_ip(ip):
     try:

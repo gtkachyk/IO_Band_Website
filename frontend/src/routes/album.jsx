@@ -5,52 +5,33 @@ import ArtworkList from "../Components/album/ArtworkList";
 import LyricSheetList from "../Components/album/LyricSheetList";
 import TabList from "../Components/album/TabList";
 import React, { useEffect, useState } from 'react';
-import {getAlbumByName, generatePlaylistHTML, generateDownloadableArtPreviewPairs, getAlbumSongs} from "../js/albums";
+import {generatePlaylistHTML} from "../js/albums";
 import '../styles/album/album.scss';
+import { fetchData } from '../js/api';
 
 export async function loader({params}) {
-    const loader_album = await getAlbumByName(params.name);
-    return {loader_album};
+    return params.name;
 }
 
 function Album() {
-    // Get album object
-    const {loader_album} = useLoaderData();
-    if(loader_album == undefined){
+    // Get album name
+    const album_name = useLoaderData();
+    if(album_name == undefined){
       return <>Loading...</>
     }
 
-    // Import scss for this album
-    let styles;
-    const album_scss = `../styles/album/${loader_album.name}.scss`;
-    import(album_scss).then((res) => {styles = res;}).catch((error) => {import(`../styles/album/default.scss`).then((res) => {styles = res;})});
-
-    // Data for api interaction
+    // State variables
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const fetchData = async (endpoints) => {
-        try {
-            const responses = await Promise.all(
-                endpoints.map(async (endpoint) => {
-                    const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
-                    }
-                    return response.json();
-                })
-            );
 
-            setData(responses);
-            setLoading(false); // Set loading to false once all data is fetched
-        } catch (error) {
-            console.error('Error fetching data: ', error);
-            setLoading(false); // Set loading to false in case of an error
-        }
-    };
+    // Import scss for this album
+    let styles;
+    const album_scss = `../styles/album/${album_name}.scss`;
+    import(album_scss).then((res) => {styles = res;}).catch((error) => {import(`../styles/album/default.scss`).then((res) => {styles = res;})});
 
-    // Get data from database
+    // Get album and all songs belonging to album
     useEffect(() => {
-        fetchData(['albums/' + loader_album.id, 'songs/']);
+        fetchData(['albums/' + album_name, 'songs/' + `?album=${encodeURIComponent(album_name)}`], setData, setLoading);
     }, []);
 
     // Add playlist.js when loading is done
@@ -75,21 +56,14 @@ function Album() {
     // Divide data
     const album = data[0];
     const songs = data[1];
-    const page_resource_path = "../" + album.path;
 
     // Set page background
-    document.body.style.backgroundImage = `url('${page_resource_path + "/images/page_background_album_" + album.id + ".jpg"}')`;
-
-    // Filter out songs that do not belong to album
-    const album_songs = getAlbumSongs(songs, album);
+    document.body.style.backgroundImage = `url('${'../public/images/albums/' + album.name + '/background.jpg'}')`;
 
     // Generate tags
-    const html_tags = generatePlaylistHTML(album, album_songs);
+    const html_tags = generatePlaylistHTML(album, songs);
     const source_tags = html_tags[0];
     const div_tags = html_tags[1];
-
-    // Create artwork pairs
-    const artwork_preview_pairs = generateDownloadableArtPreviewPairs(album.downloadable_artwork, album.path);
 
     return (
         <>
@@ -114,19 +88,19 @@ function Album() {
                                     <th className="art-column">
                                         <h2 className="artwork-header">Artwork</h2>
                                         <div className="artwork-div">
-                                            <ArtworkList downloadable_artwork={artwork_preview_pairs}></ArtworkList>
+                                            <ArtworkList art_path={'../public/images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>
                                         </div>
                                     </th>
                                     <th className="lyrics-column">
                                         <h2 className="lyric-sheet-header">Lyric Sheets</h2>
                                         <div className="lyric-sheet-div">
-                                            <LyricSheetList album_songs={album_songs} lyric_sheets_path={page_resource_path + '/lyric_sheets/'}></LyricSheetList>
+                                            <LyricSheetList album_songs={songs} lyric_sheets_path={'../public/lyric_sheets/' + album_name + '/'}></LyricSheetList>
                                         </div>
                                     </th>
                                     <th className="tabs-column">
                                         <h2 className="tab-header">Tabs</h2>
                                         <div className="tab-div">
-                                            <TabList album_songs={album_songs} tabs_path={page_resource_path + '/tabs/'}></TabList>
+                                            <TabList album_songs={songs} tabs_path={'../public/tabs/' + album_name + '/'}></TabList>
                                         </div>
                                     </th>
                                 </tr>

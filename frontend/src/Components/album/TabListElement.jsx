@@ -1,6 +1,6 @@
 function TabListElement({path}){
     var filename = path.replace(/^.*[\\/]/, '');
-    if (filename.length > 20){
+    if (filename.length > 20) {
         filename = filename.slice(0, 20) + "...";
     }
     

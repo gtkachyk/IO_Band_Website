@@ -6,27 +6,19 @@ import React, { useEffect, useState } from 'react';
 import '../styles/root/root.scss';
 import { fetchData } from '../js/api';
 import { TikTokEmbed } from 'react-social-media-embed';
+import { home } from '../assets/home.js';
 
 function Root() {
     // State variables
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    
-    // Featured audio media constants
-    const featured_album_id = "1";
-    const featured_audio_media = "http://localhost:5173/music/the_depths";
-
-    // Social media links
-    const featured_tiktok = "https://www.tiktok.com/@intentionaloffence/video/7305519091761073414";
-    const featured_instagram = "https://www.instagram.com/p/CrAjRCuu3Sr/";
 
     // Set page background
-    const page_resource_path = "./public/images/home_page/";
-    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_home_2.jpg"}')`}, []);
+    useEffect(() => { document.body.style.backgroundImage = `url('${home.background_image}')`}, []);
 
     // Get data from api
     useEffect(() => {
-        fetchData(['albums/' + featured_album_id], setData, setLoading);
+        fetchData(['albums/' + home.featured_audio_media.name], setData, setLoading);
     }, []);
 
     if (loading) {
@@ -35,8 +27,6 @@ function Root() {
 
     // Process data from api
     const featured_album = data[0];
-    const featured_album_resource_path = "./" + featured_album.path;
-    const featured_album_preview_image_path = featured_album_resource_path + "/images/featured_album_preview_artwork_1.jpg";
 
     return (
         <>
@@ -51,8 +41,8 @@ function Root() {
                                     <th className="featured-col-1"> {/* Featured music */}
                                         <h2 className = "featured-col-1-title">'{featured_album.display_name}' - Out Now!</h2>
                                         <div className="featured-col-1-content-container">
-                                            <a href={featured_audio_media}>
-                                                <div className="featured-col-1-link-div" style={{ backgroundImage: `url('${featured_album_preview_image_path}')` }}>
+                                            <a href={home.featured_audio_media.link}>
+                                                <div className="featured-col-1-link-div" style={{ backgroundImage: `url('${home.featured_audio_media.image}')` }}>
                                                     <span className="featured-col-1-link-caption">{featured_album.display_name}</span>
                                                 </div>
                                             </a>
@@ -61,7 +51,7 @@ function Root() {
                                     <th className="featured-col-2"> {/* Featured social media */}
                                         <h2 className = "featured-col-2-title">From the Network</h2>
                                         <div className="featured-col-2-content-container">
-                                            <TikTokEmbed className="featured-col-2-tiktok" url={featured_tiktok}/>
+                                            <TikTokEmbed className="featured-col-2-tiktok" url={home.featured_social_media.tiktok}/>
                                         </div>
                                     </th>
                                 </tr>

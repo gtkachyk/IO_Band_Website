@@ -1,10 +1,11 @@
 import NavBar from "../Components/NavBar";
 import React, { useEffect } from 'react';
 import '../styles/about.scss';
+import { about } from '../assets/about.js';
 
 function About(){
-    const page_resource_path = "./public/images/about_page/";
-    useEffect(() => { document.body.style.backgroundImage = `url('${page_resource_path + "images/page_background_about_2.jpg"}')`}, []);
+    // Set page background
+    useEffect(() => { document.body.style.backgroundImage = `url('${about.background_image}')`}, []);
     return(
         <>
             <NavBar></NavBar>
