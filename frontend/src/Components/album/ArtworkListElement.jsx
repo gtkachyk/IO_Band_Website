@@ -1,4 +1,4 @@
-function ArtworkListElement({path}){
+function ArtworkListElement({path}) {
     return (
         <li>
             <a className="art-list-download-link" href={`${path}`} download>

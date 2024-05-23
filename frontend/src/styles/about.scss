@@ -1,46 +1,99 @@
 .about-page-container {
-    background-size: cover;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    overflow: visible;  
-  
-    display: flex;
-    justify-content: center;
-  }
-  
-  .about-page-content{
-    position: relative;
-    display: inline-block;
-    height: fit-content;
-    top: 100px;
-    width: 1400px;
-    border: solid white;
-  }
-  
-  .about-page-top-padding {
-    min-width: 100%;
-    height: 100px;
-    border: solid blue;
-  }
-  
-  .about-page-featured-content-container {
-    margin-top: 5px;
-    min-width: 100%;
-    height: 520px;
-    border: solid purple;
-  }
-  
-  .about-page-offensive-content-table-container {
-    margin-top: 5px;
-    min-width: 100%;
-    height: 600px;
-    border: solid red;
-  }
-  
-  .about-page-bottom-padding {
-    margin-top: 5px;
-    min-width: 100%;
-    height: 100px;
-    border: solid yellow;
-  }
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  overflow: visible;  
+  display: flex;
+  justify-content: center;
+  // color-scheme: normal;
+}
+
+.about-page-content-container {
+  position: relative;
+  display: inline-block;
+  height: fit-content;
+  top: 100px;
+  width: 1400px;
+  background-color: #80808067;
+  // border: solid white;
+}
+
+.summary-title-container {
+  min-width: 100%;
+  height: 75px;
+  // border: solid blue;
+}
+
+.summary-title {
+  min-width: 100%;
+  min-height: 100%;
+  color:#4d0505;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  text-shadow: 1.5px 1.5px #000000;
+  font-weight: lighter;
+  margin-top: 0px;
+  // border: solid #000000;
+}
+
+.summary-container {
+  margin-top: 5px;
+  min-width: 100%;
+  height: 700px;
+  color:white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: xx-large;
+  text-align: center;
+  // border: solid purple;
+}
+
+.gear-title-container {
+  margin-top: 5px;
+  min-width: 100%;
+  height: 75px;
+  // border: solid yellow;
+}
+
+.gear-title {
+  min-width: 100%;
+  min-height: 100%;
+  color:#4d0505;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  text-shadow: 1.5px 1.5px #000000;
+  font-weight: lighter;
+  margin-top: 0px;
+  // border: solid #3cff00;
+}
+
+.gear-container {
+  margin-top: 5px;
+  min-width: 100%;
+  height: 1800px;
+  margin-top: 5px;
+  min-width: 100%;
+  height: 700px;
+  color:white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: xx-large;
+  text-align: center;
+  // border: solid rgb(0, 247, 21);
+}
+
+.footer {
+  margin-top: 5px;
+  min-width: 100%;
+  height: 75px;
+  // border: solid rgb(0, 255, 200);
+}

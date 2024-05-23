@@ -1,9 +1,9 @@
 export function generatePlaylistHTML(album, album_songs) {
     var source_tags = ``;
     var div_tags = ``;
-    for(var i = 0; i < album_songs.length; i++){
+    for (var i = 0; i < album_songs.length; i++) {
         var display_name = album_songs[i].name;
-        if (display_name.length > 50){
+        if (display_name.length > 50) {
             display_name = display_name.slice(0, 47) + "...";
         }
 

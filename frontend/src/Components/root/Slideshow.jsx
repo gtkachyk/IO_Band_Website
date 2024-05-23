@@ -3,7 +3,7 @@ import { startSlideshow, generateSlideshowHTML } from '../../js/slideshow';
 import { useEffect, useRef } from 'react';
 import parse from 'html-react-parser';
 
-function Slideshow (){
+function Slideshow () {
     const initialized = useRef(false) // Prevents hook logic from firing twice if double rendered
 
     useEffect(() => {

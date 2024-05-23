@@ -5,7 +5,7 @@ import '../styles/music.scss';
 import { fetchData } from '../js/api';
 import { music } from '../assets/music.js';
 
-function Music(){
+function Music() {
     // Set page background
     useEffect(() => { document.body.style.backgroundImage = `url('${music.background_image}')`}, []);
 
@@ -23,7 +23,7 @@ function Music(){
     }
     const albums = data[0];
 
-    return(
+    return (
         <>
             <NavBar></NavBar>
             <div id="album-links">

@@ -1,5 +1,5 @@
 function NavBar(){
-  return(
+  return (
     <>
       <div id="navbar">
         <nav>
@@ -19,7 +19,6 @@ function NavBar(){
           </ul>
         </nav>
       </div>
-      {/* <div id="detail"></div> */}
     </>
   );
 }

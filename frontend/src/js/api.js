@@ -36,7 +36,7 @@ export const postGuestBookEntry = async (user_uuid, ip, name, message, date, tim
                 'time': time
             })
         })
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("HTTP " + response.status + " " + response.statusText);
         }
         setError(false);

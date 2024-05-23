@@ -1,8 +1,8 @@
 import { home } from '../assets/home.js';
 
-export function generateSlideshowHTML(){
+export function generateSlideshowHTML() {
     var html = "";
-    for (var i = 0; i < home.slideshow_images.length; i++){
+    for (var i = 0; i < home.slideshow_images.length; i++) {
         /* Code adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto */
         html += `<div className=\"mySlides fade\">
                     <img className=\"slideshow-img\" src=\"` + home.slideshow_images[i] + `\"></img>

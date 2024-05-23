@@ -81,7 +81,7 @@ function Album() {
                                     <th className="album-player-column">
                                         <h2 className="album-player-header">Tracks</h2>
                                         <div className="album-player-div">
-                                            <AlbumPlayer album={album} source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>
+                                            <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>
                                         </div>
                                     </th>
                                     <td className="vertical-divider"></td>

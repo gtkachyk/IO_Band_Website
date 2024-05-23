@@ -1,6 +1,6 @@
 function SongRankingList({songs}){
     console.log(songs);
-    return(
+    return (
       <>
         <ol>
           <li className="song-ranking-list-item">

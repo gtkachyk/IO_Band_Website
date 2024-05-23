@@ -1,10 +1,10 @@
-function LyricSheetListElement({path}){
+function LyricSheetListElement({path}) {
     var filename = path.replace(/^.*[\\/]/, '');
-    if (filename.length > 20){
+    if (filename.length > 20) {
         filename = filename.slice(0, 20) + "...";
     }
 
-    return(
+    return (
         <li>
             <a href={`${path}`} download>{filename}</a>
         </li>

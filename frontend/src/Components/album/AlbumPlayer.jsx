@@ -1,16 +1,16 @@
 import parse from 'html-react-parser';
 import '../../styles/album/album_player.css';
 
-function AlbumPlayer({album, source_tags, div_tags}){
+function AlbumPlayer({source_tags, div_tags}) {
 
-    if(source_tags.length == 0 || div_tags.length == 0){
-        return(
+    if (source_tags.length == 0 || div_tags.length == 0){
+        return (
             <h3 className="album-player-na"> N/A </h3>
         );
     }
 
     /* Code adapted from https://codepen.io/craigstroman/pen/aOyRYx */
-    return(
+    return (
         <div className="container">
             <audio id="audio" preload="none" tabIndex="0">
                 {parse(source_tags)}
