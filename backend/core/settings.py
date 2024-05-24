@@ -144,8 +144,3 @@ LOGGING = {
         'handlers': ['console'],
     }
 }
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
