@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'main'
 ]
 
-CORS_ALLOWED_ORIGINS = ['https://209.38.64.109']
+CORS_ALLOWED_ORIGINS = ['http://209.38.64.109:8000']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
