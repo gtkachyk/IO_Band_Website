@@ -1,5 +1,6 @@
 # This file contains everything common between development settings and deployment settings
 # Variables set to 'None' differ in development and deployment environments
+# Change the value at the end of this line between 0 and 1 when doing test commits: 0
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
