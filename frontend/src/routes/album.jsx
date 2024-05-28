@@ -58,7 +58,7 @@ function Album() {
     const songs = data[1];
 
     // Set page background
-    document.body.style.backgroundImage = `url('${'../public/images/albums/' + album.name + '/background.jpg'}')`;
+    document.body.style.backgroundImage = `url('${'/images/albums/' + album.name + '/background.jpg'}')`;
 
     // Generate tags
     const html_tags = generatePlaylistHTML(album, songs);
@@ -88,19 +88,19 @@ function Album() {
                                     <th className="art-column">
                                         <h2 className="artwork-header">Artwork</h2>
                                         <div className="artwork-div">
-                                            <ArtworkList art_path={'../public/images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>
+                                            <ArtworkList art_path={'/images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>
                                         </div>
                                     </th>
                                     <th className="lyrics-column">
                                         <h2 className="lyric-sheet-header">Lyric Sheets</h2>
                                         <div className="lyric-sheet-div">
-                                            <LyricSheetList album_songs={songs} lyric_sheets_path={'../public/lyric_sheets/' + album_name + '/'}></LyricSheetList>
+                                            <LyricSheetList album_songs={songs} lyric_sheets_path={'/lyric_sheets/' + album_name + '/'}></LyricSheetList>
                                         </div>
                                     </th>
                                     <th className="tabs-column">
                                         <h2 className="tab-header">Tabs</h2>
                                         <div className="tab-div">
-                                            <TabList album_songs={songs} tabs_path={'../public/tabs/' + album_name + '/'}></TabList>
+                                            <TabList album_songs={songs} tabs_path={'/tabs/' + album_name + '/'}></TabList>
                                         </div>
                                     </th>
                                 </tr>

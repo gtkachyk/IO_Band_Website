@@ -34,7 +34,7 @@ function Music() {
                             {albums.map((album) => (
                                 <li key={album.name}>
                                     <Link reloadDocument to={`${album.name}`}>
-                                        <img src = {'../public/images/albums/' + album.name + '/music_link.jpg'}></img>
+                                        <img src = {'/images/albums/' + album.name + '/music_link.jpg'}></img>
                                         <h2 className="album-link-h2">{album.display_name}</h2>
                                     </Link>
                                 </li>
