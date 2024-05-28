@@ -1,3 +1,3 @@
 export const video = {
-    background_image: '/public/images/background_main.jpg',
+    background_image: '/images/background_main.jpg',
 }
