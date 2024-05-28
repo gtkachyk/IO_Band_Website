@@ -55,3 +55,5 @@ frontend/public/audio/II_0_II_III/13_Burned_Instrumental.wav
 frontend/public/audio/II_0_II_III/14_Ghost_Instrumental.wav
 frontend/public/audio/II_0_II_III/15_Fight_to_Survive_Instrumental.wav
 backend/core/settings.py
+backend/dep_initial_settings.py
+frontend/.env

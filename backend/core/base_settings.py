@@ -147,3 +147,10 @@ LOGGING = {
         'handlers': ['console'],
     }
 }
+
+# Render browsable api as JSON only
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
