@@ -57,7 +57,7 @@ frontend/public/audio/II_0_II_III/15_Fight_to_Survive_Instrumental.wav
 backend/core/settings.py
 backend/dep_initial_settings.py
 frontend/.env
-backend/core/__pycache__/__init__.cpython-312.pyc
-backend/core/__pycache__/settings.cpython-312.pyc
-backend/core/__pycache__/urls.cpython-312.pyc
-backend/core/__pycache__/wsgi.cpython-312.pyc
+backend/core/__pycache__/*
+backend/main/__pycache__/*
+backend/main/api/__pycache__/*
+backend/main/migrations/__pycache__/*
