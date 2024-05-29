@@ -1,3 +1,5 @@
+import { constants } from '../assets/constants.js';
+
 export function generatePlaylistHTML(album, album_songs) {
     var source_tags = ``;
     var div_tags = ``;
@@ -7,7 +9,7 @@ export function generatePlaylistHTML(album, album_songs) {
             display_name = display_name.slice(0, 47) + "...";
         }
 
-        source_tags += `<source src=${"\"/audio/" + album.name + '/' + album_songs[i].audio_file_name + "\""} type="audio/mpeg" data-track-number=${"\"" + album_songs[i].track_number + "\""}/>`;
+        source_tags += `<source src=${"\"" + constants.jsPathToPublic + "audio/" + album.name + '/' + album_songs[i].audio_file_name + "\""} type="audio/${constants.audioType}" data-track-number=${"\"" + album_songs[i].track_number + "\""}/>`;
         div_tags += `<div className=\"playlist-row-content-container\">
                         <div className=\"play-list-row\" data-track-row=${"\"" + album_songs[i].track_number + "\""}>
                             <div className=\"small-toggle-btn\">

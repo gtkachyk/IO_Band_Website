@@ -3,7 +3,8 @@ const developmentSettings = {
     jsPathToPublic: '..\\public/',
     routesPathToPublic: '../public/',
     apiLink: 'http://127.0.0.1:8000/api/',
-    websiteLink: 'http://localhost:5173'
+    websiteLink: 'http://localhost:5173',
+    audioType: 'mpeg',
 }
 
 const deploymentSettings = {
@@ -12,15 +13,17 @@ const deploymentSettings = {
     routesPathToPublic: '/',
     apiLink: import.meta.env.VITE_API_URL,
     websiteLink: 'https://intentionaloffence.com/',
+    audioType: 'mpeg',
 }
 
-// The settings of the current branch
-const branchSettings = deploymentSettings
+// The constants needed to run the environment of the current branch
+const branchConstants = deploymentSettings
 
 export const urls = {
-    assetsPathToPublic: branchSettings.assetsPathToPublic, 
-    jsPathToPublic: branchSettings.jsPathToPublic,
-    routesPathToPublic: branchSettings.routesPathToPublic,
-    apiLink: branchSettings.apiLink,
-    websiteLink: branchSettings.websiteLink,
+    assetsPathToPublic: branchConstants.assetsPathToPublic, 
+    jsPathToPublic: branchConstants.jsPathToPublic,
+    routesPathToPublic: branchConstants.routesPathToPublic,
+    apiLink: branchConstants.apiLink,
+    websiteLink: branchConstants.websiteLink,
+    audioType: branchConstants.audioType,
 }

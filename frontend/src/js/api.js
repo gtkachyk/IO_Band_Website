@@ -1,10 +1,11 @@
 import { scrollToBottom } from "./guestbook";
+import { constants } from '../assets/constants.js';
 
 export const fetchData = async (endpoints, setData, setLoading) => {
     try {
         const responses = await Promise.all(
             endpoints.map(async (endpoint) => {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
+                const response = await fetch(`${constants.apiLink}${endpoint}`);
                 if (!response.ok) {
                     throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
                 }
