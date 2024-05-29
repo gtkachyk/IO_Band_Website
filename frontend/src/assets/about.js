@@ -1,4 +1,4 @@
-import { urls } from '/assets/home.js';
+import { urls } from 'assets/home.js';
 
 export const about = {
     background_image: urls.assetsPathToPublic + 'images/background_main_dark.jpg',
