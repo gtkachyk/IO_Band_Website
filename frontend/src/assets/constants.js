@@ -11,9 +11,10 @@ const deploymentSettings = {
     jsPathToPublic: '/',
     routesPathToPublic: '/',
     apiLink: import.meta.env.VITE_API_URL,
-    websiteLink: 'https://intentionaloffence.com',
+    websiteLink: 'https://intentionaloffence.com/',
 }
 
+// The settings of the current branch
 const branchSettings = deploymentSettings
 
 export const urls = {
