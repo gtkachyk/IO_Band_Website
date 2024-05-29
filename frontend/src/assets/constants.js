@@ -19,7 +19,7 @@ const deploymentSettings = {
 // The constants needed to run the environment of the current branch
 const branchConstants = deploymentSettings
 
-export const urls = {
+export const constants = {
     assetsPathToPublic: branchConstants.assetsPathToPublic, 
     jsPathToPublic: branchConstants.jsPathToPublic,
     routesPathToPublic: branchConstants.routesPathToPublic,
