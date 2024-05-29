@@ -39,7 +39,7 @@ function Album() {
         if (!loading) {
             const script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = '../js/playlist.js';
+            script.src = 'src/js/playlist.js';
             script.async = true;
             document.body.appendChild(script);
 
