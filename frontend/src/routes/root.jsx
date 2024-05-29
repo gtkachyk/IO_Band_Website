@@ -33,7 +33,7 @@ function Root() {
             <NavBar></NavBar>
             <div className="home-page-container">
                 <div className="home-page-content-container">
-                    <div className="featured-content-title-container"><h2 className = "featured-content-title">Intentional Offense</h2></div>
+                    <div className="featured-content-title-container"><h2 className = "featured-content-title">Intentional Offence</h2></div>
                     <div className="featured-content-container">
                         <table className="featured-content-table">
                             <tbody>
