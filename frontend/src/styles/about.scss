@@ -1,3 +1,5 @@
+$main-container-width: 1400px;
+
 .about-page-container {
   background-size: cover;
   min-height: 100%;
@@ -14,7 +16,7 @@
   display: inline-block;
   height: fit-content;
   top: 100px;
-  width: 1400px;
+  width: $main-container-width;
   background-color: #80808067;
   // border: solid white;
 }

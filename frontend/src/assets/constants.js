@@ -3,7 +3,7 @@ const developmentSettings = {
     jsPathToPublic: '..\\public/',
     routesPathToPublic: '../public/',
     apiLink: 'http://127.0.0.1:8000/api/',
-    websiteLink: 'http://localhost:5173',
+    websiteLink: 'http://localhost:5173/',
     audioType: 'mpeg',
 }
 

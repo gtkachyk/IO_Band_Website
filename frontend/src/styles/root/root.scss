@@ -1,12 +1,22 @@
+$home-page-debug: false;
+
+@mixin home-page-container-debug-border {border: solid #ffffff;}
+@mixin home-page-content-container-debug-border {border: solid white;}
+
+$main-container-width: 1400px;
+
 .home-page-container {
     background-size: cover;
     min-height: 100%;
     min-width: 100%;
     position: absolute;
-    overflow: visible;  
+    overflow: visible;
     display: flex;
     justify-content: center;
-    // color-scheme: normal;
+
+    @if $home-page-debug {
+      @include home-page-container-debug-border;
+    }
   }
   
   .home-page-content-container {
@@ -14,9 +24,12 @@
     display: inline-block;
     height: fit-content;
     top: 100px;
-    width: 1400px;
+    width: $main-container-width;
     background-color: #80808067;
-    // border: solid white;
+
+    @if $home-page-debug {
+      @include home-page-content-container-debug-border;
+    }
   }
   
   .featured-content-title-container {

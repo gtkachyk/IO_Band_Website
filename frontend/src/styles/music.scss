@@ -1,14 +1,18 @@
-#error-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
+$music-page-debug: false;
+
+@mixin album-links-debug-border {border: solid #ffffff;}
+@mixin album-links-ul-debug-border {border: solid #fbff00;}
+@mixin album-links-li-debug-border {border: solid #ff5100;}
+@mixin album-links-nav-a-debug-border {border: solid green;}
+@mixin album-links-h1-debug-border {border: solid #e100ff;}
+@mixin album-links-h2-debug-border {border: solid #2600ff;}
+
+$main-container-width: 1400px; // Changed from 1250px
+$album-link-width: 80%;
   
 #album-links {
   background-color: rgb(0, 0, 0, 0.75);
-  width: 80%;
+  width: $album-link-width;
   min-height: 100%;
   height: fit-content;
   width: fit-content;
@@ -16,23 +20,43 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+
+  @if $music-page-debug {
+    @include album-links-debug-border;
+  }
 }
 
 #album-links ul {
   padding: 0;
   margin: 0;
   text-align: center; /* Center the links horizontally */
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  min-width: 1250px;
-  max-width: 1250px;
-  padding-left: 25px;
+  min-width: $main-container-width;
+  max-width: $main-container-width;
+
+  @if $music-page-debug {
+    @include album-links-ul-debug-border;
+  }
 }
 
 #album-links li {
   height: fit-content;
   width: fit-content;
   margin: 1.25rem 1.5rem; /* vertical margin and horizontal margin */
+
+  @if $music-page-debug {
+    @include album-links-li-debug-border;
+  }
+}
+
+.invisible-element {
+  height: fit-content;
+  width: fit-content;
+  margin: 1.25rem 1.5rem;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 #album-links nav a {
@@ -53,10 +77,18 @@
   background-color: rgb(175, 175, 170);
   min-width: 550px;
   max-width: 550px;
+
+  @if $music-page-debug {
+    @include album-links-nav-a-debug-border;
+  }
 }
 
 #album-links h1 {
   visibility: hidden;
+
+  @if $music-page-debug {
+    @include album-links-h1-debug-border;
+  }
 }
 
 .album-link-h2 {
@@ -71,4 +103,8 @@
   min-height: 300px;
   max-height: 300px;
   font-size: 35px;
+
+  @if $music-page-debug {
+    @include album-links-h2-debug-border;
+  }
 }

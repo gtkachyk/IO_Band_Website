@@ -1,18 +1,70 @@
-.video-table-container{
-    position: relative;
+$video-page-debug: false;
+
+@mixin video-page-container-debug-border {border: solid #ffffff;}
+@mixin video-table-container-debug-border {border: solid #fbff00;}
+@mixin video-table-debug-border {border: solid #ff5100;}
+@mixin video-table-row-debug-border {border: solid green;}
+@mixin video-left-col-debug-border {border: solid #e100ff;}
+@mixin video-right-col-debug-border {border: solid #2600ff;}
+
+$main-container-width: 1400px;
+
+.video-page-container {
+    background-size: cover;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+
+    @if $video-page-debug {
+      @include video-page-container-debug-border;
+    }
+  }
+
+.video-table-container {
     background-color: #000000;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    position: relative;
+    display: inline-block;
     height: fit-content;
+    width: $main-container-width;
+
+    @if $video-page-debug {
+      @include video-table-container-debug-border;
+    }
   }
-  .video-table{
-    padding: 110px 15px;
+
+.video-table {
+  padding: 110px 15px;
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
+
+  @if $video-page-debug {
+    @include video-table-debug-border;
   }
-  .video-left-col {
-    padding-right: 10px;
+}
+
+.video-table-row {
+
+  @if $video-page-debug {
+    @include video-table-row-debug-border;
   }
-  
-  .video-right-col {
-    padding-left: 10px;
+}
+
+.video-left-col {
+  padding-right: 10px;
+
+  @if $video-page-debug {
+    @include video-left-col-debug-border;
   }
+}
+
+.video-right-col {
+  padding-left: 10px;
+
+  @if $video-page-debug {
+    @include video-right-col-debug-border;
+  }
+}

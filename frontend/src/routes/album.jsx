@@ -69,7 +69,7 @@ function Album() {
     return (
         <>
             <NavBar></NavBar>
-            <div className={"album-div-main"}>
+            <div className="album-div-main">
                 <div className="album-page-content">
                     <div className="album-page-title-div" id={"album-page-title-div-" + album.id}>
                         <h2 className = "album-page-title-header">{album.display_name}</h2>

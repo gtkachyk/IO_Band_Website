@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import parse from 'html-react-parser';
 
 function ArtworkList({art_path, downloadable_artwork}) {
-    if (downloadable_artwork.length == 0) {
+    if (downloadable_artwork.length <= 2) {
         return(
             <h3 className="artwork-na"> N/A </h3>
         );

@@ -5,6 +5,7 @@ import '../styles/music.scss';
 import { fetchData } from '../js/api';
 import { music } from '../assets/music.js';
 import { constants } from '../assets/constants.js';
+import parse from 'html-react-parser';
 
 function Music() {
     // Set page background
@@ -24,6 +25,18 @@ function Music() {
     }
     const albums = data[0];
 
+    // Needed to make the album links align vertically when there are an odd number of albums
+    var invisibleElementHtml = ``;
+    if (albums.length % 2 !== 0) {
+        invisibleElementHtml = `
+        <li class="invisible-element">
+            <a href="#">
+                <img src="${constants.routesPathToPublic}images/invisible_album_link_image_for_debugging_only.jpg" alt="Invisible Album" />
+                <h2 class="album-link-h2">This should never be seen</h2>
+            </a>
+        </li>`;
+    }
+
     return (
         <>
             <NavBar></NavBar>
@@ -40,6 +53,7 @@ function Music() {
                                     </Link>
                                 </li>
                             ))}
+                            {parse(invisibleElementHtml)}
                         </ul>
                     ) : (
                         <p>
