@@ -44,7 +44,6 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
   min-width: 100%;
   position: absolute;
   overflow: visible;
-  overflow-y: scroll; // Needed to extend div background when playlist overflows down
   display: flex;
   justify-content: center;
   background-image: linear-gradient(to bottom, rgba(230, 230, 230, 0.219) , rgba(0, 0, 0, 0.178));
@@ -56,10 +55,10 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
 
 .album-page-content {
   position: relative;
-  top: 100px;
-  width: $main-container-width;
   display: inline-block;
   height: fit-content;
+  top: 100px;
+  width: $main-container-width;
 
   @if $album-pages-debug {
     @include album-page-content-debug-border;
@@ -76,9 +75,10 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
 }
 
 .album-page-title-header {
+  top: 0px;
+  margin-top: 0px;
   min-width: 100%;
   min-height: 100%;
-  margin-top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,9 +89,12 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
 }
 
 .album-page-content-table-container {
+  top: 0px;
+  margin-top: 0px;
+  height: fit-content;
   min-width: 100%;
-  min-height: 100%;
   display: flex;
+  position: relative;
 
   @if $album-pages-table-debug {
     @include album-page-content-table-container-debug-border;
@@ -99,10 +102,13 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
 }
 
 .album-page-content-table {
-  min-height: $column-height;
-  max-height: $column-height;
+  top: 0px;
+  margin-top: 0px;
+  height: fit-content;
   min-width: 100%;
   max-width: 100%;
+  position: relative;
+  table-layout: fixed;
 
   @if $album-pages-table-debug {
     @include album-page-content-table-debug-border;
@@ -172,8 +178,7 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
 /***********************/
 
 .art-column {
-  min-height: $column-height;
-  max-height: $column-height;
+  height: fit-content;
   width: $column-width;
   position: relative;
 
@@ -262,7 +267,6 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
   margin-top: 0px;
   width: 100%;
   margin-left: 0px;
-  width: 100%;
 
   @if $album-pages-columns-debug {
     @include art-list-debug-border;
@@ -278,7 +282,7 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
   max-height: $column-height;
   width: $column-width;
   position: relative;
-
+  
   @if $album-pages-columns-debug {
     @include lyrics-column-debug-border;
   }
@@ -351,10 +355,10 @@ $art-corrective-margin: 93px; // Used to center art list elements. Original valu
 /************************/
 
 .tabs-column {
-    min-height: $column-height;
-    max-height: $column-height;
-    width: $column-width;
-    position: relative;
+  min-height: $column-height;
+  max-height: $column-height;
+  width: $column-width;
+  position: relative;
 
     @if $album-pages-columns-debug {
       @include tabs-column-debug-border;

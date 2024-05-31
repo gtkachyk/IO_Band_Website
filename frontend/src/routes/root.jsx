@@ -30,8 +30,8 @@ function Root() {
 
     return (
         <>
-            <NavBar></NavBar>
             <div className="home-page-container">
+                <NavBar></NavBar>
                 <div className="home-page-content-container">
                     <div className="featured-content-title-container"><h2 className = "featured-content-title">Intentional Offence</h2></div>
                     <div className="featured-content-container">

@@ -60,16 +60,22 @@ function Album() {
 
     // Set page background
     document.body.style.backgroundImage = `url('${constants.routesPathToPublic + 'images/albums/' + album.name + '/background.jpg'}')`;
+    // document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(230, 230, 230, 0.219) , rgba(0, 0, 0, 0.178))`;
 
     // Generate tags
     const html_tags = generatePlaylistHTML(album, songs);
     const source_tags = html_tags[0];
     const div_tags = html_tags[1];
 
+    // Calculate the height of the page container and vertical divider based on the size of the song list and artwork list (an alternative to writing good code)
+    var mainContainerHeight = 730;
+    mainContainerHeight = Math.max(730, mainContainerHeight + ((songs.length - 14) * 35), mainContainerHeight + ((album.downloadable_artwork.split(',').length - 4) * 120))
+    var verticalDividerHeight = mainContainerHeight - 200;
+
     return (
         <>
-            <NavBar></NavBar>
-            <div className="album-div-main">
+            <div className="album-div-main" style={{height:mainContainerHeight + 'px'}}>
+                <NavBar></NavBar>
                 <div className="album-page-content">
                     <div className="album-page-title-div" id={"album-page-title-div-" + album.id}>
                         <h2 className = "album-page-title-header">{album.display_name}</h2>
@@ -79,7 +85,7 @@ function Album() {
                         <table className="album-page-content-table">
                             <tbody>
                                 <tr>
-                                    <th className="album-player-column">
+                                    <th className="album-player-column" style={{height:verticalDividerHeight}}>
                                         <h2 className="album-player-header">Tracks</h2>
                                         <div className="album-player-div">
                                             <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>

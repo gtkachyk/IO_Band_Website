@@ -97,11 +97,39 @@ form[action$="destroy"] button {
 /************************************************** Nav bar **************************************************/
 $nav-bar-debug: false;
 
+@mixin nav-bar-full-screen-container-debug-border {border: solid #f700ff;}
+@mixin nav-bar-container-debug-border {border: solid #00eeff;}
 @mixin nav-bar-main-debug-border {border: solid #fbff00;}
 @mixin nav-bar-nav-debug-border {border: solid #ff5100;}
 @mixin nav-bar-ul-debug-border {border: solid #e100ff;}
 @mixin nav-bar-li-debug-border {border: solid #2600ff;}
 @mixin nav-bar-a-debug-border {border: solid #00ff6a;}
+
+// Mimics the main page container so that the sticky nav-bar-container stays visible the entire vertical length of the page
+.nav-bar-full-screen-container {
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+
+  @if $nav-bar-debug {
+    @include nav-bar-full-screen-container-debug-border;
+  }
+}
+
+.nav-bar-container {
+  min-width: 100%;
+  height: 6rem;
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  @if $nav-bar-debug {
+    @include nav-bar-container-debug-border;
+  }
+}
 
 #navbar {
   min-width: 100%;
@@ -111,7 +139,7 @@ $nav-bar-debug: false;
   flex-direction: row;
   position: absolute;
   z-index: 950;
-  overflow-x: scroll;
+  // overflow-x: scroll;
   justify-content: center;
 
   @if $nav-bar-debug {

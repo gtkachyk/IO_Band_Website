@@ -22,8 +22,8 @@ function About(){
 
     return(
         <>
-            <NavBar></NavBar>
             <div className="about-page-container">
+                <NavBar></NavBar>
                 <div className="about-page-content-container">
                     <div className="summary-title-container"><h2 className = "summary-title">Summary</h2></div>
                     <div className="summary-container">

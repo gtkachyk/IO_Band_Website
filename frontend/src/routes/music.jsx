@@ -39,28 +39,30 @@ function Music() {
 
     return (
         <>
-            <NavBar></NavBar>
-            <div id="album-links">
-                <h1>Albums</h1> {/*This header is invisible and only exists to push the album links down past the nav bar.*/}
-                <nav>
-                    {albums.length ? (
-                        <ul>
-                            {albums.map((album) => (
-                                <li key={album.name}>
-                                    <Link reloadDocument to={`${album.name}`}>
-                                        <img src = {constants.routesPathToPublic + 'images/albums/' + album.name + '/music_link.jpg'}></img>
-                                        <h2 className="album-link-h2">{album.display_name}</h2>
-                                    </Link>
-                                </li>
-                            ))}
-                            {parse(invisibleElementHtml)}
-                        </ul>
-                    ) : (
-                        <p>
-                            <i>No albums</i>
-                        </p>
-                    )}
-                </nav>
+            <div className="music-page-container">
+                <NavBar></NavBar>
+                <div id="album-links">
+                    <h1>Albums</h1> {/*This header is invisible and only exists to push the album links down past the nav bar.*/}
+                    <nav className="album-links-nav">
+                        {albums.length ? (
+                            <ul>
+                                {albums.map((album) => (
+                                    <li key={album.name}>
+                                        <Link reloadDocument to={`${album.name}`}>
+                                            <img src = {constants.routesPathToPublic + 'images/albums/' + album.name + '/music_link.jpg'}></img>
+                                            <h2 className="album-link-h2">{album.display_name}</h2>
+                                        </Link>
+                                    </li>
+                                ))}
+                                {parse(invisibleElementHtml)}
+                            </ul>
+                        ) : (
+                            <p>
+                                <i>No albums</i>
+                            </p>
+                        )}
+                    </nav>
+                </div>
             </div>
         </>
     );

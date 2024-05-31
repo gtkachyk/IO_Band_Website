@@ -8,8 +8,8 @@ function Video(){
     useEffect(() => { document.body.style.backgroundImage = `url('${video.background_image}')`}, []);
     return(
         <>
-            <NavBar></NavBar>
             <div className="video-page-container">
+                <NavBar></NavBar>
                 <div className="video-table-container">
                     <table className="video-table">
                         <tr className="video-table-row">
