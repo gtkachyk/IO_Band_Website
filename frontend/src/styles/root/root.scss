@@ -281,7 +281,23 @@ $main-container-width: 1400px;
   margin-top: 50px;
   margin-left: 10%; // Seems to work
   border-radius: 8px;
-  // border: solid #3992ff;
+//   border: solid #3992ff;
+}
+
+.invisible-textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 620px;
+  max-height: 620px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+  background-color: #252525;
+  color: #ffffff;
+  line-height: 24px;
+  visibility: hidden;
+  z-index: -100;
 }
 
 .offensive-row-2 {

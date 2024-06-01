@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import '../../styles/root/guestbook.scss';
 import { v4 as uuidv4 } from 'uuid';
 import { fetchData, postGuestBookEntry } from '../../js/api';
-import { scrollToBottom, generateFormattedMessage } from "../../js/guestbook";
+import { scrollToBottom, generateFormattedMessage, countLines } from "../../js/guestbook";
 
 function GuestBook () {
     // State variables
@@ -68,10 +68,29 @@ function GuestBook () {
     // Process data from api
     var guest_book_posts = data[0];
     var guest_book_display = "";
-    const guest_book_div_width = parseInt(window.getComputedStyle(document.getElementsByClassName("offensive-row-1-content-container")[0]).getPropertyValue('width'), 10);
 
-    for (var i = 0; i < guest_book_posts.length; i++){
-        guest_book_display += generateFormattedMessage(guest_book_posts[i], guest_book_div_width);
+    // Calculate characters per line
+    const invisible_textarea = document.getElementsByClassName("invisible-textarea")[0];
+    invisible_textarea.readOnly = false;
+    invisible_textarea.value = "";
+    var dashes_per_line = 0;
+    while (countLines(invisible_textarea) < 2){
+        invisible_textarea.value += "-";
+        dashes_per_line += 1;
+    }
+    dashes_per_line -= 4; // Arbitrary safety buffer
+
+    invisible_textarea.value = "Dearest band,0000-00-00 at 00:00:00 X.X. XX";
+    var spaces = 0;
+    while (countLines(invisible_textarea) < 2){
+        invisible_textarea.value += "\xa0";
+        spaces += 1;
+    }
+    spaces -= 2; // Arbitrary safety buffer
+    invisible_textarea.readOnly = true;
+
+    for (var i = 0; i < guest_book_posts.length; i++) {
+        guest_book_display += generateFormattedMessage(guest_book_posts[i], dashes_per_line, spaces);
     }
 
     return (

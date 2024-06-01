@@ -66,6 +66,7 @@ function Root() {
                                     <th className="offensive-row-1"> {/* Guestbook */}
                                         <h2 className ="offensive-row-1-title">Guestbook</h2>
                                         <div className ="offensive-row-1-content-container">
+                                            <textarea className="invisible-textarea"></textarea>
                                             <GuestBook></GuestBook>
                                         </div>
                                     </th>

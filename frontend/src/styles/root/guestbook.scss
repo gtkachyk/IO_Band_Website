@@ -17,6 +17,7 @@ $guest-book-debug: false;
     border-radius: 8px;
     background-color: #252525;
     color: #ffffff;
+    line-height: 24px;
 
     @if $guest-book-debug {
         @include guestbook-display-debug-border;
