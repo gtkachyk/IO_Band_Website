@@ -22,3 +22,29 @@ export function scrollToBottom() {
         }
     }, 100);
 };
+
+export function generateFormattedMessage(post, containerWidth) {
+    // Calculate length of divider
+    const dividerDashes = Math.floor(containerWidth / 6.6) - 1;
+
+    // Generate post divider
+    var postDivider = "";
+    for(var i = 0; i < dividerDashes; i++) {
+        postDivider += "-";
+    }
+    postDivider += "\n"
+
+    // Calculate spaces in greeting line
+    const greetingLineSpaces = Math.floor(containerWidth / 6.2) - 1;
+
+    // Generate greeting line
+    var greetingLine = "Dearest band,";
+    for(var i = 0; i < greetingLineSpaces; i++) {
+        greetingLine += " ";
+    }
+    var greetingLine = greetingLine + post.date + " at " + post.time + "\n\n";
+
+    const postBody = post.message + "\n\n";
+    const endLine = "Sincerely, \n" + post.name + "\n";
+    return postDivider + greetingLine + postBody + endLine;
+};

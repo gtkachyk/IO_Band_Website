@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import '../../styles/root/guestbook.scss';
 import { v4 as uuidv4 } from 'uuid';
 import { fetchData, postGuestBookEntry } from '../../js/api';
-import { scrollToBottom } from "../../js/guestbook";
+import { scrollToBottom, generateFormattedMessage } from "../../js/guestbook";
 
 function GuestBook () {
     // State variables
@@ -67,10 +67,16 @@ function GuestBook () {
 
     // Process data from api
     var guest_book_posts = data[0];
+    var guest_book_display = "";
+    const guest_book_div_width = parseInt(window.getComputedStyle(document.getElementsByClassName("offensive-row-1-content-container")[0]).getPropertyValue('width'), 10);
+
+    for (var i = 0; i < guest_book_posts.length; i++){
+        guest_book_display += generateFormattedMessage(guest_book_posts[i], guest_book_div_width);
+    }
 
     return (
         <>
-            <textarea className="guestbook-display" id="guestbook-display-textarea" readOnly value={guest_book_posts.map(post => `${"------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"}${"Dearest band,                                                                                                                                                                                    " + post.date + " at " + post.time + "\n\n"}${post.message + "\n\n"}${"Sincerely, \n" + post.name + "\n"}`).join('\n')}></textarea>
+            <textarea className="guestbook-display" id="guestbook-display-textarea" readOnly value={guest_book_display}></textarea>
             <form className="guestbook-form" onSubmit={handleSubmit}>
                 <input className="guestbook-name" type="text" id="name" name="name" maxLength="50" placeholder="Name" required />
                 <textarea className="guestbook-message" id="message" name="message" maxLength="400" placeholder="Message" required />

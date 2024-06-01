@@ -1,7 +1,12 @@
+$guest-book-debug: false;
+
+@mixin guestbook-display-debug-border {border: solid #ffffff;}
+@mixin guestbook-form-debug-border {border: solid rgb(17, 3, 216);}
+@mixin guestbook-name-debug-border {border: solid rgb(255, 0, 0);}
+@mixin guestbook-message-debug-border {border: solid rgb(208, 255, 0);}
+@mixin guestbook-submit-debug-border {border: solid rgb(0, 255, 128);}
+
 .guestbook-display {
-    // border: solid #9dff00;
-    // min-width: 614px; // I think this value was calculated
-    // max-width: 614px;
     min-width: 100%;
     max-width: 100%;
     min-height: 620px;
@@ -12,12 +17,13 @@
     border-radius: 8px;
     background-color: #252525;
     color: #ffffff;
-  }
 
-  .guestbook-form {
-    // border: solid #000000;
-    // min-width: 614px;
-    // max-width: 614px;
+    @if $guest-book-debug {
+        @include guestbook-display-debug-border;
+    }
+}
+
+.guestbook-form {
     min-width: 100%;
     max-width: 100%;
     min-height: 300px;
@@ -26,10 +32,13 @@
     bottom: 0;
     margin-top: 50px;
     border-radius: 8px;
-    // border: solid #ff00dd;
-  }
 
-  .guestbook-name {
+    @if $guest-book-debug {
+        @include guestbook-form-debug-border;
+    }
+}
+
+.guestbook-name {
     min-width: 100%;
     max-width: 100%;
     bottom: 0px + 40px + 190px;
@@ -37,14 +46,15 @@
     position: absolute;
     background-color: #252525;
     color: #ffffff;
-    // border: solid #cc0000;
-  }
 
-  .guestbook-message {
+    @if $guest-book-debug {
+        @include guestbook-name-debug-border;
+    }
+}
+
+.guestbook-message {
     min-width: 100%;
     max-width: 100%;
-    // min-height: 65%;
-    // max-height: 65%;
     min-height: 180px;
     max-height: 180px;
     position: absolute;
@@ -52,10 +62,13 @@
     left: 0;
     background-color: #252525;
     color: #ffffff;
-    // border: solid #ffffff;
-  }
 
-  .guestbook-submit {
+    @if $guest-book-debug {
+        @include guestbook-message-debug-border;
+    }
+}
+
+.guestbook-submit {
     position: absolute;
     bottom: 0px;
     right: 0;
@@ -68,4 +81,8 @@
     line-height: 14px;
     color: #000000;
     background-color: #003cff;
-  }
+
+    @if $guest-book-debug {
+        @include guestbook-submit-debug-border;
+    }
+}

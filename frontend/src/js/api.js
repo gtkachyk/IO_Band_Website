@@ -22,7 +22,7 @@ export const fetchData = async (endpoints, setData, setLoading) => {
 
 export const postGuestBookEntry = async (user_uuid, ip, name, message, date, time, setError, setErrorMessage) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
+        const response = await fetch(`${constants.apiLink}guest_book_entries/`, {
             method: 'POST', 
             headers: {
                 'Accept': 'application/json',
