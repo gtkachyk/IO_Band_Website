@@ -1,6 +1,6 @@
 # IO Band Website
 
-A website for the metal band Intentional Offence.
+A website for the metal band Intentional Offence.  
 URL: www.intentionaloffence.com
 
 ## Breakdown
