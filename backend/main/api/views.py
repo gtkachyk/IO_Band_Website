@@ -6,7 +6,6 @@ from rest_framework import status
 import logging
 import ipaddress
 import datetime
-from rest_framework.decorators import action
 from rest_framework.response import Response
 
 logger = logging.getLogger(__name__)
@@ -91,13 +90,14 @@ class GuestBookEntryViewSet(ModelViewSet):
 
         # Validate request
         if not is_valid_ip(ip):
-            return Response({"Error": "invalid ip"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            # return Response({"Error": "invalid ip"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            request.data.update({"ip": "255.255.255.255"})
         if not is_valid_date(date):
             return Response({"Error": "invalid date"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         if not is_valid_time(time):
             return Response({"Error": "invalid time"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-        if GuestBookEntry.objects.filter(ip=ip).count() >= 5:
-            return Response({"Error": "too many entries from this IP address"}, status=status.HTTP_429_TOO_MANY_REQUESTS)
+        # if GuestBookEntry.objects.filter(ip=ip).count() >= 5:
+        #     return Response({"Error": "too many entries from this IP address"}, status=status.HTTP_429_TOO_MANY_REQUESTS)
         if GuestBookEntry.objects.filter(user_uuid=user_uuid).count() >= 5:
             return Response({"Error": "too many entries from this render"}, status=status.HTTP_429_TOO_MANY_REQUESTS)
         if len(name) == 0:
@@ -106,9 +106,4 @@ class GuestBookEntryViewSet(ModelViewSet):
             request.data.update({"message": "I forgot to write a message!"})
 
         return super().create(request, *args, **kwargs)
-    
-## An example of a view set that includes only songs without tabs
-# class FilteredSongViewSet(ModelViewSet):
-#     queryset = Song.objects.exclude(tab_file_name='')
-#     serializer_class = SongSerializer
     
