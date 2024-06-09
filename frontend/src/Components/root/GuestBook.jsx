@@ -48,8 +48,8 @@ function GuestBook () {
 
         const name = event.target.elements.name.value;
         const message = event.target.elements.message.value;
-        const date = new Date().toLocaleDateString();
-        const time = new Date().toLocaleTimeString();
+        const date = new Date().toLocaleDateString('en-CA');
+        const time = new Date().toLocaleTimeString('en-CA');
 
         try {
             await postGuestBookEntry(uuidRef.current, public_ip, name, message, date, time, setError, setErrorMessage);
