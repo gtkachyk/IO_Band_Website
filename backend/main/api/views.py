@@ -8,7 +8,10 @@ import ipaddress
 import datetime
 from rest_framework.response import Response
 
+# To print to console:
+# logger.info("output")
 logger = logging.getLogger(__name__)
+
 
 class AlbumViewSet(ModelViewSet):
     queryset = Album.objects.all()
@@ -16,6 +19,7 @@ class AlbumViewSet(ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         return super().update(request, *args, **kwargs)
+    
 
 class SongViewSet(ModelViewSet):
     queryset = Song.objects.all()
@@ -30,6 +34,7 @@ class SongViewSet(ModelViewSet):
             return Song.objects.filter(album=album)
         return super().get_queryset()
 
+
 def is_valid_ip(ip):
     try:
         ipaddress.ip_address(ip)
@@ -37,12 +42,14 @@ def is_valid_ip(ip):
     except ValueError:
         return False
     
+
 def is_valid_date(date):
     try:
         datetime.date.fromisoformat(date)
         return True
     except ValueError:
         return False
+
 
 def is_valid_time(time):
     if not isinstance(time, str):
@@ -71,7 +78,17 @@ def is_valid_time(time):
         return False
     
     return True
-        
+
+
+def guest_book_entry_to_string(user_uuid, ip, name, message, date, time):
+    return ("user_uuid: " + user_uuid + ",\n" + 
+            "ip:        " + ip + ",\n" + 
+            "name:      " + name + ",\n" + 
+            "message:   " + message + ",\n" + 
+            "date:      " + date + ",\n" + 
+            "time:      " + time)
+
+
 class GuestBookEntryViewSet(ModelViewSet):
     queryset = GuestBookEntry.objects.all()
     serializer_class = GuestBookEntrySerializer
@@ -91,17 +108,26 @@ class GuestBookEntryViewSet(ModelViewSet):
         # Validate request
         if not is_valid_ip(ip):
             # return Response({"Error": "invalid ip"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            logger.error("Invalid ip in processed guest_book_entry:\n" + guest_book_entry_to_string(user_uuid, ip, name, message, date, time))
             request.data.update({"ip": "255.255.255.255"})
+
         if not is_valid_date(date):
+            logger.error("Invalid date in unprocessed guest_book_entry:\n" + guest_book_entry_to_string(user_uuid, ip, name, message, date, time))
             return Response({"Error": "invalid date"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        
         if not is_valid_time(time):
+            logger.error("Invalid time in unprocessed guest_book_entry:\n" + guest_book_entry_to_string(user_uuid, ip, name, message, date, time))
             return Response({"Error": "invalid time"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        
         # if GuestBookEntry.objects.filter(ip=ip).count() >= 5:
         #     return Response({"Error": "too many entries from this IP address"}, status=status.HTTP_429_TOO_MANY_REQUESTS)
+
         if GuestBookEntry.objects.filter(user_uuid=user_uuid).count() >= 5:
             return Response({"Error": "too many entries from this render"}, status=status.HTTP_429_TOO_MANY_REQUESTS)
+        
         if len(name) == 0:
             request.data.update({"name": "Anonymous Fan"})
+
         if len(message) == 0:
             request.data.update({"message": "I forgot to write a message!"})
 
