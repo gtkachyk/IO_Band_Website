@@ -51,6 +51,15 @@ def is_valid_date(date):
         return False
 
 
+def format_time(time):
+    if (len(time) >= 2):
+        if (time[-2:] == "AM"):
+            return time[:-2] + "a.m."
+        if (time[-2:] == "PM"):
+            return time[:-2] + "p.m."
+    return time
+
+
 def is_valid_time(time):
     if not isinstance(time, str):
         return False
@@ -103,7 +112,7 @@ class GuestBookEntryViewSet(ModelViewSet):
         name = request_data.get("name")
         message = request_data.get("message")
         date = request_data.get("date")
-        time = request_data.get("time")
+        time = format_time(request_data.get("time")) # Safari may return a time that ends with AM or PM, this changes it to a.m. or p.m.
 
         # Validate request
         if not is_valid_ip(ip):
