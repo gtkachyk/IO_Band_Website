@@ -14,11 +14,14 @@ export async function loader({params}) {
     return params.name;
 }
 
+
+// TODO: add release date in bottom left of page
+// TODO: modify scss so main div size doesn't have to be calculated in this file
 function Album() {
     // Get album name
     const album_name = useLoaderData();
     if(album_name == undefined){
-      return <>Loading...</>
+        return <>Loading...</>
     }
 
     // State variables
@@ -60,7 +63,6 @@ function Album() {
 
     // Set page background
     document.body.style.backgroundImage = `url('${constants.routesPathToPublic + 'images/albums/' + album.name + '/background.jpg'}')`;
-    // document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(230, 230, 230, 0.219) , rgba(0, 0, 0, 0.178))`;
 
     // Generate tags
     const html_tags = generatePlaylistHTML(album, songs);

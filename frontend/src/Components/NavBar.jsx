@@ -3,7 +3,7 @@ function NavBar(){
         <>
             <div className="nav-bar-full-screen-container">
                 <div className="nav-bar-container">
-                    <div id="navbar">
+                    <div className="navbar">
                         <nav>
                             <ul>
                                 <li>
