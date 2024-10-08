@@ -1,0 +1,116 @@
+/* =============================================
+   NavBar Styles
+   =============================================
+   Styles for the NavBar component.
+*/
+
+$nav-bar-debug: false;
+
+@mixin nav-bar-container-debug-border {border: solid #00eeff;}
+@mixin nav-bar-debug-border {border: solid #ff5100;}
+@mixin nav-bar-ul-debug-border {border: solid #e100ff;}
+@mixin nav-bar-li-debug-border {border: solid #2600ff;}
+@mixin nav-bar-a-debug-border {border: solid #00ff6a;}
+
+.nav-bar-container {
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  height: 6rem;
+  min-width: 100%;
+
+  @if $nav-bar-debug {
+    @include nav-bar-container-debug-border;
+  }
+}
+
+.navbar {
+  height: 100%;
+  background-color: rgb(29, 28, 28, 0.7);
+
+  @if $nav-bar-debug {
+    @include nav-bar-debug-border;
+  }
+}
+
+.navbar ul {
+  display: flex;
+  height: 100%;
+  margin-top: 0;
+  padding: 0;
+  list-style-type: none;
+
+  @if $nav-bar-debug {
+    @include nav-bar-ul-debug-border;
+  }
+}
+
+.navbar li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+
+  text-align: center;
+
+  @if $nav-bar-debug {
+    @include nav-bar-li-debug-border;
+  }
+}
+
+.navbar a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: 50%;
+  border-radius: 8px;
+
+  color: rgb(250, 250, 250);
+  font-size: xx-large;
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration: none;
+
+  @if $nav-bar-debug {
+    @include nav-bar-a-debug-border;
+  }
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
+@media (max-width: 550px) {
+  .navbar a {
+    font-size: x-large;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar a {
+    font-size: larger;
+  }
+}
+
+@media (max-width: 320px) {
+  .navbar a {
+    font-size: medium;
+  }
+}
+
+@media (max-width: 260px) {
+  .navbar a {
+    font-size: small;
+  }
+}
+
+// Keep the background of navbar links visible if user is on a touchscreen device
+@media (pointer: coarse) {
+  .navbar nav a {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}

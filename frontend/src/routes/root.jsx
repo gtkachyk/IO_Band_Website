@@ -29,7 +29,10 @@ function Root() {
     const featured_album = data[0];
 
     return (
-        <><NavBar></NavBar></>
+
+        <>
+            <NavBar></NavBar>
+        </>
         // <>
         //     <div className="home-page-container">
         //         <NavBar></NavBar>
