@@ -1,0 +1,64 @@
+$content-unit-debug: true;
+
+@mixin content-unit-debug-border {border: solid #ff0000;}
+@mixin content-unit-col-header-debug-border {border: solid #ff00c8;}
+
+.unit {
+    margin-bottom: 2rem; // Padding below the unit to separate multiple units
+    width: 100%;
+    box-sizing: border-box;
+  
+    .unit-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    .content-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; // Makes the columns wrap when the container gets too small
+      gap: 1rem; // Spacing between columns
+  
+      .content-column {
+        min-width: 200px; // Minimum width before stacking
+        flex-grow: 1; // Allow columns to grow vertically
+        overflow: hidden; // Prevent overflow outside the columns
+  
+        .column-header {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          text-align: center;
+          white-space: nowrap;  // Prevent text wrapping
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          @if $content-unit-debug {
+            @include content-unit-col-header-debug-border;
+          }
+        }
+  
+        .column-content {
+          font-size: 1rem;
+          padding: 1rem;
+          background-color: #f4f4f4;
+          border-radius: 8px;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+          white-space: normal;
+        }
+      }
+    }
+  
+    // Ensure columns stack on smaller screens
+    @media (max-width: 600px) {
+    .content-column {
+        flex: 1 1 100%;  // Stack columns vertically
+      }
+    }
+
+    @if $content-unit-debug {
+        @include content-unit-debug-border;
+    }
+}
+  

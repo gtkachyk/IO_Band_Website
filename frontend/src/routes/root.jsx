@@ -2,6 +2,7 @@ import NavBar from "../Components/NavBar";
 import SocialMediaBar from "../Components/root/SocialMediaBar";
 import GuestBook from "../Components/root/GuestBook";
 import Slideshow from "../Components/root/Slideshow";
+import ContentUnit from "../Components/ContentUnit.jsx";
 import React, { useEffect, useState } from 'react';
 import '../styles/root/root.scss';
 import { fetchData } from '../js/api';
@@ -27,12 +28,60 @@ function Root() {
 
     // Process data from api
     const featured_album = data[0];
+    const contentUnits = [
+      // Home page example
+      {
+        title: 'Intentional Offence',
+        columns: [
+          { header: '\'II 0 II III\' - Out Now!', content: '*insert album link*' },
+          { header: 'From the Network', content: '*Insert social media post*' },
+        ],
+      },
+      {
+        title: 'Offensive Content',
+        columns: [
+          { header: 'Guestbook', content: '*Insert guestbook*' },
+        ],
+      },
+      {
+        title: 'Grotesque Beings',
+        columns: [
+          { content: '*Insert grotesque beings*' },
+        ],
+      },
+      // Music page example
+      {
+        title: 'Albums Page',
+        columns: [
+          { content: '*Insert album link*', width: '50%' },
+          { content: '*Insert album link*', width: '50%' },
+          { content: '*Insert album link*', width: '50%' },
+          { content: '*Insert album link*', width: '50%' },
+        ],
+      },
+      // Album page example
+      {
+          title: 'Album Page',
+          columns: [
+            { header: 'Tracks', content: 'This is the content for column 1, this column has a lot of content @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', width: '40%' },
+            { header: 'Artwork', content: 'This is the content for column 2', width: '20%'},
+            { header: 'Lyric Sheets', content: 'This is the content for column 3', width: '20%' },
+            { header: 'Tabs', content: 'This is the content for column 4', width: '20%' },
+          ],
+      },
+    ];
 
     return (
-
-        <>
-            <NavBar></NavBar>
-        </>
+      <>
+        <NavBar></NavBar>
+        <div className="home-page-container">
+          <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
+          <ContentUnit title={contentUnits[1].title} columns={contentUnits[1].columns}></ContentUnit>
+          <ContentUnit title={contentUnits[2].title} columns={contentUnits[2].columns}></ContentUnit>
+          <ContentUnit title={contentUnits[3].title} columns={contentUnits[3].columns}></ContentUnit>
+          <ContentUnit title={contentUnits[4].title} columns={contentUnits[4].columns}></ContentUnit>
+        </div>
+      </>
         // <>
         //     <div className="home-page-container">
         //         <NavBar></NavBar>

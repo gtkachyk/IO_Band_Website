@@ -1,4 +1,4 @@
-$home-page-debug: false;
+$home-page-debug: true;
 
 @mixin home-page-container-debug-border {border: solid #ffffff;}
 @mixin home-page-content-container-debug-border {border: solid white;}
@@ -9,13 +9,21 @@ $home-page-debug: false;
 $main-container-width: 1400px;
 
 .home-page-container {
-  background-size: cover;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  overflow: visible;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; // Set a max width to prevent full-width on larger screens
+  min-height: calc(100vh - 6rem); // 6rem is the height of the navbar
+  padding: 2rem;
+  margin: 0 auto; // Center the container
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 1rem; // Adjust padding for smaller screens
+    max-width: 100%; // Full width on mobile devices
+  }
 
   @if $home-page-debug {
     @include home-page-container-debug-border;
