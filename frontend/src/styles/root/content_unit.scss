@@ -1,0 +1,40 @@
+/* =============================================
+   Home ContentUnit Styles
+   =============================================
+   Styles for the home page's ContentUnit.
+*/
+
+.unit-title {
+  color:#4d0505;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+}
+
+.column-header {
+  color:rgb(240, 240, 240);
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+  font-size: 25px;
+  text-shadow: 1px 1px #47474786;
+}
+
+// The 'min-width' values are set this way to accommodate the album link.
+// See styles/root/album_link.scss for more details
+.content-column {
+  min-width: 490px;
+  overflow: visible; // Sometimes TikTok embeds need to overflow on very narrow devices
+}
+
+@media (max-width: 600px) {
+  .content-column {
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 400px) {
+  .content-column {
+    min-width: 250px;
+  }
+}

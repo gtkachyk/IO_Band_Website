@@ -1,5 +1,13 @@
+/* =============================================
+   Default ContentUnit Styles
+   =============================================
+   Styles for the website's default ContentUnit.
+   Copy and modify this file to meet the needs of a specific page.
+*/
+
 .unit-title {
-  color:#4d0505;
+  // color:#4d0505;
+  color:#1eff00;
   font-family: 'Courier New', Courier, monospace;
   font-style: italic;
   letter-spacing: 10px;
@@ -12,4 +20,9 @@
   letter-spacing: 10px;
   font-size: 25px;
   text-shadow: 1px 1px #47474786;
+}
+
+.content-column {
+  min-width: 350px; // Minimum width before stacking
+  overflow: hidden; // Prevent overflow outside the columns
 }

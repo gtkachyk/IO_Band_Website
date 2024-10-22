@@ -22,12 +22,10 @@ $content-unit-debug: true;
     gap: 1rem; // Spacing between columns
 
     .content-column {
-      min-width: 200px; // Minimum width before stacking
       flex-grow: 1; // Allow columns to grow vertically
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      overflow: hidden; // Prevent overflow outside the columns
 
       .column-header {
         font-size: 1.5rem;
@@ -49,17 +47,17 @@ $content-unit-debug: true;
       .column-content {
         font-size: 1rem;
         padding: 1rem;
-        background-color: #f4f4f4;
+        background-color: #00c482;
         border-radius: 8px;
         word-wrap: break-word;
         overflow-wrap: break-word;
         white-space: normal;
 
-        display: flex;               // Enable flexbox
-        flex-direction: column;       // Arrange content in a column
-        justify-content: center;      // Center vertically
-        align-items: center;          // Center horizontally
-        text-align: center;           // Ensure text is centered
+        display: flex; // Enable flexbox
+        flex-direction: column; // Arrange content in a column
+        justify-content: center; // Center vertically
+        align-items: center; // Center horizontally
+        text-align: center; // Ensure text is centered
         overflow-wrap: anywhere;
       }
     }

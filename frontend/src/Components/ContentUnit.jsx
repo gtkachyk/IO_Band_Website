@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react';
-import '../styles/content_unit.scss';
+import React, { useEffect, useState } from 'react';
 
-function ContentUnit({title, columns, styleSheet}) {
-  // Import scss for this unit
-  let styles;
-  import(`${styleSheet}`).then((res) => {styles = res;}).catch((error) => {import(`../styles/content_unit_default.scss`).then((res) => {styles = res;})});
-
+function ContentUnit({title, columns}) {
+  // Set the column header heights
   useEffect(() => {
     const setEqualHeights = () => {
       const headers = document.querySelectorAll('.content-container .column-header');
@@ -25,7 +21,6 @@ function ContentUnit({title, columns, styleSheet}) {
     };
 
     setEqualHeights();
-
     window.addEventListener('resize', setEqualHeights);
 
     return () => {
