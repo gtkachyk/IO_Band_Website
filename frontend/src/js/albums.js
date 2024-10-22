@@ -1,5 +1,6 @@
 import { constants } from '../assets/constants.js';
 
+// TODO: add run times next to song titles
 export function generatePlaylistHTML(album, album_songs) {
     var source_tags = ``;
     var div_tags = ``;

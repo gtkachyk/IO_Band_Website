@@ -3,6 +3,8 @@ import SocialMediaBar from "../Components/root/SocialMediaBar";
 import GuestBook from "../Components/root/GuestBook";
 import Slideshow from "../Components/root/Slideshow";
 import ContentUnit from "../Components/ContentUnit.jsx";
+import AlbumLink from "../Components/AlbumLink.jsx";
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import React, { useEffect, useState } from 'react';
 import '../styles/root/root.scss';
 import { fetchData } from '../js/api';
@@ -33,7 +35,7 @@ function Root() {
       {
         title: 'Intentional Offence',
         columns: [
-          { header: '\'II 0 II III\' - Out Now!', content: '*insert album link*' },
+          { header: 'Long album name: \'II 0 II III\' - Out Now!', content: <AlbumLink title={featured_album.display_name} image={home.featured_audio_media.image} link={home.featured_audio_media.link} styleSheet={`../styles/root/album_link.scss`}></AlbumLink> },
           { header: 'From the Network', content: '*Insert social media post*' },
         ],
       },
@@ -44,9 +46,8 @@ function Root() {
         ],
       },
       {
-        title: 'Grotesque Beings',
         columns: [
-          { content: '*Insert grotesque beings*' },
+          { header: 'Grotesque Beings', content: '*Insert grotesque beings*' },
         ],
       },
       // Music page example
@@ -63,7 +64,7 @@ function Root() {
       {
           title: 'Album Page',
           columns: [
-            { header: 'Tracks', content: 'This is the content for column 1, this column has a lot of content @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', width: '40%' },
+            { header: 'Tracks', content: 'This is the content for column 1, this column has a lot of content @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#####', width: '40%' },
             { header: 'Artwork', content: 'This is the content for column 2', width: '20%'},
             { header: 'Lyric Sheets', content: 'This is the content for column 3', width: '20%' },
             { header: 'Tabs', content: 'This is the content for column 4', width: '20%' },
@@ -94,11 +95,11 @@ function Root() {
         //                             <th className="featured-col-1"> {/* Featured music */}
         //                                 <h2 className = "featured-col-1-title">'{featured_album.display_name}' - Out Now!</h2>
         //                                 <div className="featured-col-1-content-container">
-        //                                     <a href={home.featured_audio_media.link}>
-        //                                         <div className="featured-col-1-link-div" style={{ backgroundImage: `url('${home.featured_audio_media.image}')` }}>
-        //                                             <span className="featured-col-1-link-caption">{featured_album.display_name}</span>
-        //                                         </div>
-        //                                     </a>
+                                            // <a href={home.featured_audio_media.link}>
+                                            //     <div className="featured-col-1-link-div" style={{ backgroundImage: `url('${home.featured_audio_media.image}')` }}>
+                                            //         <span className="featured-col-1-link-caption">{featured_album.display_name}</span>
+                                            //     </div>
+                                            // </a>
         //                                 </div>
         //                             </th> 
         //                             <th className="featured-col-2"> {/* Featured social media */}

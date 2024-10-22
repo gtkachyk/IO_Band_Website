@@ -60,3 +60,8 @@ backend/core/__pycache__/*
 backend/main/__pycache__/*
 backend/main/api/__pycache__/*
 backend/main/migrations/__pycache__/*
+frontend/src/assets/constants.js
+frontend/src/js/window.js
+backend/main.log
+backend/db.sqlite3
+frontend/src/assets/constants.js

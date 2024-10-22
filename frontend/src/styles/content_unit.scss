@@ -4,61 +4,76 @@ $content-unit-debug: true;
 @mixin content-unit-col-header-debug-border {border: solid #ff00c8;}
 
 .unit {
-    margin-bottom: 2rem; // Padding below the unit to separate multiple units
-    width: 100%;
-    box-sizing: border-box;
-  
-    .unit-title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-  
-    .content-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap; // Makes the columns wrap when the container gets too small
-      gap: 1rem; // Spacing between columns
-  
-      .content-column {
-        min-width: 200px; // Minimum width before stacking
-        flex-grow: 1; // Allow columns to grow vertically
-        overflow: hidden; // Prevent overflow outside the columns
-  
-        .column-header {
-          font-size: 1.5rem;
-          margin-bottom: 0.5rem;
-          text-align: center;
-          white-space: nowrap;  // Prevent text wrapping
-          overflow: hidden;
-          text-overflow: ellipsis;
+  margin-bottom: 2rem; // Padding below the unit to separate multiple units
+  width: 100%;
+  box-sizing: border-box;
 
-          @if $content-unit-debug {
-            @include content-unit-col-header-debug-border;
-          }
-        }
-  
-        .column-content {
-          font-size: 1rem;
-          padding: 1rem;
-          background-color: #f4f4f4;
-          border-radius: 8px;
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-          white-space: normal;
-        }
-      }
-    }
-  
-    // Ensure columns stack on smaller screens
-    @media (max-width: 600px) {
+  .unit-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; // Makes the columns wrap when the container gets too small
+    align-items: stretch; // Ensure all columns have equal height
+    gap: 1rem; // Spacing between columns
+
     .content-column {
-        flex: 1 1 100%;  // Stack columns vertically
+      min-width: 200px; // Minimum width before stacking
+      flex-grow: 1; // Allow columns to grow vertically
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden; // Prevent overflow outside the columns
+
+      .column-header {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        padding: 0.5rem;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex; // Flexbox for the header
+        align-items: center; // Center the text vertically
+        justify-content: center; // Center the text horizontally
+        min-height: 3rem; // Set a reasonable minimum height to avoid wrapping pushing content
+
+        @if $content-unit-debug {
+          @include content-unit-col-header-debug-border;
+        }
+      }
+
+      .column-content {
+        font-size: 1rem;
+        padding: 1rem;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+
+        display: flex;               // Enable flexbox
+        flex-direction: column;       // Arrange content in a column
+        justify-content: center;      // Center vertically
+        align-items: center;          // Center horizontally
+        text-align: center;           // Ensure text is centered
+        overflow-wrap: anywhere;
       }
     }
+  }
 
-    @if $content-unit-debug {
-        @include content-unit-debug-border;
+  // Ensure columns stack on smaller screens
+  @media (max-width: 600px) {
+    .content-column {
+      flex: 1 1 100%;  // Stack columns vertically
     }
+  }
+
+  @if $content-unit-debug {
+    @include content-unit-debug-border;
+  }
 }
   

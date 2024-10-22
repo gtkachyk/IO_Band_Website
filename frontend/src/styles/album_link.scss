@@ -1,0 +1,38 @@
+/* =============================================
+   AlbumLink Styles
+   =============================================
+   Styles for the AlbumLink component.
+*/
+
+.link-div {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+  border-width: 2px;
+  border: solid rgb(0, 0, 0);
+  background-size: cover;
+}
+  
+.link-div:hover {
+  opacity: 0.75;
+  .link-caption {
+      opacity: 0.75;
+  }
+}
+  
+.link-caption {
+  width: 100%;
+  color: #000000;
+  opacity: 0;
+  font-weight: 400;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+}
+
+@media (pointer: coarse) {
+  .link-div:active {
+    opacity: 0.75;
+  }
+}
