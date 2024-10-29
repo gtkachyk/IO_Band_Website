@@ -1,0 +1,72 @@
+$debug: false;
+
+@mixin first-line-debug-border {border: solid #ff0000;}
+@mixin message-debug-border {border: solid #00ff2a;}
+@mixin greeting-debug-border {border: solid #ffffff;}
+@mixin date-debug-border {border: solid #3700ff;}
+
+$padding: 5px;
+
+.first-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: $padding calc($padding * 4) $padding $padding;
+
+  @if $debug {
+    @include first-line-debug-border;
+  }
+}
+
+@media (max-width: 550px) {
+  .first-line {
+    padding: $padding calc($padding * 2) $padding $padding;
+  }
+}
+
+@media (max-width: 375px) {
+  .first-line {
+    font-size: small;
+    padding: $padding $padding $padding $padding;
+  }
+
+  .message {
+    font-size: small;
+  }
+}
+
+@media (max-width: 300px) {
+  .first-line {
+    font-size: x-small;
+    padding: $padding $padding $padding $padding;
+  }
+  
+  .message {
+    font-size: x-small;
+  }
+}
+
+.greeting {
+  width: 100%;
+  text-wrap: nowrap;
+  @if $debug {
+    @include date-debug-border;
+  }
+}
+
+.date {
+  text-wrap: nowrap;
+  @if $debug {
+    @include date-debug-border;
+  }
+}
+
+.message {
+  width: 100%;
+  padding: $padding $padding calc($padding * 2) $padding;
+  @if $debug {
+    @include message-debug-border;
+  }
+}

@@ -1,4 +1,3 @@
-import { scrollToBottom } from "./guestbook";
 import { constants } from '../assets/constants.js';
 
 export const fetchData = async (endpoints, setData, setLoading) => {
@@ -41,7 +40,6 @@ export const postGuestBookEntry = async (user_uuid, ip, name, message, date, tim
             throw new Error("HTTP " + response.status + " " + response.statusText);
         }
         setError(false);
-        scrollToBottom();
     }
     catch (error) {
         console.log(error);

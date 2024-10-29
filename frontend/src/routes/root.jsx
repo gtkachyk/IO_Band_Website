@@ -44,7 +44,7 @@ function Root() {
       {
         title: 'Offensive Content',
         columns: [
-          { header: 'Guestbook', content: '*Insert guestbook*' },
+          { header: 'Guestbook', content: <GuestBook></GuestBook>},
         ],
       },
       {
@@ -121,10 +121,10 @@ function Root() {
         //                         <tr>
         //                             <th className="offensive-row-1"> {/* Guestbook */}
         //                                 <h2 className ="offensive-row-1-title">Guestbook</h2>
-        //                                 <div className ="offensive-row-1-content-container">
-        //                                     <textarea className="invisible-textarea"></textarea>
-        //                                     <GuestBook></GuestBook>
-        //                                 </div>
+                                        // <div className ="offensive-row-1-content-container">
+                                        //     <textarea className="invisible-textarea"></textarea>
+                                        //     <GuestBook></GuestBook>
+                                        // </div>
         //                             </th>
         //                         </tr>
         //                         <tr>

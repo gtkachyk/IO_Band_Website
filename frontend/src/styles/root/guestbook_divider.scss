@@ -1,0 +1,13 @@
+$debug: false;
+
+@mixin debug-border {border: solid #ff00c8;}
+
+.divider {
+  color: white;
+  border: solid rgb(0, 0, 0);
+  min-width: 100%;
+
+  @if $debug {
+    @include debug-border;
+  }
+}
