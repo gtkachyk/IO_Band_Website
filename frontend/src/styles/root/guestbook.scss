@@ -1,7 +1,12 @@
+/* =============================================
+   GuestBook Styles
+   =============================================
+   Styles for the GuestBook component.
+*/
+
 $guest-book-debug: false;
 
 @mixin guestbook-container-debug-border {border: solid #00ffea;}
-@mixin guestbook-display-debug-border {border: solid #ffffff;}
 @mixin guestbook-form-debug-border {border: solid rgb(17, 3, 216);}
 @mixin guestbook-name-debug-border {border: solid rgb(255, 0, 0);}
 @mixin guestbook-message-debug-border {border: solid rgb(208, 255, 0);}
@@ -32,7 +37,6 @@ $form-height: 25px;
   height: 500px;
 
   border-radius: 8px;
-  border: 2px solid purple;
   background-color: #323336;
   background-size: cover;
 
@@ -71,6 +75,7 @@ $form-height: 25px;
   background-color: #323336;
   color: #ffffff;
   padding-left: $form-left-padding;
+  border: none;
 
   @if $guest-book-debug {
     @include guestbook-name-debug-border;
@@ -84,6 +89,7 @@ $form-height: 25px;
   background-color: #323336;
   color: #ffffff;
   padding-left: $form-left-padding;
+  border: none;
 
   @if $guest-book-debug {
     @include guestbook-message-debug-border;
@@ -99,6 +105,7 @@ $form-height: 25px;
   color: #000000;
   background-color: #003cff;
   border-radius: 8px;
+  border: none;
 
   @if $guest-book-debug {
     @include guestbook-submit-debug-border;

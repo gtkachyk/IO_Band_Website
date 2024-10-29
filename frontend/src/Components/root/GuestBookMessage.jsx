@@ -13,11 +13,11 @@ function GuestBookMessage ({post}) {
         </div>
       </div>
       <div className='message'>
-          {post.message}
-          <br></br><br></br>
-          Sincerely,
-          <br></br>
-          {post.name}
+        {post.message}
+        <br></br><br></br>
+        Sincerely,
+        <br></br>
+        {post.name}
       </div>
     </>
   );
