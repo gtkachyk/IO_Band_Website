@@ -1,33 +1,41 @@
-/* Code adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto */
+/* =============================================
+   SlideShow Styles
+   =============================================
+   Styles for the SlideShow component.
+   Code adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto.
+*/
+
+$debug: true;
+
+@mixin my-slides-debug-border {border: solid #ffffff;}
+@mixin container-debug-border {border: solid #d9ff00;}
+@mixin slideshow-img-debug-border {border: solid #00ff37;}
 
 .mySlides {
-    display: none;
-    // border: solid #00d9ff;
-    min-width: 100%;
-    max-width: 100%;
-    position: absolute;
+  @if $debug {
+    @include my-slides-debug-border;
+  }
 }
 
 img {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .slideshow-container {
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    position: relative;
-    display: inline-block;
-    // border: solid #ff0000;
+  width: 100%;
+
+  @if $debug {
+    @include container-debug-border;
+  }
 }
 
 .slideshow-img {
-    position: relative;
-    display: inline-block;
-    height: fit-content;
-    border-radius: 8px;
-    // border: solid #00ff37;
+  max-width: 100%;
+  border-radius: 8px;
+
+  @if $debug {
+    @include slideshow-img-debug-border;
+  }
 }
   
 .active {

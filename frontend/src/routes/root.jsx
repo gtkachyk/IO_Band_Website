@@ -49,7 +49,7 @@ function Root() {
       },
       {
         columns: [
-          { header: 'Grotesque Beings', content: '*Insert grotesque beings*' },
+          { header: 'Grotesque Beings', content: <Slideshow></Slideshow> },
         ],
       },
       // Music page example
