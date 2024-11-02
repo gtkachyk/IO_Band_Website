@@ -77,6 +77,7 @@ function Root() {
     return (
       <>
         <NavBar></NavBar>
+        <SocialMediaBar></SocialMediaBar>
         <MainContainer styleSheet={`../styles/root/content_unit.scss`}>
           <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
           <ContentUnit title={contentUnits[1].title} columns={contentUnits[1].columns}></ContentUnit>
