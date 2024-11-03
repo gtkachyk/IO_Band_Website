@@ -7,7 +7,7 @@ $main-container-width: 1400px;
 .main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 100%;
   max-width: 1200px; // Set a max width to prevent full-width on larger screens

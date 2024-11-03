@@ -1,4 +1,36 @@
-// The default style for album pages
+// Responsive background
+/* Default: Large screens and high-res devices */
+body {
+  background-image: url('../public/images/background_marble_1920_1285.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Medium screens (tablets and small laptops) */
+@media (max-width: 1280px) {
+  body {
+    background-image: url('../public/images/background_marble_1280_856.jpg');
+    background-attachment: fixed;
+  }
+}
+
+/* Small screens (mobile devices) */
+@media (max-width: 640px) {
+  body {
+    background-image: url('../public/images/background_marble_640_428.jpg');
+    background-attachment: fixed;
+  }
+}
+
+/* Extra-large screens (high-res desktops) */
+@media (min-width: 1921px) {
+  body {
+    background-image: url('../public/images/background_marble_3872_2592.jpg');
+    background-attachment: fixed;
+  }
+}
 
 /**********************/
 /***** Containers *****/

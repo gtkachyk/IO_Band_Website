@@ -1,0 +1,363 @@
+/* =============================================
+   AlbumPlayer Styles
+   =============================================
+   Styles for the AlbumPlayer component.
+   Code adapted from https://codepen.io/craigstroman/pen/aOyRYx.
+*/
+
+$debug: false;
+$track-info-box-debug: false;
+$large-button-debug: false;
+$progress-box-debug: false;
+
+@mixin container-debug-border {border: solid #00ffea;}
+@mixin player-debug-border {border: solid rgb(255, 0, 85);}
+
+@mixin large-button-debug-border {border: solid rgb(0, 0, 0);}
+
+@mixin info-box-debug-border {border: solid rgb(255, 255, 255);}
+@mixin progress-box-debug-border {border: solid rgb(117, 246, 255);}
+@mixin progress-indicator-debug-border {border: solid rgb(0, 0, 0);}
+@mixin track-info-box-debug-border {border: solid rgb(0, 102, 255);}
+@mixin track-title-debug-border {border: solid rgb(0, 255, 13);}
+@mixin audio-time-debug-border {border: solid rgb(255, 255, 255);}
+
+@mixin controls-box-debug-border {border: solid rgb(0, 0, 0);}
+@mixin controls-box-button-debug-border {border: solid rgb(255, 255, 255);}
+
+@mixin play-list-debug-border {border: solid rgb(208, 255, 0);}
+
+@mixin clearfix() {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  } 
+  &:after {
+    clear: both;
+    display: block; 
+    font-size: 0; 
+    height: 0;    
+    visibility: hidden; 
+  }      
+}
+  
+@mixin media($type) {
+  @if $type == tablet {
+    @media (min-width: 768px) and (max-width: 991px) {
+      @content;
+    } 
+  }
+  @else if $type == mediumDesktop {
+    @media (min-width: 992px) and (max-width: 1100px) {
+      @content;
+    }     
+  }
+  @else if $type == largeDesktop {
+    @media (min-width: 1200px) {
+      @content;
+    }       
+  }
+} 
+  
+  /* Reusable, toolbox kind of class */
+.screen-reader-text {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.disabled {
+  color: #666; 
+  cursor: default;
+}
+  
+.show {
+  display: inline-block !important;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1em;
+  // position: relative;
+  min-width: 100%;
+  max-width: 100%;
+  
+  @if $debug {
+    @include container-debug-border;
+  }
+
+  .player {
+    display: flex;
+    flex-direction: row;
+    
+    @if $debug {
+      @include player-debug-border;
+    }
+    // @include media(tablet) {
+    //   width: 470px;
+    // }
+    // @include media(mediumDesktop) {
+    //     width: 470px;
+    // }         
+    // @include media(largeDesktop) {
+    //     width: 470px;
+    // }   
+    
+    .large-toggle-btn {
+      border-radius: 2px;
+      float: left;
+      font-size: 1.5em;
+      height: 50px;
+      margin: 0 10px 0 0;
+      overflow: hidden;
+      padding: 5px 0 0 0;
+      position: relative;
+      text-align: center;
+      vertical-align: bottom;
+      // width: 54px;
+      width: 100%;
+      border: solid black;
+
+      .large-play-btn {
+        &:before {
+          content: "\f04b";
+          font: 1.5em/1.75 "FontAwesome";
+        }
+        
+        cursor: pointer; 
+        display: inline-block;
+        position: relative;
+        top: -27%;
+      }
+
+      .large-pause-btn {
+        &:before {
+          content: "\f04c";
+          font: 1.5em/1.75 "FontAwesome";
+        }
+        
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        top: -27%;
+      }
+    }
+
+    .info-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      width: 100%;
+
+      @if $debug {
+        @include info-box-debug-border;
+      }
+
+      .track-info-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        font-size: 12px;
+        margin: 0 0 6px 0;
+        // visibility: hidden;
+
+        @if $track-info-box-debug {
+          @include track-info-box-debug-border;
+        }
+
+        .track-title-text {
+          @if $track-info-box-debug {
+            @include track-title-debug-border;
+          }
+        }
+
+        .audio-time {
+          padding: 0 0 0 5px;
+
+          @if $track-info-box-debug {
+            @include audio-time-debug-border;
+          }
+        }
+
+        @include clearfix();
+      }      
+    }
+
+    .progress-box {
+      min-width: 270px;
+
+      @if $progress-box-debug {
+        @include progress-box-debug-border;
+      }
+
+      .progress-cell {
+        .progress {
+          background: white;
+          border: 1px solid #d9d9d9;
+          height: 8px;
+          position: relative;
+          width: auto;
+
+          .progress-buffer {
+            background: #337ab7;
+            height: 100%;
+            width: 0;
+          }
+
+          .progress-indicator {
+            border-radius: 3px;
+            cursor: pointer;
+            height: 10px;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            top: -2px;
+            width: 22px;
+            background: white;
+            border: 1px solid #bebebe;
+
+            @if $progress-box-debug {
+              @include progress-indicator-debug-border;
+            }
+          }
+        }
+      }
+    }
+    
+    .controls-box {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      width: 100%;
+      margin: 0 0 0 10px;
+      
+      @if $debug {
+        @include controls-box-debug-border();
+      }
+
+      .previous-track-btn {
+        height: min-content;
+
+        &:before {
+          content: "\f049";
+          font: 1em "FontAwesome";
+        }  
+        cursor: pointer;
+        // display: inline-block;
+
+        @if $debug {
+          @include controls-box-button-debug-border();
+        }
+      }
+
+      .next-track-btn {
+        height: min-content;
+
+        &:before {
+          content: "\f050";
+          font: 1em "FontAwesome";
+        }             
+        cursor: pointer;
+        // display: inline-block;
+
+        @if $debug {
+          @include controls-box-button-debug-border();
+        }
+      }  
+    }
+    
+    @include clearfix();
+  }
+  
+  .play-list {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 100%;
+    overflow-x: visible;
+
+    @if $debug {
+      @include play-list-debug-border;
+    }
+
+    .play-list-row {
+      display: inline-block;
+      width: 100%;
+      white-space: nowrap;
+
+      .track-title {
+        .playlist-track {
+          &:hover {
+            text-decoration: underline;
+          }
+          text-decoration: none;
+        }
+      }
+
+      .small-toggle-btn {
+        border-radius: 2px;
+        cursor: pointer;
+        display: inline-block;
+        height: 20px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+        width: 20px;
+
+        .small-play-btn {
+          &:before {
+            content: "\f04b";
+            font: 0.85em "FontAwesome";
+          } 
+          display: inline-block;
+          position: relative;
+          top: -15%;
+        } 
+
+        .small-pause-btn {
+          &:before {
+            content: "\f04c";
+            font: 0.85em "FontAwesome";
+          }  
+          display: inline-block;
+          position: relative;
+          top: -15%;
+        } 
+      }
+
+      .track-number {
+        display: inline-block;
+        font-size: 20px;
+        height: fit-content;
+      }
+
+      .track-number-inner {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      .track-title {
+        display: inline-block;
+
+        .playlist-track {
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      @include clearfix();
+    }
+  }
+}
+
+.playlist-row-content-container {
+  /* border: solid white; */
+  height: fit-content;
+  width: fit-content;
+}

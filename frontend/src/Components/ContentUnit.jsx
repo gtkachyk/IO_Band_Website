@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 function ContentUnit({title, columns}) {
   // Set the column header heights
