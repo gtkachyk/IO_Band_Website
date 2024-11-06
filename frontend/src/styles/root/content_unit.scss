@@ -4,6 +4,14 @@
    Styles for the home page's ContentUnit.
 */
 
+// Variables
+$featured-column-1-width: 55%;
+$featured-column-2-width: 45%;
+$column-min-width: 490px;
+$guestbook-column-width: 100%;
+$grotesque-beings-column-width: 100%;
+
+// Unit title styles
 .unit-title {
   color:#4d0505;
   font-family: 'Courier New', Courier, monospace;
@@ -11,6 +19,7 @@
   letter-spacing: 10px;
 }
 
+// Shared column styles
 .column-header {
   color:rgb(240, 240, 240);
   font-family: 'Courier New', Courier, monospace;
@@ -20,13 +29,38 @@
   text-shadow: 1px 1px #47474786;
 }
 
-// The 'min-width' values are set this way to accommodate the album link.
-// See styles/root/album_link.scss for more details
 .content-column {
-  min-width: 490px;
+  min-width: $column-min-width;
   overflow: visible; // Sometimes TikTok embeds need to overflow on very narrow devices
+  background-color: #00c482;
 }
 
+// Column specific styles
+// Featured content
+#featured-column-1 {
+  width: $featured-column-1-width;
+  flex: 1 1 calc($featured-column-1-width - 1rem);
+}
+
+#featured-column-2 {
+  width: $featured-column-2-width;
+  flex: 1 1 calc($featured-column-2-width - 1rem);
+}
+
+// Offensive content
+// Guestbook
+#guestbook-column {
+  width: $guestbook-column-width;
+  flex: 1 1 calc($guestbook-column-width - 1rem);
+}
+
+// Grotesque beings
+#grotesque-beings-column {
+  width: $grotesque-beings-column-width;
+  flex: 1 1 calc($grotesque-beings-column-width - 1rem);
+}
+
+// Media queries
 @media (max-width: 600px) {
   .content-column {
     min-width: 350px;

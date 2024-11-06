@@ -33,31 +33,19 @@ function Root() {
       {
         title: 'Intentional Offence',
         columns: [
-          { header: 'Long album name: \'II 0 II III\' - Out Now!', content: <AlbumLink title={featured_album.display_name} image={home.featured_audio_media.image} link={home.featured_audio_media.link} styleSheet={`../styles/root/album_link.scss`}></AlbumLink>, width: '55%' },
-          { header: 'From the Network', content: <TikTokEmbed className="featured-tiktok" url={home.featured_social_media.tiktok}/>, width: '45%' },
+          {header: 'Long album name: \'II 0 II III\' - Out Now!', content: <AlbumLink title={featured_album.display_name} image={home.featured_audio_media.image} link={home.featured_audio_media.link} styleSheet={`../styles/root/album_link.scss`}></AlbumLink>, id: 'featured-column-1'},
+          {header: 'From the Network', content: <TikTokEmbed className="featured-tiktok" url={home.featured_social_media.tiktok}/>, id: 'featured-column-2'},
         ],
       },
-
-
-      // {
-      //   title: 'Intentional Offence',
-      //   columns: [
-      //     { header: 'Long album name: \'II 0 II III\' - Out Now!', content: "This is a test", width: '55%' },
-      //     { header: 'From the Network', content: "This is another test", width: '45%' },
-      //   ],
-      // },
-
-
-
       {
         title: 'Offensive Content',
         columns: [
-          { header: 'Guestbook', content: <GuestBook></GuestBook>},
+          {header: 'Guestbook', content: <GuestBook></GuestBook>, id: 'guestbook-column'},
         ],
       },
       {
         columns: [
-          { header: 'Grotesque Beings', content: <Slideshow></Slideshow> },
+          {header: 'Grotesque Beings', content: <Slideshow></Slideshow>, id: 'grotesque-beings-column'},
         ],
       },
       // Music page example
@@ -69,16 +57,6 @@ function Root() {
           { content: '*Insert album link*', width: '50%' },
           { content: '*Insert album link*', width: '50%' },
         ],
-      },
-      // Album page example
-      {
-          title: 'Album Page',
-          columns: [
-            { header: 'Tracks', content: 'This is the content for column 1, this column has a lot of content @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#####', width: '40%' },
-            { header: 'Artwork', content: 'This is the content for column 2', width: '20%'},
-            { header: 'Lyric Sheets', content: 'This is the content for column 3', width: '20%' },
-            { header: 'Tabs', content: 'This is the content for column 4', width: '20%' },
-          ],
       },
     ];
 

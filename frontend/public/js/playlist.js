@@ -17,15 +17,16 @@ var audioPlayer = function() {
     playListRows: document.getElementsByClassName("play-list-row"),
     trackInfoBox: document.querySelector(".track-info-box")
   };
+  var container = document.querySelector(".container");
   var _playAHead = false;
   var _progressCounter = 0;
   var _progressBarIndicator = _elements.progressBar.children[0].children[0].children[1];
   var _trackLoaded = false;
   
   /**
-   * Determines the buffer progress.
+   * Determines the buffer progress
    *
-   * @param audio The audio element on the page.
+   * @param audio The audio element on the page
    **/
   var _bufferProgress = function(audio) {
     var bufferedTime = (audio.buffered.end(0) * 100) / audio.duration;
@@ -35,9 +36,9 @@ var audioPlayer = function() {
   };
 
   /**
-   * A utility function for getting the event coordinates based on browser type.
+   * A utility function for getting the event coordinates based on browser type
    *
-   * @param e The JavaScript event.
+   * @param e The JavaScript event
    **/
   var _getXY = function(e) {
     var progressBarRect = _elements.progressBar.getBoundingClientRect();
@@ -47,6 +48,8 @@ var audioPlayer = function() {
     };
     var isTouchSupported = "ontouchstart" in window;
 
+    console.log("isTouchSupported = " + isTouchSupported);
+
     if (isTouchSupported) { // For touch devices
       coords.x = e.touches[0].clientX - progressBarRect.left;
       coords.y = e.touches[0].clientY - progressBarRect.top;
@@ -54,7 +57,11 @@ var audioPlayer = function() {
     else { // For non-touch devices
       coords.x = e.clientX - progressBarRect.left;
       coords.y = e.clientY - progressBarRect.top;
+
+      // console.log("In _getXY: e.clientX = " + e.clientX + ", " + "progressBarRect.left = " + progressBarRect.left);
     }
+
+    // console.log("In _getXY: returning " + coords.x + ", " + coords.y);
 
     return coords;
   };
@@ -62,11 +69,14 @@ var audioPlayer = function() {
   var _handleProgressIndicatorClick = function(e) {
     var progressBar = document.querySelector(".progress-box");
     var xCoords = _getXY(e).x;
+
+    // console.log("In _handleProgressIndicatorClick: returning " + xCoords + " / " + progressBar.children[0].offsetWidth + " = " + xCoords / progressBar.children[0].offsetWidth);
+
     return xCoords / progressBar.children[0].offsetWidth;
   };
   
   /**
-   * Initializes the html5 audio player and the playlist.
+   * Initializes the html5 audio player and the playlist
    *
    **/
   var initPlayer = function() {
@@ -74,12 +84,12 @@ var audioPlayer = function() {
       _elements.playerButtons.previousTrackBtn.disabled = true;
     }
     
-    // Adding event listeners to playlist clickable elements.
+    // Adding event listeners to playlist clickable elements
     for (var i = 0; i < _elements.playListRows.length; i++) {
       var smallToggleBtn = _elements.playerButtons.smallToggleBtn[i];
       var playListLink = _elements.playListRows[i].children[2].children[0];
         
-      // Playlist link clicked.
+      // Playlist link clicked
       playListLink.addEventListener("click", function(e) {
         e.preventDefault();
         var selectedTrack = parseInt(this.parentNode.parentNode.getAttribute("data-track-row"));
@@ -99,7 +109,7 @@ var audioPlayer = function() {
         }
       }, false);
       
-      // Small toggle button clicked.
+      // Small toggle button clicked
       smallToggleBtn.addEventListener("click", function(e) {
         e.preventDefault();
         var selectedTrack = parseInt(this.parentNode.getAttribute("data-track-row"));
@@ -120,15 +130,15 @@ var audioPlayer = function() {
       }, false);
     }
     
-    // Audio time has changed so update it.
+    // Audio time has changed so update it
     _elements.audio.addEventListener("timeupdate", _trackTimeChanged, false);
   
-    // Audio track has ended playing.
+    // Audio track has ended playing
     _elements.audio.addEventListener("ended", function(e) {
       _trackHasEnded();
     }, false);
     
-    // Audio error. 
+    // Audio error
     _elements.audio.addEventListener("error", function(e) {
       switch (e.target.error.code) {
         case e.target.error.MEDIA_ERR_ABORTED:
@@ -151,7 +161,7 @@ var audioPlayer = function() {
         _resetPlayStatus();
     }, false);
     
-    // Large toggle button clicked.
+    // Large toggle button clicked
     _elements.playerButtons.largeToggleBtn.addEventListener("click", function(e) {
       if (_trackLoaded === false) {
         _currentTrack = parseInt(1);
@@ -162,7 +172,7 @@ var audioPlayer = function() {
       }
     }, false);
     
-    // Next track button clicked.
+    // Next track button clicked
     _elements.playerButtons.nextTrackBtn.addEventListener("click", function(e) {
       if (this.disabled !== true) {
         _currentTrack++;
@@ -172,7 +182,7 @@ var audioPlayer = function() {
       }
     }, false);
   
-    // Previous track button clicked.
+    // Previous track button clicked
     _elements.playerButtons.previousTrackBtn.addEventListener("click", function(e) {
       if (this.disabled !== true) {
         _currentTrack--;
@@ -190,9 +200,9 @@ var audioPlayer = function() {
   };
   
   /**
-   * Handles the mousedown event by a user and determines if the mouse is being moved.
+   * Handles the mousedown event by a user and determines if the mouse is being moved
    *
-   * @param e The event object.
+   * @param e The event object
    **/
   var _mouseDown = function(e) {
     window.addEventListener("mousemove", _moveProgressIndicator, true);
@@ -201,9 +211,9 @@ var audioPlayer = function() {
   };
   
   /**
-   * Handles the mouseup event by a user.
+   * Handles the mouseup event by a user
    *
-   * @param e The event object.
+   * @param e The event object
    **/
   var _mouseUp = function(e) {
     if (_playAHead === true) {
@@ -212,6 +222,9 @@ var audioPlayer = function() {
 
       window.removeEventListener("mousemove", _moveProgressIndicator, true);
       audio.currentTime = duration * progressIndicatorClick;
+      audio.currentTime = audio.currentTime + ((1 - container.currentCSSZoom) * audio.currentTime);
+
+      // console.log("In _mouseUp: " + "audio.currentTime = " + duration * progressIndicatorClick);
       
       audio.addEventListener("timeupdate", _trackTimeChanged, false);
       _playAHead = false;
@@ -219,11 +232,14 @@ var audioPlayer = function() {
   };
 
   /**
-   * Moves the progress indicator to a new point in the audio.
+   * Moves the progress indicator to a new point in the audio
    *
-   * @param e The event object.
+   * @param e The event object
    **/
   var _moveProgressIndicator = function(e) {
+    console.log("In _moveProgressIndicator: container.currentCSSZoom = " + container.currentCSSZoom);
+
+    var zoom = container.currentCSSZoom;
     var progressBarRect = _elements.progressBar.getBoundingClientRect();
     var progressBarWidth = progressBarRect.width;
     var progressBarIndicatorWidth = _progressBarIndicator.offsetWidth;
@@ -235,12 +251,14 @@ var audioPlayer = function() {
     else if (newPosition > progressBarWidth - progressBarIndicatorWidth) {
       newPosition = progressBarWidth - progressBarIndicatorWidth;
     }
+
+    newPosition = newPosition + ((1 - zoom) * newPosition);
   
     _progressBarIndicator.style.left = newPosition + "px";
   };
 
   /**
-   * Controls playback of the audio element.
+   * Controls playback of the audio element
    *
    **/
   var _playBack = function() {
@@ -257,7 +275,7 @@ var audioPlayer = function() {
   };
   
   /**
-   * Sets the track if it hasn't already been loaded yet.
+   * Sets the track if it hasn't already been loaded yet
    *
    **/
   var _setTrack = function() {
@@ -272,10 +290,10 @@ var audioPlayer = function() {
   };
   
   /**
-   * Sets the actively playing item within the playlist.
+   * Sets the actively playing item within the playlist
    *
-   * @param currentTrack The current track number being played.
-   * @param playListRows The playlist object.
+   * @param currentTrack The current track number being played
+   * @param playListRows The playlist object
    **/
   var _setActiveItem = function(currentTrack, playListRows) {
     for (var i = 0; i < playListRows.length; i++) {
@@ -286,10 +304,10 @@ var audioPlayer = function() {
   };
   
   /**
-   * Sets the text for the currently playing song.
+   * Sets the text for the currently playing song
    *
-   * @param currentTrack The current track number being played.
-   * @param playListRows The playlist object.
+   * @param currentTrack The current track number being played
+   * @param playListRows The playlist object
    **/
   var _setTrackTitle = function(currentTrack, playListRows) {
     var trackTitleBox = document.querySelector(".player .info-box .track-info-box .track-title-text");
@@ -301,7 +319,7 @@ var audioPlayer = function() {
   };
   
   /**
-   * Plays the next track when a track has ended playing.
+   * Plays the next track when a track has ended playing
    *
    **/
   var _trackHasEnded = function() {
@@ -313,7 +331,7 @@ var audioPlayer = function() {
   };
   
   /**
-   * Updates the time for the song being played.
+   * Updates the time for the song being played
    *
    **/
   var _trackTimeChanged = function() {
@@ -335,11 +353,11 @@ var audioPlayer = function() {
   };
   
   /**
-   * A utility function for converting a time in miliseconds to a readable time of minutes and seconds.
+   * A utility function for converting a time in milliseconds to a readable time of minutes and seconds
    *
-   * @param seconds The time in seconds.
+   * @param seconds The time in seconds
    *
-   * @return time The time in minutes and/or seconds.
+   * @return time The time in minutes and/or seconds
    **/
   var _trackTime = function(seconds) {
     var min = 0;
@@ -356,9 +374,9 @@ var audioPlayer = function() {
   };
   
   /**
-   * Updates both the large and small toggle buttons accordingly.
+   * Updates both the large and small toggle buttons accordingly
    *
-   * @param audioPlaying A booean value indicating if audio is playing or paused.
+   * @param audioPlaying A boolean value indicating if audio is playing or paused
    **/
   var _updatePlayStatus = function(audioPlaying) {
     if (audioPlaying) {
@@ -398,7 +416,7 @@ var audioPlayer = function() {
   };
   
   /**
-   * Updates the location of the progress indicator according to how much time left in audio.
+   * Updates the location of the progress indicator according to how much time left in audio
    *
    **/
   var _updateProgressIndicator = function() {
@@ -413,7 +431,7 @@ var audioPlayer = function() {
   };
   
   /**
-   * Resets all toggle buttons to be play buttons.
+   * Resets all toggle buttons to be play buttons
    *
    **/
   var _resetPlayStatus = function() {

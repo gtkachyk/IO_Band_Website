@@ -1,18 +1,26 @@
 /* =============================================
-   Default ContentUnit Styles
+   Modifiable ContentUnit Styles
    =============================================
-   Styles for the website's default ContentUnit.
-   Copy and modify this file to meet the needs of a specific page.
+   A template for implementing additional ContentUnit styles.
+   This file should not be used to style a ContentUnit directly.
+   Instead, copy it into styles/your-page and rename it to 'content_unit.scss'.
 */
 
+// Variables
+$large-column-width: 50%;
+$large-column-min-width: 300px;
+$small-column-width: 50%;
+$small-column-min-width: 300px;
+
+// Unit title styles
 .unit-title {
-  // color:#4d0505;
   color:#1eff00;
   font-family: 'Courier New', Courier, monospace;
   font-style: italic;
   letter-spacing: 10px;
 }
 
+// Shared column styles
 .column-header {
   color:rgb(240, 240, 240);
   font-family: 'Courier New', Courier, monospace;
@@ -23,6 +31,28 @@
 }
 
 .content-column {
-  min-width: 350px; // Minimum width before stacking
-  overflow: hidden; // Prevent overflow outside the columns
+  overflow: hidden;
+  background-color: #94d300;
+}
+
+// Column specific styles
+#column-1 {
+  width: $large-column-width;
+  min-width: $large-column-min-width;
+  flex: 1 1 calc($large-column-width - 1rem);
+
+  background-color: #6c00c4;
+}
+
+#column-2 {
+  width: $small-column-width;
+  min-width: $small-column-min-width;
+  flex: 1 1 calc($small-column-width - 1rem);
+}
+
+// Media queries
+@media (max-width: 485px) {
+  #column-1 {
+    min-width: 200px;
+  }
 }

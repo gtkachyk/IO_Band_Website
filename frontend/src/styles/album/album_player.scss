@@ -5,27 +5,56 @@
    Code adapted from https://codepen.io/craigstroman/pen/aOyRYx.
 */
 
+// Debugging code
 $debug: false;
 $track-info-box-debug: false;
-$large-button-debug: false;
 $progress-box-debug: false;
 
-@mixin container-debug-border {border: solid #00ffea;}
-@mixin player-debug-border {border: solid rgb(255, 0, 85);}
+@mixin debug-border($color) {
+  border: solid $color;
+}
 
-@mixin large-button-debug-border {border: solid rgb(0, 0, 0);}
+@if $debug {
+  .container {
+    @include debug-border(#00ffea);
+  }
+  .player {
+    @include debug-border(rgb(255, 0, 85));
+  }
+  .previous-track-btn {
+    @include debug-border(rgb(255, 255, 255));
+  }
+  .info-box {
+    @include debug-border(rgb(255, 255, 255));
+  }
+  .controls-box {
+    @include debug-border(rgb(0, 0, 0));
+  }
+  .play-list {
+    @include debug-border(rgb(208, 255, 0));
+  }
+}
 
-@mixin info-box-debug-border {border: solid rgb(255, 255, 255);}
-@mixin progress-box-debug-border {border: solid rgb(117, 246, 255);}
-@mixin progress-indicator-debug-border {border: solid rgb(0, 0, 0);}
-@mixin track-info-box-debug-border {border: solid rgb(0, 102, 255);}
-@mixin track-title-debug-border {border: solid rgb(0, 255, 13);}
-@mixin audio-time-debug-border {border: solid rgb(255, 255, 255);}
+@if $progress-box-debug {
+  .progress-box {
+    @include debug-border(rgb(0, 102, 255));
+  }
+  .progress-indicator {
+    @include debug-border(rgb(0, 0, 0));
+  }
+}
 
-@mixin controls-box-debug-border {border: solid rgb(0, 0, 0);}
-@mixin controls-box-button-debug-border {border: solid rgb(255, 255, 255);}
-
-@mixin play-list-debug-border {border: solid rgb(208, 255, 0);}
+@if $track-info-box-debug {
+  .track-info-box {
+    @include debug-border(rgb(117, 246, 255));
+  }
+  .track-title-text {
+    @include debug-border(rgb(0, 255, 13));
+  }
+  .audio-time {
+    @include debug-border(rgb(255, 255, 255));
+  }
+}
 
 @mixin clearfix() {
   *zoom: 1;
@@ -42,25 +71,7 @@ $progress-box-debug: false;
   }      
 }
   
-@mixin media($type) {
-  @if $type == tablet {
-    @media (min-width: 768px) and (max-width: 991px) {
-      @content;
-    } 
-  }
-  @else if $type == mediumDesktop {
-    @media (min-width: 992px) and (max-width: 1100px) {
-      @content;
-    }     
-  }
-  @else if $type == largeDesktop {
-    @media (min-width: 1200px) {
-      @content;
-    }       
-  }
-} 
-  
-  /* Reusable, toolbox kind of class */
+/* Reusable, toolbox kind of class */
 .screen-reader-text {
   position: absolute;
   top: -9999px;
@@ -81,30 +92,12 @@ $progress-box-debug: false;
   flex-direction: column;
   font-family: arial, helvetica, sans-serif;
   font-size: 1em;
-  // position: relative;
   min-width: 100%;
   max-width: 100%;
-  
-  @if $debug {
-    @include container-debug-border;
-  }
 
   .player {
     display: flex;
     flex-direction: row;
-    
-    @if $debug {
-      @include player-debug-border;
-    }
-    // @include media(tablet) {
-    //   width: 470px;
-    // }
-    // @include media(mediumDesktop) {
-    //     width: 470px;
-    // }         
-    // @include media(largeDesktop) {
-    //     width: 470px;
-    // }   
     
     .large-toggle-btn {
       border-radius: 2px;
@@ -112,13 +105,10 @@ $progress-box-debug: false;
       font-size: 1.5em;
       height: 50px;
       margin: 0 10px 0 0;
-      overflow: hidden;
       padding: 5px 0 0 0;
-      position: relative;
       text-align: center;
       vertical-align: bottom;
-      // width: 54px;
-      width: 100%;
+      min-width: 54px;
       border: solid black;
 
       .large-play-btn {
@@ -152,34 +142,19 @@ $progress-box-debug: false;
       justify-content: flex-end;
       width: 100%;
 
-      @if $debug {
-        @include info-box-debug-border;
-      }
-
       .track-info-box {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         font-size: 12px;
         margin: 0 0 6px 0;
-        // visibility: hidden;
-
-        @if $track-info-box-debug {
-          @include track-info-box-debug-border;
-        }
+        visibility: hidden;
 
         .track-title-text {
-          @if $track-info-box-debug {
-            @include track-title-debug-border;
-          }
         }
 
         .audio-time {
           padding: 0 0 0 5px;
-
-          @if $track-info-box-debug {
-            @include audio-time-debug-border;
-          }
         }
 
         @include clearfix();
@@ -188,10 +163,6 @@ $progress-box-debug: false;
 
     .progress-box {
       min-width: 270px;
-
-      @if $progress-box-debug {
-        @include progress-box-debug-border;
-      }
 
       .progress-cell {
         .progress {
@@ -218,10 +189,6 @@ $progress-box-debug: false;
             width: 22px;
             background: white;
             border: 1px solid #bebebe;
-
-            @if $progress-box-debug {
-              @include progress-indicator-debug-border;
-            }
           }
         }
       }
@@ -233,10 +200,6 @@ $progress-box-debug: false;
       align-items: flex-end;
       width: 100%;
       margin: 0 0 0 10px;
-      
-      @if $debug {
-        @include controls-box-debug-border();
-      }
 
       .previous-track-btn {
         height: min-content;
@@ -246,11 +209,6 @@ $progress-box-debug: false;
           font: 1em "FontAwesome";
         }  
         cursor: pointer;
-        // display: inline-block;
-
-        @if $debug {
-          @include controls-box-button-debug-border();
-        }
       }
 
       .next-track-btn {
@@ -261,11 +219,7 @@ $progress-box-debug: false;
           font: 1em "FontAwesome";
         }             
         cursor: pointer;
-        // display: inline-block;
 
-        @if $debug {
-          @include controls-box-button-debug-border();
-        }
       }  
     }
     
@@ -277,10 +231,6 @@ $progress-box-debug: false;
     margin: 0 auto 20px auto;
     width: 100%;
     overflow-x: visible;
-
-    @if $debug {
-      @include play-list-debug-border;
-    }
 
     .play-list-row {
       display: inline-block;
@@ -357,7 +307,39 @@ $progress-box-debug: false;
 }
 
 .playlist-row-content-container {
-  /* border: solid white; */
   height: fit-content;
   width: fit-content;
+}
+
+// Media queries
+@media (max-width: 485px) {
+  .container .player .progress-box {
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 435px) {
+  .container .player .progress-box {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 385px) {
+  .controls-box, .large-toggle-btn, .play-list {
+    zoom: 90%;
+  }
+
+  .container .player .progress-box {
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 350px) {
+  .controls-box, .large-toggle-btn, .play-list {
+    zoom: 85%;
+  }
+
+  .container .player .progress-box {
+    min-width: 150px;
+  }
 }

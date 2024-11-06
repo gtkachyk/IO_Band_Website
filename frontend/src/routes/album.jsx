@@ -6,7 +6,6 @@ import LyricSheetList from "../Components/album/LyricSheetList";
 import TabList from "../Components/album/TabList";
 import React, { useEffect, useState } from 'react';
 import {generatePlaylistHTML} from "../js/albums";
-import '../styles/album/album.scss';
 import { fetchData } from '../js/api';
 import { constants } from '../assets/constants.js';
 import ContentUnit from "../Components/ContentUnit.jsx";
@@ -86,14 +85,13 @@ function Album () {
   // var verticalDividerHeight = mainContainerHeight - 200;
 
   const contentUnits = [
-    // Album page example
     {
       title: 'Album Page',
       columns: [
-        { header: 'Tracks', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, width: '40%' },
-        { header: 'Artwork', content: 'This is the content for column 2', width: '20%'},
-        { header: 'Lyric Sheets', content: 'This is the content for column 3', width: '20%' },
-        { header: 'Tabs', content: 'This is the content for column 4', width: '20%' },
+        {header: 'Tracks', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1'},
+        {header: 'Artwork', content: 'This is the content for column 2', id: 'column-2'},
+        {header: 'Lyric Sheets', content: 'This is the content for column 3', id: 'column-3'},
+        {header: 'Tabs', content: 'This is the content for column 4', id: 'column-4'},
       ],
     },
   ];

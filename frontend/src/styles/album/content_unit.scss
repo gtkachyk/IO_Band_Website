@@ -1,11 +1,24 @@
+/* =============================================
+   Album page ContentUnit Styles
+   =============================================
+   Styles for ContentUnit components on the album pages.
+*/
+
+// Variables
+$large-column-width: 40%;
+$large-column-min-width: 435px;
+$small-column-width: 20%;
+$small-column-min-width: 150px;
+
+// Unit title styles
 .unit-title {
-  // color:#4d0505;
   color:#5900ff;
   font-family: 'Courier New', Courier, monospace;
   font-style: italic;
   letter-spacing: 10px;
 }
 
+// Shared column styles
 .column-header {
   color:rgb(240, 240, 240);
   font-family: 'Courier New', Courier, monospace;
@@ -16,7 +29,38 @@
 }
 
 .content-column {
-  min-width: 150px; // Minimum width before stacking
-  overflow: hidden; // Prevent overflow outside the columns
+  overflow: hidden;
   background-color: #00c482;
+}
+
+// Column specific styles
+#column-1 {
+  width: $large-column-width;
+  min-width: $large-column-min-width;
+  flex: 1 1 calc($large-column-width - 1rem);
+}
+
+#column-2 {
+  width: $small-column-width;
+  min-width: $small-column-min-width;
+  flex: 1 1 calc($small-column-width - 1rem);
+}
+
+#column-3 {
+  width: $small-column-width;
+  min-width: $small-column-min-width;
+  flex: 1 1 calc($small-column-width - 1rem);
+}
+
+#column-4 {
+  width: $small-column-width;
+  min-width: $small-column-min-width;
+  flex: 1 1 calc($small-column-width - 1rem);
+}
+
+// Media queries
+@media (max-width: 485px) {
+  #column-1 {
+    min-width: 275px;
+  }
 }
