@@ -28,9 +28,9 @@ function Album () {
   const [loading, setLoading] = useState(true);
   const [styles, setStyles] = useState(null);
   
-  const styleSheet = `../styles/album/${album_name}.scss`;
+  // Dynamically import the album's stylesheet
+  const styleSheet = `../styles/album/${album_name}/index.scss`;
   useEffect(() => {
-    // Dynamically import the provided stylesheet
     const importStyles = async () => {
       try {
         const res = await import(`${styleSheet}`);

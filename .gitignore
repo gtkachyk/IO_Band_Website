@@ -65,3 +65,5 @@ frontend/src/js/window.js
 backend/main.log
 backend/db.sqlite3
 frontend/src/assets/constants.js
+temp
+frontend/src/styles/album/the_depths

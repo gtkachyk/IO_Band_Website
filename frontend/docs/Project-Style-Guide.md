@@ -1,12 +1,13 @@
-# React
-## Indentation
+# Front End
+## React
+### Indentation
 Two spaces
 
-# CSS
-## Indentation
+## CSS
+### Indentation
 Two spaces
 
-## File Structure
+### File Structure
 *Import statements*<br>
 *Comment describing the contents of the file in the following format:*
 
@@ -20,7 +21,7 @@ Two spaces
 
 *Selectors*
 
-## Property Organization
+### Property Organization
 Properties should be grouped by category.<br>
 Categories:
 - Box model / Layout & Positioning
@@ -64,3 +65,12 @@ Categories:
   - cursor
   - visibility
   - pointer-events
+
+## Images
+### Background
+There should be at least four differently sized images available for each background.
+The dimensions of these images should be approximately as follows:
+- Small: 650x400
+- Medium: 1200x800
+- Large: 1900x1200
+- Extra large: 3000x2000

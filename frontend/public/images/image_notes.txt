@@ -1,4 +1,0 @@
-Background images should be 1920x1280
-Album link images should be 300x300
-Featured album link images should be 579x579 (must match the current dimensions of .featured-col-1-link-div in root.scss)
-Download preview images must be square
