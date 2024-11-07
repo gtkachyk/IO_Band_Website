@@ -69,7 +69,6 @@ function Root() {
           <ContentUnit title={contentUnits[1].title} columns={contentUnits[1].columns}></ContentUnit>
           <ContentUnit title={contentUnits[2].title} columns={contentUnits[2].columns}></ContentUnit>
           <ContentUnit title={contentUnits[3].title} columns={contentUnits[3].columns}></ContentUnit>
-          <ContentUnit title={contentUnits[4].title} columns={contentUnits[4].columns}></ContentUnit> 
         </MainContainer>
       </>
     );

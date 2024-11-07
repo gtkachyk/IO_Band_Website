@@ -1,11 +1,14 @@
-/* Code adapted from https://codepen.io/craigstroman/pen/aOyRYx */
-
-var audioPlayer = function() {
+/**
+ * Handles the behavior of the AlbumPlayer component
+ * Code adapted from https://codepen.io/craigstroman/pen/aOyRYx
+ *
+ **/
+var audioPlayer = function () {
   "use strict";
   
   // Private variables
-  var _currentTrack = null;
-  var _elements = {
+  var currentTrack = null;
+  var elements = {
     audio: document.getElementById("audio"),
     playerButtons: {
       largeToggleBtn: document.querySelector(".large-toggle-btn"),
@@ -17,186 +20,101 @@ var audioPlayer = function() {
     playListRows: document.getElementsByClassName("play-list-row"),
     trackInfoBox: document.querySelector(".track-info-box")
   };
-  var container = document.querySelector(".container");
-  var _playAHead = false;
-  var _progressCounter = 0;
-  var _progressBarIndicator = _elements.progressBar.children[0].children[0].children[1];
-  var _trackLoaded = false;
+  var playAHead = false;
+  var progressBarIndicator = elements.progressBar.children[0].children[0].children[1];
+  var trackLoaded = false;
+  var last_touch_x = 0;
+  var last_touch_y = 0;
   
   /**
    * Determines the buffer progress
    *
    * @param audio The audio element on the page
    **/
-  var _bufferProgress = function(audio) {
+  var bufferProgress = function (audio) {
     var bufferedTime = (audio.buffered.end(0) * 100) / audio.duration;
-    var progressBuffer = _elements.progressBar.children[0].children[0].children[0];
-    
+    var progressBuffer = elements.progressBar.children[0].children[0].children[0];
     progressBuffer.style.width = bufferedTime + "%";
   };
 
   /**
-   * A utility function for getting the event coordinates based on browser type
+   * A utility function for getting the event coordinates based on browser type.
+   * ISSUE: on a touchscreen, the coordinates cannot be retrieved if nothing is touching the screen
+   *        this is problematic when handling the end of a touch input
+   *        the current solution is to store the most recent coordinates of the input in last_touch_x and last_touch_y
    *
    * @param e The JavaScript event
    **/
-  var _getXY = function(e) {
-    var progressBarRect = _elements.progressBar.getBoundingClientRect();
+  var getXY = function (e) {
+    e.preventDefault();
+
+    var progressBarRect = elements.progressBar.getBoundingClientRect();
     var coords = {
       x: null,
       y: null
     };
+  
     var isTouchSupported = "ontouchstart" in window;
-
-    console.log("isTouchSupported = " + isTouchSupported);
-
-    if (isTouchSupported) { // For touch devices
+    if (isTouchSupported && e.touches.length > 0) { // For touch events
       coords.x = e.touches[0].clientX - progressBarRect.left;
       coords.y = e.touches[0].clientY - progressBarRect.top;
+      last_touch_x = coords.x;
+      last_touch_y = coords.y;
     } 
-    else { // For non-touch devices
+    else { // For non-touch events
       coords.x = e.clientX - progressBarRect.left;
       coords.y = e.clientY - progressBarRect.top;
-
-      // console.log("In _getXY: e.clientX = " + e.clientX + ", " + "progressBarRect.left = " + progressBarRect.left);
     }
-
-    // console.log("In _getXY: returning " + coords.x + ", " + coords.y);
+  
+    if (isNaN(coords.x)) {
+      coords.x = last_touch_x;
+      coords.y = last_touch_y;
+    }
 
     return coords;
   };
   
-  var _handleProgressIndicatorClick = function(e) {
+  /**
+   * Gets the location of the progress indicator when it is clicked
+   *
+   * @param e The event object
+   **/
+  var handleProgressIndicatorClick = function (e) {
     var progressBar = document.querySelector(".progress-box");
-    var xCoords = _getXY(e).x;
-
-    // console.log("In _handleProgressIndicatorClick: returning " + xCoords + " / " + progressBar.children[0].offsetWidth + " = " + xCoords / progressBar.children[0].offsetWidth);
+    var xCoords = getXY(e).x;
 
     return xCoords / progressBar.children[0].offsetWidth;
   };
-  
+
   /**
-   * Initializes the html5 audio player and the playlist
+   * Handles the touchstart event
    *
+   * @param e The event object
    **/
-  var initPlayer = function() {
-    if (_currentTrack === 1 || _currentTrack === null) {
-      _elements.playerButtons.previousTrackBtn.disabled = true;
+  var touchStart = function(e) {
+    e.preventDefault();
+
+    window.addEventListener("touchmove", moveProgressIndicator);
+    audio.removeEventListener("timeupdate", trackTimeChanged, false);
+    playAHead = true;
+  };
+
+  /**
+   * Handles the touchend event
+   *
+   * @param e The event object
+   **/
+  var touchEnd = function(e) {
+    e.preventDefault();
+
+    if (playAHead === true) {
+      var duration = parseFloat(audio.duration);
+      var progressIndicatorClick = parseFloat(handleProgressIndicatorClick(e));
+      window.removeEventListener("touchmove", moveProgressIndicator);
+      audio.currentTime = duration * progressIndicatorClick;
+      audio.addEventListener("timeupdate", trackTimeChanged, false);
+      playAHead = false;
     }
-    
-    // Adding event listeners to playlist clickable elements
-    for (var i = 0; i < _elements.playListRows.length; i++) {
-      var smallToggleBtn = _elements.playerButtons.smallToggleBtn[i];
-      var playListLink = _elements.playListRows[i].children[2].children[0];
-        
-      // Playlist link clicked
-      playListLink.addEventListener("click", function(e) {
-        e.preventDefault();
-        var selectedTrack = parseInt(this.parentNode.parentNode.getAttribute("data-track-row"));
-          
-        if (selectedTrack !== _currentTrack) {
-          _resetPlayStatus();
-          _currentTrack = null;
-          _trackLoaded = false;
-        }
-        
-        if (_trackLoaded === false) {
-          _currentTrack = parseInt(selectedTrack);
-          _setTrack();
-        } 
-        else {
-          _playBack(this);
-        }
-      }, false);
-      
-      // Small toggle button clicked
-      smallToggleBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        var selectedTrack = parseInt(this.parentNode.getAttribute("data-track-row"));
-        if (selectedTrack !== _currentTrack) {
-          _resetPlayStatus();
-          _currentTrack = null;
-          _trackLoaded = false;
-        }
-      
-        if (_trackLoaded === false) {
-          _currentTrack = parseInt(selectedTrack);
-          _setTrack();
-        } 
-        else {
-          _playBack(this);
-        }
-      
-      }, false);
-    }
-    
-    // Audio time has changed so update it
-    _elements.audio.addEventListener("timeupdate", _trackTimeChanged, false);
-  
-    // Audio track has ended playing
-    _elements.audio.addEventListener("ended", function(e) {
-      _trackHasEnded();
-    }, false);
-    
-    // Audio error
-    _elements.audio.addEventListener("error", function(e) {
-      switch (e.target.error.code) {
-        case e.target.error.MEDIA_ERR_ABORTED:
-          alert('You aborted the video playback.');
-          break;
-        case e.target.error.MEDIA_ERR_NETWORK:
-          alert('A network error caused the audio download to fail.');
-          break;
-        case e.target.error.MEDIA_ERR_DECODE:
-          alert('The audio playback was aborted due to a corruption problem or because the video used features your browser did not support.');
-          break;
-        case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-          alert('The video audio not be loaded, either because the server or network failed or because the format is not supported.');
-          break;
-        default:
-          alert('An unknown error occurred.');
-          break;
-      }
-        _trackLoaded = false;
-        _resetPlayStatus();
-    }, false);
-    
-    // Large toggle button clicked
-    _elements.playerButtons.largeToggleBtn.addEventListener("click", function(e) {
-      if (_trackLoaded === false) {
-        _currentTrack = parseInt(1);
-        _setTrack()
-      } 
-      else {
-        _playBack();
-      }
-    }, false);
-    
-    // Next track button clicked
-    _elements.playerButtons.nextTrackBtn.addEventListener("click", function(e) {
-      if (this.disabled !== true) {
-        _currentTrack++;
-        _trackLoaded = false;
-        _resetPlayStatus();
-        _setTrack();
-      }
-    }, false);
-  
-    // Previous track button clicked
-    _elements.playerButtons.previousTrackBtn.addEventListener("click", function(e) {
-      if (this.disabled !== true) {
-        _currentTrack--;
-        _trackLoaded = false;
-        _resetPlayStatus();
-        _setTrack();
-      }
-    }, false);
-    
-    // User is moving progress indicator
-    _progressBarIndicator.addEventListener("mousedown", _mouseDown, false); 
-  
-    // User stops moving progress indicator
-    window.addEventListener("mouseup", _mouseUp, false);
   };
   
   /**
@@ -204,10 +122,10 @@ var audioPlayer = function() {
    *
    * @param e The event object
    **/
-  var _mouseDown = function(e) {
-    window.addEventListener("mousemove", _moveProgressIndicator, true);
-    audio.removeEventListener("timeupdate", _trackTimeChanged, false);
-    _playAHead = true;
+  var mouseDown = function (e) {
+    window.addEventListener("mousemove", moveProgressIndicator, true);
+    audio.removeEventListener("timeupdate", trackTimeChanged, false);
+    playAHead = true;
   };
   
   /**
@@ -215,35 +133,130 @@ var audioPlayer = function() {
    *
    * @param e The event object
    **/
-  var _mouseUp = function(e) {
-    if (_playAHead === true) {
+  var mouseUp = function (e) {
+    if (playAHead === true) {
       var duration = parseFloat(audio.duration);
-      var progressIndicatorClick = parseFloat(_handleProgressIndicatorClick(e));
-
-      window.removeEventListener("mousemove", _moveProgressIndicator, true);
+      var progressIndicatorClick = parseFloat(handleProgressIndicatorClick(e));
+      window.removeEventListener("mousemove", moveProgressIndicator, true);
       audio.currentTime = duration * progressIndicatorClick;
-      audio.currentTime = audio.currentTime + ((1 - container.currentCSSZoom) * audio.currentTime);
-
-      // console.log("In _mouseUp: " + "audio.currentTime = " + duration * progressIndicatorClick);
-      
-      audio.addEventListener("timeupdate", _trackTimeChanged, false);
-      _playAHead = false;
+      audio.addEventListener("timeupdate", trackTimeChanged, false);
+      playAHead = false;
     }
   };
+
+  /**
+   * Handles the small toggle button click event
+   *
+   * @param e The event object
+   **/
+  var smallButtonClick = function (e) {
+    e.preventDefault();
+
+    var selectedTrack = parseInt(this.parentNode.getAttribute("data-track-row"));
+    if (selectedTrack !== currentTrack) {
+      resetPlayStatus();
+      currentTrack = null;
+      trackLoaded = false;
+    }
+  
+    if (trackLoaded === false) {
+      currentTrack = parseInt(selectedTrack);
+      setTrack();
+    } 
+    else {
+      playBack(this);
+    }
+  }
+
+  /**
+   * Handles the media error event
+   *
+   * @param e The event object
+   **/
+  var mediaError = function (e) {
+    switch (e.target.error.code) {
+      case e.target.error.MEDIA_ERR_ABORTED:
+        alert('You aborted the video playback.');
+        break;
+      case e.target.error.MEDIA_ERR_NETWORK:
+        alert('A network error caused the audio download to fail.');
+        break;
+      case e.target.error.MEDIA_ERR_DECODE:
+        alert('The audio playback was aborted due to a corruption problem or because the video used features your browser did not support.');
+        break;
+      case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+        alert('The video audio not be loaded, either because the server or network failed or because the format is not supported.');
+        break;
+      default:
+        alert('An unknown error occurred.');
+        break;
+    }
+      trackLoaded = false;
+      resetPlayStatus();
+  }
+
+  /**
+   * Handles the audio ended event
+   *
+   * @param e The event object
+   **/
+  var audioEnded = function (e) {
+    trackHasEnded();
+  }
+
+  /**
+   * Handles the large toggle button click event
+   *
+   * @param e The event object
+   **/
+  var largeButtonClick = function (e) {
+    if (trackLoaded === false) {
+      currentTrack = parseInt(1);
+      setTrack()
+    } 
+    else {
+      playBack();
+    }
+  }
+
+  /**
+   * Handles the next button click event
+   *
+   * @param e The event object
+   **/
+  var nextButtonClick = function (e) {
+    if (this.disabled !== true) {
+      currentTrack++;
+      trackLoaded = false;
+      resetPlayStatus();
+      setTrack();
+    }
+  }
+
+  /**
+   * Handles the previous button click event
+   *
+   * @param e The event object
+   **/
+  var previousButtonClick = function (e) {
+    if (this.disabled !== true) {
+      currentTrack--;
+      trackLoaded = false;
+      resetPlayStatus();
+      setTrack();
+    }
+  }
 
   /**
    * Moves the progress indicator to a new point in the audio
    *
    * @param e The event object
    **/
-  var _moveProgressIndicator = function(e) {
-    console.log("In _moveProgressIndicator: container.currentCSSZoom = " + container.currentCSSZoom);
-
-    var zoom = container.currentCSSZoom;
-    var progressBarRect = _elements.progressBar.getBoundingClientRect();
+  var moveProgressIndicator = function (e) {
+    var progressBarRect = elements.progressBar.getBoundingClientRect();
     var progressBarWidth = progressBarRect.width;
-    var progressBarIndicatorWidth = _progressBarIndicator.offsetWidth;
-    var newPosition = _getXY(e).x - (progressBarIndicatorWidth / 2);
+    var progressBarIndicatorWidth = progressBarIndicator.offsetWidth;
+    var newPosition = getXY(e).x - (progressBarIndicatorWidth / 2);
   
     if (newPosition < 0) {
       newPosition = 0;
@@ -251,25 +264,23 @@ var audioPlayer = function() {
     else if (newPosition > progressBarWidth - progressBarIndicatorWidth) {
       newPosition = progressBarWidth - progressBarIndicatorWidth;
     }
-
-    newPosition = newPosition + ((1 - zoom) * newPosition);
   
-    _progressBarIndicator.style.left = newPosition + "px";
+    progressBarIndicator.style.left = newPosition + "px";
   };
 
   /**
    * Controls playback of the audio element
    *
    **/
-  var _playBack = function() {
-    if (_elements.audio.paused) {
-      _elements.audio.play();
-      _updatePlayStatus(true);
+  var playBack = function () {
+    if (elements.audio.paused) {
+      elements.audio.play();
+      updatePlayStatus(true);
       document.title = "\u25B6 " + document.title;
     } 
     else {
-      _elements.audio.pause();
-      _updatePlayStatus(false);
+      elements.audio.pause();
+      updatePlayStatus(false);
       document.title = document.title.substr(2);
     }
   };
@@ -278,15 +289,15 @@ var audioPlayer = function() {
    * Sets the track if it hasn't already been loaded yet
    *
    **/
-  var _setTrack = function() {
-    var songURL = _elements.audio.children[_currentTrack - 1].src;
-    _elements.audio.setAttribute("src", songURL);
-    _elements.audio.load();
-    _trackLoaded = true;
-    _setTrackTitle(_currentTrack, _elements.playListRows);
-    _setActiveItem(_currentTrack, _elements.playListRows);
-    _elements.trackInfoBox.style.visibility = "visible";
-    _playBack();
+  var setTrack = function () {
+    var songURL = elements.audio.children[currentTrack - 1].src;
+    elements.audio.setAttribute("src", songURL);
+    elements.audio.load();
+    trackLoaded = true;
+    setTrackTitle(currentTrack, elements.playListRows);
+    setActiveItem(currentTrack, elements.playListRows);
+    elements.trackInfoBox.style.visibility = "visible";
+    playBack();
   };
   
   /**
@@ -295,7 +306,7 @@ var audioPlayer = function() {
    * @param currentTrack The current track number being played
    * @param playListRows The playlist object
    **/
-  var _setActiveItem = function(currentTrack, playListRows) {
+  var setActiveItem = function (currentTrack, playListRows) {
     for (var i = 0; i < playListRows.length; i++) {
       playListRows[i].children[2].className = "track-title";
     }
@@ -309,7 +320,7 @@ var audioPlayer = function() {
    * @param currentTrack The current track number being played
    * @param playListRows The playlist object
    **/
-  var _setTrackTitle = function(currentTrack, playListRows) {
+  var setTrackTitle = function (currentTrack, playListRows) {
     var trackTitleBox = document.querySelector(".player .info-box .track-info-box .track-title-text");
     var trackTitle = playListRows[currentTrack - 1].children[2].outerText;
       
@@ -322,25 +333,25 @@ var audioPlayer = function() {
    * Plays the next track when a track has ended playing
    *
    **/
-  var _trackHasEnded = function() {
-    parseInt(_currentTrack);
-    _currentTrack = (_currentTrack === _elements.playListRows.length) ? 1 : _currentTrack + 1;
-    _trackLoaded = false;
-    _resetPlayStatus();
-    _setTrack();
+  var trackHasEnded = function () {
+    parseInt(currentTrack);
+    currentTrack = (currentTrack === elements.playListRows.length) ? 1 : currentTrack + 1;
+    trackLoaded = false;
+    resetPlayStatus();
+    setTrack();
   };
   
   /**
    * Updates the time for the song being played
    *
    **/
-  var _trackTimeChanged = function() {
+  var trackTimeChanged = function () {
     var currentTimeBox = document.querySelector(".player .info-box .track-info-box .audio-time .current-time");
     var currentTime = audio.currentTime;
     var duration = audio.duration;
     var durationBox = document.querySelector(".player .info-box .track-info-box .audio-time .duration");
-    var trackCurrentTime = _trackTime(currentTime);
-    var trackDuration = _trackTime(duration);
+    var trackCurrentTime = trackTime(currentTime);
+    var trackDuration = trackTime(duration);
     
     currentTimeBox.innerHTML = null;
     currentTimeBox.innerHTML = trackCurrentTime;
@@ -348,8 +359,8 @@ var audioPlayer = function() {
     durationBox.innerHTML = null;
     durationBox.innerHTML = trackDuration;
     
-    _updateProgressIndicator(audio);
-    _bufferProgress(audio);
+    updateProgressIndicator(audio);
+    bufferProgress(audio);
   };
   
   /**
@@ -359,7 +370,7 @@ var audioPlayer = function() {
    *
    * @return time The time in minutes and/or seconds
    **/
-  var _trackTime = function(seconds) {
+  var trackTime = function (seconds) {
     var min = 0;
     var sec = Math.floor(seconds);
     var time = 0;
@@ -378,39 +389,39 @@ var audioPlayer = function() {
    *
    * @param audioPlaying A boolean value indicating if audio is playing or paused
    **/
-  var _updatePlayStatus = function(audioPlaying) {
+  var updatePlayStatus = function (audioPlaying) {
     if (audioPlaying) {
-      _elements.playerButtons.largeToggleBtn.children[0].className = "large-pause-btn";
-      _elements.playerButtons.smallToggleBtn[_currentTrack - 1].children[0].className = "small-pause-btn";
+      elements.playerButtons.largeToggleBtn.children[0].className = "large-pause-btn";
+      elements.playerButtons.smallToggleBtn[currentTrack - 1].children[0].className = "small-pause-btn";
     } 
     else {
-      _elements.playerButtons.largeToggleBtn.children[0].className = "large-play-btn";
-      _elements.playerButtons.smallToggleBtn[_currentTrack - 1].children[0].className = "small-play-btn";
+      elements.playerButtons.largeToggleBtn.children[0].className = "large-play-btn";
+      elements.playerButtons.smallToggleBtn[currentTrack - 1].children[0].className = "small-play-btn";
     }
     
     // Update next and previous buttons accordingly
-    if (_currentTrack === 1) {
-      _elements.playerButtons.previousTrackBtn.disabled = true;
-      _elements.playerButtons.previousTrackBtn.className = "previous-track-btn disabled";
+    if (currentTrack === 1) {
+      elements.playerButtons.previousTrackBtn.disabled = true;
+      elements.playerButtons.previousTrackBtn.className = "previous-track-btn disabled";
       
-      if (_elements.playListRows.length > 1) {
-        _elements.playerButtons.nextTrackBtn.disabled = false;
-        _elements.playerButtons.nextTrackBtn.className = "next-track-btn";
+      if (elements.playListRows.length > 1) {
+        elements.playerButtons.nextTrackBtn.disabled = false;
+        elements.playerButtons.nextTrackBtn.className = "next-track-btn";
       }
     } 
-    else if (_currentTrack > 1 && _currentTrack !== _elements.playListRows.length) {
-      _elements.playerButtons.previousTrackBtn.disabled = false;
-      _elements.playerButtons.previousTrackBtn.className = "previous-track-btn";
-      _elements.playerButtons.nextTrackBtn.disabled = false;
-      _elements.playerButtons.nextTrackBtn.className = "next-track-btn";
+    else if (currentTrack > 1 && currentTrack !== elements.playListRows.length) {
+      elements.playerButtons.previousTrackBtn.disabled = false;
+      elements.playerButtons.previousTrackBtn.className = "previous-track-btn";
+      elements.playerButtons.nextTrackBtn.disabled = false;
+      elements.playerButtons.nextTrackBtn.className = "next-track-btn";
     } 
-    else if (_currentTrack === _elements.playListRows.length) {
-      _elements.playerButtons.nextTrackBtn.disabled = true;
-      _elements.playerButtons.nextTrackBtn.className = "next-track-btn disabled";
+    else if (currentTrack === elements.playListRows.length) {
+      elements.playerButtons.nextTrackBtn.disabled = true;
+      elements.playerButtons.nextTrackBtn.className = "next-track-btn disabled";
       
-      if (_elements.playListRows.length > 1) {
-        _elements.playerButtons.previousTrackBtn.disabled = false;
-        _elements.playerButtons.previousTrackBtn.className = "previous-track-btn";
+      if (elements.playListRows.length > 1) {
+        elements.playerButtons.previousTrackBtn.disabled = false;
+        elements.playerButtons.previousTrackBtn.className = "previous-track-btn";
       }
     }
   };
@@ -419,24 +430,24 @@ var audioPlayer = function() {
    * Updates the location of the progress indicator according to how much time left in audio
    *
    **/
-  var _updateProgressIndicator = function() {
-    var currentTime = parseFloat(_elements.audio.currentTime);
-    var duration = parseFloat(_elements.audio.duration);
+  var updateProgressIndicator = function () {
+    var currentTime = parseFloat(elements.audio.currentTime);
+    var duration = parseFloat(elements.audio.duration);
     var indicatorLocation = 0;
-    var progressBarWidth = parseFloat(_elements.progressBar.offsetWidth);
-    var progressIndicatorWidth = parseFloat(_progressBarIndicator.offsetWidth);
+    var progressBarWidth = parseFloat(elements.progressBar.offsetWidth);
+    var progressIndicatorWidth = parseFloat(progressBarIndicator.offsetWidth);
     var progressBarIndicatorWidth = progressBarWidth - progressIndicatorWidth;
     indicatorLocation = progressBarIndicatorWidth * (currentTime / duration);
-    _progressBarIndicator.style.left = indicatorLocation + "px";
+    progressBarIndicator.style.left = indicatorLocation + "px";
   };
   
   /**
    * Resets all toggle buttons to be play buttons
    *
    **/
-  var _resetPlayStatus = function() {
-    var smallToggleBtn = _elements.playerButtons.smallToggleBtn;
-    _elements.playerButtons.largeToggleBtn.children[0].className = "large-play-btn";
+  var resetPlayStatus = function () {
+    var smallToggleBtn = elements.playerButtons.smallToggleBtn;
+    elements.playerButtons.largeToggleBtn.children[0].className = "large-play-btn";
     
     for (var i = 0; i < smallToggleBtn.length; i++) {
       if (smallToggleBtn[i].children[0].className === "small-pause-btn") {
@@ -445,12 +456,50 @@ var audioPlayer = function() {
     }
   };
 
+  /**
+   * Initializes the html5 audio player and the playlist
+   *
+   **/
+  var initPlayer = function () {
+    if (currentTrack === 1 || currentTrack === null) {
+      elements.playerButtons.previousTrackBtn.disabled = true;
+    }
+    
+    // Determine event type
+    const isTouchDevice = 'ontouchstart' in window;
+    const toggleEvent = isTouchDevice ? 'touchend' : 'click';
+
+    // Add playlist event listeners
+    for (var i = 0; i < elements.playListRows.length; i++) {
+      var smallToggleBtn = elements.playerButtons.smallToggleBtn[i];
+      smallToggleBtn.addEventListener(toggleEvent, smallButtonClick, false);
+    }
+
+    // Add audio event listeners
+    elements.audio.addEventListener("timeupdate", trackTimeChanged, false);
+    elements.audio.addEventListener("ended", audioEnded, false);
+    elements.audio.addEventListener("error", mediaError, false);
+
+    // Add player event listeners
+    elements.playerButtons.largeToggleBtn.addEventListener(toggleEvent, largeButtonClick, false);
+    elements.playerButtons.nextTrackBtn.addEventListener(toggleEvent, nextButtonClick, false);
+    elements.playerButtons.previousTrackBtn.addEventListener(toggleEvent, previousButtonClick, false);
+    
+    // Add progress indicator pointer event listeners
+    progressBarIndicator.addEventListener("mousedown", mouseDown, false); 
+    window.addEventListener("mouseup", mouseUp, false);
+
+    // Add progress indicator touchscreen event listeners
+    progressBarIndicator.addEventListener('touchstart', touchStart);
+    window.addEventListener('touchend',  touchEnd);
+  };
+
   return {
     initPlayer: initPlayer
   };
 };
   
-(function() {
+(function () {
   var player = new audioPlayer();
   player.initPlayer();
 })();
