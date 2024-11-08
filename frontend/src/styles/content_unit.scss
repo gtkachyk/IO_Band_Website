@@ -1,7 +1,33 @@
-$content-unit-debug: true;
 
-@mixin content-unit-debug-border {border: solid #ff0000;}
-@mixin content-unit-col-header-debug-border {border: solid #ff00c8;}
+/*******************************/
+/******** Debugging code *******/
+/*******************************/
+$debug: false;
+
+@mixin debug-border ($color) {
+  border: solid $color;
+}
+
+@if $debug {
+  .unit {
+    @include debug-border(#00ffea);
+  }
+  .unit-title {
+    @include debug-border(rgb(255, 0, 85));
+  }
+  .content-container {
+    @include debug-border(rgb(255, 255, 255));
+  }
+  .content-column {
+    @include debug-border(rgb(0, 255, 55));
+  }
+  .column-header {
+    @include debug-border(rgb(0, 0, 0));
+  }
+  .column-content {
+    @include debug-border(rgb(208, 255, 0));
+  }
+}
 
 .unit {
   margin-bottom: 2rem; // Padding below the unit to separate multiple units
@@ -11,6 +37,7 @@ $content-unit-debug: true;
   .unit-title {
     font-size: 2rem;
     margin-bottom: 1rem;
+    margin-top: 0;
     text-align: center;
   }
 
@@ -38,27 +65,22 @@ $content-unit-debug: true;
         align-items: center; // Center the text vertically
         justify-content: center; // Center the text horizontally
         min-height: 3rem; // Set a reasonable minimum height to avoid wrapping pushing content
-
-        @if $content-unit-debug {
-          @include content-unit-col-header-debug-border;
-        }
+        margin-top: 0;
       }
 
       .column-content {
-        font-size: 1rem;
-        padding: 1rem;
-        // background-color: #00c482;
-        border-radius: 8px;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        white-space: normal;
-
         display: flex; // Enable flexbox
         flex-direction: column; // Arrange content in a column
         justify-content: center; // Center vertically
         align-items: center; // Center horizontally
         text-align: center; // Ensure text is centered
         overflow-wrap: anywhere;
+        font-size: 1rem;
+        // padding: 1rem;
+        border-radius: 8px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
       }
     }
   }
@@ -68,10 +90,6 @@ $content-unit-debug: true;
     .content-column {
       flex: 1 1 100%;  // Stack columns vertically
     }
-  }
-
-  @if $content-unit-debug {
-    @include content-unit-debug-border;
   }
 }
   

@@ -1,11 +1,10 @@
 import NavBar from "../Components/NavBar";
-import {useLoaderData} from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import AlbumPlayer from "../Components/album/AlbumPlayer";
 import ArtworkList from "../Components/album/ArtworkList";
-import LyricSheetList from "../Components/album/LyricSheetList";
-import TabList from "../Components/album/TabList";
+import FileList from "../Components/album/FileList";
 import React, { useEffect, useState } from 'react';
-import {generatePlaylistHTML} from "../js/albums";
+import { generatePlaylistHTML, getFiles } from "../js/albums";
 import { fetchData } from '../js/api';
 import { constants } from '../assets/constants.js';
 import ContentUnit from "../Components/ContentUnit.jsx";
@@ -70,7 +69,7 @@ function Album () {
     return (<>Loading...</>);
   }
 
-  // Divide data
+  // Organize api data
   const album = data[0];
   const songs = data[1];
 
@@ -78,20 +77,18 @@ function Album () {
   const html_tags = generatePlaylistHTML(album, songs);
   const source_tags = html_tags[0];
   const div_tags = html_tags[1];
-
-  // Calculate the height of the page container and vertical divider based on the size of the song list and artwork list (an alternative to writing good code)
-  // var mainContainerHeight = 730;
-  // mainContainerHeight = Math.max(730, mainContainerHeight + ((songs.length - 14) * 35), mainContainerHeight + ((album.downloadable_artwork.split(',').length - 4) * 120))
-  // var verticalDividerHeight = mainContainerHeight - 200;
+  const files = getFiles(songs);
+  const lyrics = files[0];
+  const tabs = files[1];
 
   const contentUnits = [
     {
       title: 'Album Page',
       columns: [
         {header: 'Tracks', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1'},
-        {header: 'Artwork', content: 'This is the content for column 2', id: 'column-2'},
-        {header: 'Lyric Sheets', content: 'This is the content for column 3', id: 'column-3'},
-        {header: 'Tabs', content: 'This is the content for column 4', id: 'column-4'},
+        {header: 'Artwork', content: <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2'},
+        {header: 'Lyric Sheets', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3'},
+        {header: 'Tabs', content: <FileList path={constants.routesPathToPublic + 'tabs/' + album_name + '/'} files={tabs}></FileList>, id: 'column-4'},
       ],
     },
   ];
@@ -103,50 +100,6 @@ function Album () {
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit> 
       </MainContainer>
     </>
-      // <>
-      //     <div className="album-div-main" style={{height:mainContainerHeight + 'px'}}>
-      //         <NavBar></NavBar>
-      //         <div className="album-page-content">
-      //             <div className="album-page-title-div" id={"album-page-title-div-" + album.id}>
-      //                 <h2 className = "album-page-title-header">{album.display_name}</h2>
-      //                 <hr className="horizontal-separator"/>
-      //             </div>
-      //             <div className="album-page-content-table-container">
-      //                 <table className="album-page-content-table">
-      //                     <tbody>
-      //                         <tr>
-      //                             <th className="album-player-column" style={{height:verticalDividerHeight}}>
-      //                                 <h2 className="album-player-header">Tracks</h2>
-      //                                 <div className="album-player-div">
-      //                                     <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>
-      //                                 </div>
-      //                             </th>
-      //                             <td className="vertical-divider"></td>
-      //                             <th className="art-column">
-      //                                 <h2 className="artwork-header">Artwork</h2>
-      //                                 <div className="artwork-div">
-      //                                     <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>
-      //                                 </div>
-      //                             </th>
-      //                             <th className="lyrics-column">
-      //                                 <h2 className="lyric-sheet-header">Lyric Sheets</h2>
-      //                                 <div className="lyric-sheet-div">
-      //                                     <LyricSheetList album_songs={songs} lyric_sheets_path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'}></LyricSheetList>
-      //                                 </div>
-      //                             </th>
-      //                             <th className="tabs-column">
-      //                                 <h2 className="tab-header">Tabs</h2>
-      //                                 <div className="tab-div">
-      //                                     <TabList album_songs={songs} tabs_path={constants.routesPathToPublic + 'tabs/' + album_name + '/'}></TabList>
-      //                                 </div>
-      //                             </th>
-      //                         </tr>
-      //                     </tbody>
-      //                 </table>
-      //             </div>
-      //         </div>
-      //     </div>
-      // </>
   );
 }
 

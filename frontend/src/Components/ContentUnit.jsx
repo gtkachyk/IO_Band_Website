@@ -20,8 +20,6 @@
  * - Inline styles will overwrite stylesheet styles
  */
 
-// TODO: Modify ContentUnit so that columns can have their own media queries
-//   - Idea: make each column its own class and pass the name to the component
 import React, { useEffect } from 'react';
 
 function ContentUnit({title, columns}) {

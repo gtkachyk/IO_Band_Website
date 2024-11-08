@@ -10,7 +10,7 @@ $debug: false;
 $track-info-box-debug: false;
 $progress-box-debug: false;
 
-@mixin debug-border($color) {
+@mixin debug-border ($color) {
   border: solid $color;
 }
 
@@ -109,7 +109,8 @@ $progress-box-debug: false;
       text-align: center;
       vertical-align: bottom;
       min-width: 54px;
-      border: solid black;
+      border: solid rgb(255, 255, 255);
+      color: white;
 
       .large-play-btn {
         &:before {
@@ -200,9 +201,11 @@ $progress-box-debug: false;
       align-items: flex-end;
       width: 100%;
       margin: 0 0 0 10px;
+      color: white;
 
       .previous-track-btn {
         height: min-content;
+        color: white;
 
         &:before {
           content: "\f049";
@@ -257,6 +260,7 @@ $progress-box-debug: false;
         text-align: center;
         vertical-align: middle;
         width: 20px;
+        color: white;
 
         .small-play-btn {
           &:before {
@@ -283,11 +287,13 @@ $progress-box-debug: false;
         display: inline-block;
         font-size: 20px;
         height: fit-content;
+        color: white;
       }
 
       .track-number-inner {
         margin-top: 0px;
         margin-bottom: 0px;
+        color: white;
       }
 
       .track-title {
@@ -295,6 +301,7 @@ $progress-box-debug: false;
 
         .playlist-track {
           text-decoration: none;
+          color: white;
 
           &:hover {
             text-decoration: underline;

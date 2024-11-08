@@ -1,0 +1,81 @@
+/* =============================================
+   ArtworkList styles
+   =============================================
+   Styles the ArtworkList and ArtworkListElement components.
+*/
+
+/*******************************/
+/*********** Constants *********/
+/*******************************/
+$image-size: 100px;
+
+/*******************************/
+/******** Debugging code *******/
+/*******************************/
+$debug: false;
+
+@mixin debug-border ($color) {
+  border: solid $color;
+}
+
+@if $debug {
+  .art-list {
+    @include debug-border(rgb(255, 0, 85));
+  }
+  .art-list-element-hover-div {
+    @include debug-border(rgb(255, 255, 255));
+  }
+  .artwork-na {
+    @include debug-border(rgb(255, 255, 255));
+  }
+}
+
+/*******************************/
+/********** ArtworkList ********/
+/*******************************/
+.art-list { // The width of this is a download link
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*******************************/
+/****** ArtworkListElement *****/
+/*******************************/
+.art-list-element-hover-div {
+  min-width: $image-size;
+  max-width: $image-size;
+  min-height: $image-size;
+  max-height: $image-size;
+  border-radius: 8px;
+  border: solid rgb(0, 0, 0);
+  border-width: 2px;
+  background-size: $image-size;
+}
+
+.art-list-element-hover-div:hover {
+  opacity: 0.75;
+}
+
+.art-list-caption {
+  opacity: 0;
+  color: black;
+  pointer-events: none;
+  position: relative;
+  top: 30px;
+  font-style: italic;
+}
+
+.art-list-element-hover-div:hover .art-list-caption {
+  opacity: 0.75;
+}
+
+.artwork-na {
+  margin-top: 0px;
+  width: $image-size;
+  margin-left: 0px;
+  color: white;
+}
