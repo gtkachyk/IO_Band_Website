@@ -1,0 +1,49 @@
+/* =============================================
+   Modifiable ContentUnit Styles
+   =============================================
+   A template for implementing additional ContentUnit styles.
+   This file should not be used to style a ContentUnit directly.
+   Instead, copy it into styles/your-page and rename it to 'content_unit.scss'.
+*/
+
+// Variables
+$summary-column-width: 100%;
+
+// Unit title styles
+.unit-title {
+  color: #4d0505;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+}
+
+// Shared column styles
+.content-column {
+  overflow: hidden;
+}
+
+.column-content {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
+}
+
+// Column specific styles
+#summary-column {
+  width: $summary-column-width;
+  flex: 1 1 calc($summary-column-width - 1rem);
+}
+
+#gear-column {
+  width: $summary-column-width;
+  flex: 1 1 calc($summary-column-width - 1rem);
+}
+
+// Media queries
+@media (max-width: 485px) {
+  .column-content {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+  }
+}

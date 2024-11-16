@@ -4,7 +4,7 @@ $main-container-debug: false;
   border: solid #ffffff;
 }
 
-$main-container-width: 1400px;
+$main-container-width: 1200px;
 
 .main-container {
   display: flex;
@@ -12,7 +12,7 @@ $main-container-width: 1400px;
   justify-content: start;
   align-items: center;
   width: 100%;
-  max-width: 1200px; // Set a max width to prevent full-width on larger screens
+  max-width: $main-container-width; // Set a max width to prevent full-width on larger screens
   min-height: calc(100vh - 6rem); // 6rem is the height of the navbar
   padding: 2rem;
   margin: 0 auto; // Center the container

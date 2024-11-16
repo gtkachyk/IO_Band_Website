@@ -1,11 +1,11 @@
 import NavBar from '../Components/NavBar';
 import React, { useEffect } from 'react';
-import '../styles/routes/video/local.scss';
-import '../styles/routes/video/overwrite/main_container.scss'
 import { video } from '../assets/video.js';
 import MainContainer from '../Components/MainContainer.jsx';
 import ContentUnit from '../Components/ContentUnit.jsx';
 import YoutubeVideo from '../Components/video/YoutubeVideo.jsx';
+import '../styles/routes/video/local.scss';
+import '../styles/routes/video/overwrite/main_container.scss'
 
 function Video () {
   // Create content units
@@ -22,7 +22,7 @@ function Video () {
   return (
     <>
       <NavBar></NavBar>
-      <MainContainer styleSheet={`../styles/routes/video/overwrite/content_unit.scss`}>
+      <MainContainer styleSheet={`../styles/routes/video/overwrite/content_unit.scss`} id={'video'}>
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
       </MainContainer>
     </>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/components/main_container.scss';
 import '../styles/components/content_unit.scss';
 
-const MainContainer = ({ children, styleSheet }) => {
+const MainContainer = ({ children, styleSheet, id }) => {
   // State to hold the dynamically imported stylesheet
   const [styles, setStyles] = useState(null);
 
@@ -22,7 +22,7 @@ const MainContainer = ({ children, styleSheet }) => {
 
     importStyles();
   }, [styleSheet]);
-  return <div className="main-container">{children}</div>;
+  return <div className="main-container" id={id}>{children}</div>;
 };
 
 export default MainContainer;

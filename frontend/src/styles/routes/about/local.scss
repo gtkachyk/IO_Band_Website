@@ -1,101 +1,40 @@
-$main-container-width: 1400px;
+/* =============================================
+   About styles
+   =============================================
+   Styles the about page.
+*/
 
-.about-page-container {
+/**********************/
+/***** Background *****/
+/**********************/
+
+$background-directory: '../public/images/backgrounds/default';
+
+body {
+  background-image: url($background-directory + '/large.jpg');
   background-size: cover;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  overflow: visible;
-  display: flex;
-  justify-content: center;
-  // color-scheme: normal;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-.about-page-content-container {
-  position: relative;
-  display: inline-block;
-  height: fit-content;
-  top: 100px;
-  width: $main-container-width;
-  background-color: #80808067;
-  // border: solid white;
+@media (max-width: 1280px) {
+  body {
+    background-image: url($background-directory + '/medium.jpg');
+    background-attachment: fixed;
+  }
 }
 
-.summary-title-container {
-  min-width: 100%;
-  height: 75px;
-  // border: solid blue;
+@media (max-width: 640px) {
+  body {
+    background-image: url($background-directory + '/small.jpg');
+    background-attachment: fixed;
+  }
 }
 
-.summary-title {
-  min-width: 100%;
-  min-height: 100%;
-  color: #4d0505;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  text-shadow: 1.5px 1.5px #000000;
-  font-weight: lighter;
-  margin-top: 0px;
-  // border: solid #000000;
-}
-
-.summary-container {
-  margin-top: 5px;
-  min-width: 100%;
-  height: 700px;
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: xx-large;
-  text-align: center;
-  // border: solid purple;
-}
-
-.gear-title-container {
-  margin-top: 5px;
-  min-width: 100%;
-  height: 75px;
-  // border: solid yellow;
-}
-
-.gear-title {
-  min-width: 100%;
-  min-height: 100%;
-  color: #4d0505;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  text-shadow: 1.5px 1.5px #000000;
-  font-weight: lighter;
-  margin-top: 0px;
-  // border: solid #3cff00;
-}
-
-.gear-container {
-  margin-top: 5px;
-  min-width: 100%;
-  height: 1800px;
-  margin-top: 5px;
-  min-width: 100%;
-  height: 700px;
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: xx-large;
-  text-align: center;
-  // border: solid rgb(0, 247, 21);
-}
-
-.footer {
-  margin-top: 5px;
-  min-width: 100%;
-  height: 75px;
-  // border: solid rgb(0, 255, 200);
+@media (min-width: 1921px) {
+  body {
+    background-image: url($background-directory + '/extra_large.jpg');
+    background-attachment: fixed;
+  }
 }

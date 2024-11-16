@@ -1,16 +1,14 @@
 import NavBar from '../Components/NavBar';
 import React, { useState, useEffect } from 'react';
-import '../styles/routes/about/local.scss';
 import { about } from '../assets/about.js';
+import MainContainer from '../Components/MainContainer.jsx';
+import ContentUnit from '../Components/ContentUnit.jsx';
+import '../styles/routes/about/local.scss';
+import '../styles/routes/about/overwrite/main_container.scss'
 
 function About () {
   // State variables
   const [summary, setSummary] = useState('');
-
-  // Set page background
-  useEffect(() => {
-    document.body.style.backgroundImage = `url('${about.background_image}')`;
-  }, []);
 
   // Get summary text from file
   useEffect(() => {
@@ -22,22 +20,25 @@ function About () {
       .catch((e) => console.error(e));
   }, []);
 
+  // Create content units
+  const contentUnits = [
+    {
+      title: 'Summary',
+      columns: [{ content: summary, id: 'summary-column' }],
+    },
+    {
+      title: 'Gear',
+      columns: [{ content: 'Coming soon...', id: 'gear-column' }],
+    },
+  ];
+
   return (
     <>
-      <div className="about-page-container">
-        <NavBar></NavBar>
-        <div className="about-page-content-container">
-          <div className="summary-title-container">
-            <h2 className="summary-title">Summary</h2>
-          </div>
-          <div className="summary-container">{summary}</div>
-          <div className="gear-title-container">
-            <h2 className="gear-title">Gear</h2>
-          </div>
-          <div className="gear-container">Coming soon...</div>
-          <div className="footer"></div>
-        </div>
-      </div>
+      <NavBar></NavBar>
+      <MainContainer styleSheet={`../styles/routes/about/overwrite/content_unit.scss`} id={'about'}>
+        <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
+        <ContentUnit title={contentUnits[1].title} columns={contentUnits[1].columns}></ContentUnit>
+      </MainContainer>
     </>
   );
 }
