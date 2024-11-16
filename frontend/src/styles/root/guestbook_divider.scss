@@ -6,7 +6,9 @@
 
 $debug: false;
 
-@mixin debug-border {border: solid #ff00c8;}
+@mixin debug-border {
+  border: solid #ff00c8;
+}
 
 .divider {
   color: white;

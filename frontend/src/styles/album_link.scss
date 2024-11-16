@@ -5,7 +5,7 @@
 */
 
 .link-div {
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
 
@@ -14,14 +14,14 @@
   border: solid rgb(0, 0, 0);
   background-size: cover;
 }
-  
+
 .link-div:hover {
   opacity: 0.75;
   .link-caption {
     opacity: 0.75;
   }
 }
-  
+
 .link-caption {
   width: 100%;
   color: #000000;

@@ -1,16 +1,16 @@
-import NavBar from "../Components/NavBar";
-import { useLoaderData } from "react-router-dom";
-import AlbumPlayer from "../Components/album/AlbumPlayer";
-import ArtworkList from "../Components/album/ArtworkList";
-import FileList from "../Components/album/FileList";
+import NavBar from '../Components/NavBar';
+import { useLoaderData } from 'react-router-dom';
+import AlbumPlayer from '../Components/album/AlbumPlayer';
+import ArtworkList from '../Components/album/ArtworkList';
+import FileList from '../Components/album/FileList';
 import React, { useEffect, useState } from 'react';
-import { generatePlaylistHTML, getFiles } from "../js/albums";
+import { generatePlaylistHTML, getFiles } from '../js/albums';
 import { fetchData } from '../js/api';
 import { constants } from '../assets/constants.js';
-import ContentUnit from "../Components/ContentUnit.jsx";
-import MainContainer from "../Components/MainContainer.jsx";
+import ContentUnit from '../Components/ContentUnit.jsx';
+import MainContainer from '../Components/MainContainer.jsx';
 
-export async function loader({params}) {
+export async function loader ({ params }) {
   return params.name;
 }
 
@@ -18,15 +18,15 @@ export async function loader({params}) {
 function Album () {
   // Get album name
   const album_name = useLoaderData();
-  if(album_name == undefined){
-    return <>Loading...</>
+  if (album_name == undefined) {
+    return <>Loading...</>;
   }
 
   // State variables
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [styles, setStyles] = useState(null);
-  
+
   // Dynamically import the album's stylesheet
   const styleSheet = `../styles/album/${album_name}/index.scss`;
   useEffect(() => {
@@ -36,7 +36,7 @@ function Album () {
         setStyles(res);
       } catch (error) {
         // Fallback to the default stylesheet if import fails
-        console.error("Error importing stylesheet in album.jsx: " + error);
+        console.error('Error importing stylesheet in album.jsx: ' + error);
         const defaultStyles = await import('../styles/album/default.scss');
         setStyles(defaultStyles);
       }
@@ -58,15 +58,15 @@ function Album () {
       script.src = '/js/playlist.js';
       script.async = true;
       document.body.appendChild(script);
-        
+
       return () => {
-          document.body.removeChild(script);
+        document.body.removeChild(script);
       };
     }
   }, [loading]);
 
   if (loading) {
-    return (<>Loading...</>);
+    return <>Loading...</>;
   }
 
   // Organize api data
@@ -85,10 +85,10 @@ function Album () {
     {
       title: 'Album Page',
       columns: [
-        {header: 'Tracks', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1'},
-        {header: 'Artwork', content: <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2'},
-        {header: 'Lyric Sheets', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3'},
-        {header: 'Tabs', content: <FileList path={constants.routesPathToPublic + 'tabs/' + album_name + '/'} files={tabs}></FileList>, id: 'column-4'},
+        { header: 'Tracks', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1' },
+        { header: 'Artwork', content: <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2' },
+        { header: 'Lyric Sheets', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3' },
+        { header: 'Tabs', content: <FileList path={constants.routesPathToPublic + 'tabs/' + album_name + '/'} files={tabs}></FileList>, id: 'column-4' },
       ],
     },
   ];
@@ -97,7 +97,7 @@ function Album () {
     <>
       <NavBar></NavBar>
       <MainContainer styleSheet={`../styles/album/content_unit.scss`}>
-        <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit> 
+        <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
       </MainContainer>
     </>
   );

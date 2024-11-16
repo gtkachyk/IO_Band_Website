@@ -1,20 +1,22 @@
 import '../../styles/root/guestbook_message.scss';
 
-function GuestBookMessage ({post}) {
+function GuestBookMessage({ post }) {
   return (
     <>
-      <div className='first-line'>
-        <div className='greeting'>
+      <div className="first-line">
+        <div className="greeting">
           Dearest Band,
-          <br></br><br></br>
+          <br></br>
+          <br></br>
         </div>
-        <div className='date'>
+        <div className="date">
           {post.date} at {post.time}
         </div>
       </div>
-      <div className='message'>
+      <div className="message">
         {post.message}
-        <br></br><br></br>
+        <br></br>
+        <br></br>
         Sincerely,
         <br></br>
         {post.name}

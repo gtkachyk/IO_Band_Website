@@ -1,10 +1,9 @@
-
 /*******************************/
 /******** Debugging code *******/
 /*******************************/
 $debug: false;
 
-@mixin debug-border ($color) {
+@mixin debug-border($color) {
   border: solid $color;
 }
 
@@ -88,8 +87,7 @@ $debug: false;
   // Ensure columns stack on smaller screens
   @media (max-width: 600px) {
     .content-column {
-      flex: 1 1 100%;  // Stack columns vertically
+      flex: 1 1 100%; // Stack columns vertically
     }
   }
 }
-  

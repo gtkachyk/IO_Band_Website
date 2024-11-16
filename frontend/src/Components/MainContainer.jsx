@@ -14,7 +14,7 @@ const MainContainer = ({ children, styleSheet }) => {
         setStyles(res);
       } catch (error) {
         // Fallback to the default stylesheet if import fails
-        console.error("Error importing stylesheet in ContentUnit.jsx: " + error);
+        console.error('Error importing stylesheet in ContentUnit.jsx: ' + error);
         const defaultStyles = await import('../styles/content_unit_default.scss');
         setStyles(defaultStyles);
       }
@@ -22,11 +22,7 @@ const MainContainer = ({ children, styleSheet }) => {
 
     importStyles();
   }, [styleSheet]);
-  return (
-    <div className="main-container">
-      {children}
-    </div>
-  );
+  return <div className="main-container">{children}</div>;
 };
 
 export default MainContainer;

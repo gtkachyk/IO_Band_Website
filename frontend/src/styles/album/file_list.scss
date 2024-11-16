@@ -9,7 +9,7 @@
 /*******************************/
 $debug: false;
 
-@mixin debug-border ($color) {
+@mixin debug-border($color) {
   border: solid $color;
 }
 

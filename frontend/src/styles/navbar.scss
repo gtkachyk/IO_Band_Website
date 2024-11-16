@@ -6,11 +6,21 @@
 
 $nav-bar-debug: false;
 
-@mixin nav-bar-container-debug-border {border: solid #00eeff;}
-@mixin nav-bar-debug-border {border: solid #ff5100;}
-@mixin nav-bar-ul-debug-border {border: solid #e100ff;}
-@mixin nav-bar-li-debug-border {border: solid #2600ff;}
-@mixin nav-bar-a-debug-border {border: solid #00ff6a;}
+@mixin nav-bar-container-debug-border {
+  border: solid #00eeff;
+}
+@mixin nav-bar-debug-border {
+  border: solid #ff5100;
+}
+@mixin nav-bar-ul-debug-border {
+  border: solid #e100ff;
+}
+@mixin nav-bar-li-debug-border {
+  border: solid #2600ff;
+}
+@mixin nav-bar-a-debug-border {
+  border: solid #00ff6a;
+}
 
 .nav-bar-container {
   position: sticky;
@@ -80,6 +90,7 @@ $nav-bar-debug: false;
   background: rgba(255, 255, 255, 0.15);
 }
 
+// prettier-ignore
 a:link, a:visited, a:hover, a:active {
   text-decoration: none;
 }

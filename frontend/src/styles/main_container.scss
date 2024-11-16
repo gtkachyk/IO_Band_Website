@@ -1,6 +1,8 @@
 $main-container-debug: false;
 
-@mixin main-container-debug-border {border: solid #ffffff;}
+@mixin main-container-debug-border {
+  border: solid #ffffff;
+}
 
 $main-container-width: 1400px;
 

@@ -1,11 +1,9 @@
 import parse from 'html-react-parser';
 import '../../styles/album/album_player.scss';
 
-function AlbumPlayer({source_tags, div_tags}) {
-  if (source_tags.length == 0 || div_tags.length == 0){
-    return (
-      <h3 className="album-player-na"> N/A </h3>
-    );
+function AlbumPlayer({ source_tags, div_tags }) {
+  if (source_tags.length == 0 || div_tags.length == 0) {
+    return <h3 className="album-player-na"> N/A </h3>;
   }
 
   /* Code adapted from https://codepen.io/craigstroman/pen/aOyRYx */
@@ -16,12 +14,14 @@ function AlbumPlayer({source_tags, div_tags}) {
           {parse(source_tags)}
           Your browser does not support HTML5 audio.
         </audio>
-  
+
         <div className="player">
           <div className="large-toggle-btn">
-            <i className="large-play-btn"><span className="screen-reader-text">Large toggle button</span></i>
+            <i className="large-play-btn">
+              <span className="screen-reader-text">Large toggle button</span>
+            </i>
           </div>
-  
+
           <div className="info-box">
             <div className="track-info-box">
               <div className="track-title-text"></div>
@@ -40,16 +40,19 @@ function AlbumPlayer({source_tags, div_tags}) {
               </div>
             </div>
           </div>
-  
+
           <div className="controls-box">
-            <i className="previous-track-btn disabled"><span className="screen-reader-text">Previous track button</span></i>&nbsp;
-            <i className="next-track-btn"><span className="screen-reader-text">Next track button</span></i>
+            <i className="previous-track-btn disabled">
+              <span className="screen-reader-text">Previous track button</span>
+            </i>
+            &nbsp;
+            <i className="next-track-btn">
+              <span className="screen-reader-text">Next track button</span>
+            </i>
           </div>
         </div>
-  
-        <div className="play-list">
-          {parse(div_tags)}
-        </div>
+
+        <div className="play-list">{parse(div_tags)}</div>
       </div>
     </>
   );

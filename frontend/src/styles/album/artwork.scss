@@ -14,7 +14,7 @@ $image-size: 100px;
 /*******************************/
 $debug: false;
 
-@mixin debug-border ($color) {
+@mixin debug-border($color) {
   border: solid $color;
 }
 
@@ -33,7 +33,8 @@ $debug: false;
 /*******************************/
 /********** ArtworkList ********/
 /*******************************/
-.art-list { // The width of this is a download link
+.art-list {
+  // The width of this is a download link
   display: grid;
   gap: 1rem;
   justify-content: center;

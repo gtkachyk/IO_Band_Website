@@ -1,9 +1,9 @@
 import '../../styles/root/guestbook_divider.scss';
 
-function GuestBookDivider () {
+function GuestBookDivider() {
   return (
     <>
-      <div className='divider'></div>
+      <div className="divider"></div>
     </>
   );
 }

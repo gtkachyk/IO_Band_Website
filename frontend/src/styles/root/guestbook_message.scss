@@ -6,10 +6,18 @@
 
 $debug: false;
 
-@mixin first-line-debug-border {border: solid #ff0000;}
-@mixin message-debug-border {border: solid #00ff2a;}
-@mixin greeting-debug-border {border: solid #ffffff;}
-@mixin date-debug-border {border: solid #3700ff;}
+@mixin first-line-debug-border {
+  border: solid #ff0000;
+}
+@mixin message-debug-border {
+  border: solid #00ff2a;
+}
+@mixin greeting-debug-border {
+  border: solid #ffffff;
+}
+@mixin date-debug-border {
+  border: solid #3700ff;
+}
 
 $padding: 5px;
 
@@ -48,7 +56,7 @@ $padding: 5px;
     font-size: x-small;
     padding: $padding $padding $padding $padding;
   }
-  
+
   .message {
     font-size: x-small;
   }

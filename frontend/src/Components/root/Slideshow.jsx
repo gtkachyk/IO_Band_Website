@@ -3,13 +3,13 @@ import { startSlideshow, generateSlideshowHTML } from '../../js/slideshow';
 import { useEffect, useRef } from 'react';
 import parse from 'html-react-parser';
 
-function Slideshow () {
-  const initialized = useRef(false) // Prevents hook logic from firing twice if double rendered
+function Slideshow() {
+  const initialized = useRef(false); // Prevents hook logic from firing twice if double rendered
 
   useEffect(() => {
     if (!initialized.current) {
       startSlideshow();
-      initialized.current = true
+      initialized.current = true;
     }
   }, []);
 
@@ -17,9 +17,7 @@ function Slideshow () {
 
   return (
     <>
-      <div className="slideshow-container">
-        {parse(html)}
-      </div>
+      <div className="slideshow-container">{parse(html)}</div>
     </>
   );
 }

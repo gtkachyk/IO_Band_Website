@@ -4,13 +4,14 @@
    Global styles.
 */
 
-@import "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css";
+@import '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css';
 
 html {
   height: 100%;
   box-sizing: border-box;
 }
 
+// prettier-ignore
 *, *::before, *::after {
   box-sizing: inherit;
 }

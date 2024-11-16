@@ -9,14 +9,14 @@
 
 $static-dimensions: 580px;
 $responsive-dimensions: 80vw;
-  
+
 .link-div {
   width: $static-dimensions;
   height: $static-dimensions;
   max-width: $static-dimensions;
   max-height: $static-dimensions;
 }
-  
+
 .link-caption {
   font-size: calc($static-dimensions / 11);
 }

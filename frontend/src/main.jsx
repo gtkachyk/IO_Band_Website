@@ -1,41 +1,38 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import "./styles/index.scss";
-import Root from "./routes/root";
-import Music from "./routes/music"
-import Video from "./routes/video";
-import About from "./routes/about";
-import Album, {loader as albumLoader} from "./routes/album";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './styles/index.scss';
+import Root from './routes/root';
+import Music from './routes/music';
+import Video from './routes/video';
+import About from './routes/about';
+import Album, { loader as albumLoader } from './routes/album';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Root />,
   },
   {
-    path: "music",
+    path: 'music',
     element: <Music />,
   },
   {
-    path: "video",
+    path: 'video',
     element: <Video />,
   },
   {
-    path: "about",
+    path: 'about',
     element: <About />,
   },
   {
-    path: "music/:name",
+    path: 'music/:name',
     element: <Album />,
-    loader: albumLoader
+    loader: albumLoader,
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>

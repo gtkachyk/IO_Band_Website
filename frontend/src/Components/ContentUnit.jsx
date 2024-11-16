@@ -3,7 +3,7 @@
  *
  * A container for organizing related pieces of content inside a MainContainer.
  * ContentUnits consist of an optional header and one or more content columns.
- * 
+ *
  * Props:
  * - `title` (string): Optional. Text to be displayed in the header
  * - `columns` (array of objects): Required. A list of column information:
@@ -11,7 +11,7 @@
  *   - `content` (HTML): Required. HTML to be rendered in the column
  *   - `width` (string): Optional. The width of the column as a percentage. If excluded, each column will have the same width
  *   - `min_width` (integer): Optional. The min-width of the column in px. If excluded, the min-width of the column must be defined in a stylesheet
- * 
+ *
  * Styling:
  * - This component is primarily styled via the `styles/content_unit.scss` stylesheet
  * - The initial size and resizing behavior of the content columns may need to be adjusted to meet the needs of a specific page
@@ -22,14 +22,14 @@
 
 import React, { useEffect } from 'react';
 
-function ContentUnit({title, columns}) {
+function ContentUnit({ title, columns }) {
   // Set the column header heights
   useEffect(() => {
     const setEqualHeights = () => {
       const headers = document.querySelectorAll('.content-container .column-header');
       let maxHeight = 0;
 
-      headers.forEach(header => {
+      headers.forEach((header) => {
         header.style.height = 'auto';
         const headerHeight = header.getBoundingClientRect().height;
         if (headerHeight > maxHeight) {
@@ -37,7 +37,7 @@ function ContentUnit({title, columns}) {
         }
       });
 
-      headers.forEach(header => {
+      headers.forEach((header) => {
         header.style.height = `${maxHeight}px`;
       });
     };
@@ -56,14 +56,9 @@ function ContentUnit({title, columns}) {
       <div className="content-container">
         {columns.map((column, index) => {
           return (
-            <div 
-              key={index} 
-              className="content-column" 
-              id={column.id}>
+            <div key={index} className="content-column" id={column.id}>
               {column.header && <h3 className="column-header">{column.header}</h3>}
-              <div className="column-content">
-                {column.content}
-              </div>
+              <div className="column-content">{column.content}</div>
             </div>
           );
         })}
