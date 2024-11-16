@@ -1,5 +1,5 @@
 import parse from 'html-react-parser';
-import '../../styles/album/album_player.scss';
+import '../../styles/components/album_player.scss';
 
 function AlbumPlayer({ source_tags, div_tags }) {
   if (source_tags.length == 0 || div_tags.length == 0) {

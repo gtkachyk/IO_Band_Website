@@ -1,4 +1,4 @@
-import '../../styles/root/guestbook_message.scss';
+import '../../styles/components/guestbook_message.scss';
 
 function GuestBookMessage({ post }) {
   return (

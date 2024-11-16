@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faItunesNote, faSoundcloud, faTiktok, faSpotify, faBandcamp } from '@fortawesome/free-brands-svg-icons';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/root/social_media_bar.scss';
+import '../../styles/components/social_media_bar.scss';
 
 function SocialMediaBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);

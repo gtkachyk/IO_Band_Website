@@ -1,4 +1,4 @@
-import '../../styles/root/guestbook_divider.scss';
+import '../../styles/components/guestbook_divider.scss';
 
 function GuestBookDivider() {
   return (

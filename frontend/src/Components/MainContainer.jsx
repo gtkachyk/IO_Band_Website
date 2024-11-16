@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/main_container.scss';
-import '../styles/content_unit.scss';
+import '../styles/components/main_container.scss';
+import '../styles/components/content_unit.scss';
 
 const MainContainer = ({ children, styleSheet }) => {
   // State to hold the dynamically imported stylesheet
@@ -15,7 +15,7 @@ const MainContainer = ({ children, styleSheet }) => {
       } catch (error) {
         // Fallback to the default stylesheet if import fails
         console.error('Error importing stylesheet in ContentUnit.jsx: ' + error);
-        const defaultStyles = await import('../styles/content_unit_default.scss');
+        const defaultStyles = await import('../styles/components/overwrite/content_unit_default.scss');
         setStyles(defaultStyles);
       }
     };

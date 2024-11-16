@@ -14,7 +14,7 @@
 import ReactDOMServer from 'react-dom/server';
 import parse from 'html-react-parser';
 import React from 'react';
-import '../../styles/album/file_list.scss';
+import '../../styles/components/file_list.scss';
 
 function FileList({ path, files }) {
   if (files.length == 0) {

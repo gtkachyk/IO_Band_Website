@@ -14,7 +14,7 @@
 import ArtworkListElement from './ArtworkListElement';
 import ReactDOMServer from 'react-dom/server';
 import parse from 'html-react-parser';
-import '../../styles/album/artwork.scss';
+import '../../styles/components/artwork.scss';
 
 function ArtworkList({ art_path, downloadable_artwork }) {
   if (downloadable_artwork.length <= 2) {

@@ -6,8 +6,8 @@ import ContentUnit from '../Components/ContentUnit.jsx';
 import MainContainer from '../Components/MainContainer.jsx';
 import AlbumLink from '../Components/AlbumLink.jsx';
 import React, { useEffect, useState } from 'react';
-import '../styles/root/root.scss';
-import '../styles/root/embedded_tiktok.scss';
+import '../styles/routes/root/local.scss';
+import '../styles/routes/root/embedded_tiktok.scss';
 import { fetchData } from '../js/api';
 import { TikTokEmbed } from 'react-social-media-embed';
 import { home } from '../assets/home.js';
@@ -33,7 +33,7 @@ function Root () {
     {
       title: 'Intentional Offence',
       columns: [
-        { header: "Long album name: 'II 0 II III' - Out Now!", content: <AlbumLink title={featured_album.display_name} image={home.featured_audio_media.image} link={home.featured_audio_media.link} styleSheet={`../styles/root/album_link.scss`}></AlbumLink>, id: 'featured-column-1' },
+        { header: "'II 0 II III' - Out Now!", content: <AlbumLink title={featured_album.display_name} image={home.featured_audio_media.image} link={home.featured_audio_media.link} styleSheet={`../styles/routes/root/overwrite/album_link.scss`}></AlbumLink>, id: 'featured-column-1' },
         { header: 'From the Network', content: <TikTokEmbed className="featured-tiktok" url={home.featured_social_media.tiktok} />, id: 'featured-column-2' },
       ],
     },
@@ -50,7 +50,7 @@ function Root () {
     <>
       <NavBar></NavBar>
       <SocialMediaBar></SocialMediaBar>
-      <MainContainer styleSheet={`../styles/root/content_unit.scss`}>
+      <MainContainer styleSheet={`../styles/routes/root/overwrite/content_unit.scss`}>
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
         <ContentUnit title={contentUnits[1].title} columns={contentUnits[1].columns}></ContentUnit>
         <ContentUnit title={contentUnits[2].title} columns={contentUnits[2].columns}></ContentUnit>

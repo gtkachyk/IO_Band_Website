@@ -28,7 +28,7 @@ function Album () {
   const [styles, setStyles] = useState(null);
 
   // Dynamically import the album's stylesheet
-  const styleSheet = `../styles/album/${album_name}/index.scss`;
+  const styleSheet = `../styles/routes/album/${album_name}/local.scss`;
   useEffect(() => {
     const importStyles = async () => {
       try {
@@ -37,7 +37,7 @@ function Album () {
       } catch (error) {
         // Fallback to the default stylesheet if import fails
         console.error('Error importing stylesheet in album.jsx: ' + error);
-        const defaultStyles = await import('../styles/album/default.scss');
+        const defaultStyles = await import('../styles/routes/album/local.scss');
         setStyles(defaultStyles);
       }
     };
@@ -87,7 +87,7 @@ function Album () {
       columns: [
         { header: 'Tracks', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1' },
         { header: 'Artwork', content: <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2' },
-        { header: 'Lyric Sheets', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3' },
+        { header: 'Lyrics', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3' },
         { header: 'Tabs', content: <FileList path={constants.routesPathToPublic + 'tabs/' + album_name + '/'} files={tabs}></FileList>, id: 'column-4' },
       ],
     },
@@ -96,7 +96,7 @@ function Album () {
   return (
     <>
       <NavBar></NavBar>
-      <MainContainer styleSheet={`../styles/album/content_unit.scss`}>
+      <MainContainer styleSheet={`../styles/routes/album/overwrite/content_unit.scss`}>
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
       </MainContainer>
     </>

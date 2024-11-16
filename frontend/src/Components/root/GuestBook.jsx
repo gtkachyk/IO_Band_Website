@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import '../../styles/root/guestbook.scss';
+import '../../styles/components/guestbook.scss';
 import { v4 as uuidv4 } from 'uuid';
 import { fetchData, postGuestBookEntry } from '../../js/api';
 import GuestBookMessage from './GuestBookMessage';

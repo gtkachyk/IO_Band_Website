@@ -1,6 +1,6 @@
 import NavBar from '../Components/NavBar';
 import React, { useEffect } from 'react';
-import '../styles/video.scss';
+import '../styles/routes/video/local.scss';
 import { video } from '../assets/video.js';
 
 function Video () {

@@ -1,4 +1,4 @@
-import '../../styles/root/slideshow.scss';
+import '../../styles/components/slideshow.scss';
 import { startSlideshow, generateSlideshowHTML } from '../../js/slideshow';
 import { useEffect, useRef } from 'react';
 import parse from 'html-react-parser';

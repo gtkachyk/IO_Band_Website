@@ -1,4 +1,4 @@
-import '../styles/album_link.scss';
+import '../styles/components/album_link.scss';
 
 function AlbumLink({ title, image, link, styleSheet }) {
   // Import scss for this album link
@@ -8,7 +8,7 @@ function AlbumLink({ title, image, link, styleSheet }) {
       styles = res;
     })
     .catch((error) => {
-      import(`../styles/album_link_default.scss`).then((res) => {
+      import(`../styles/components/overwrite/album_link_default.scss`).then((res) => {
         styles = res;
       });
     });

@@ -1,6 +1,6 @@
 import NavBar from '../Components/NavBar';
 import React, { useState, useEffect } from 'react';
-import '../styles/about.scss';
+import '../styles/routes/about/local.scss';
 import { about } from '../assets/about.js';
 
 function About () {
