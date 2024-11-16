@@ -1,15 +1,12 @@
 /* =============================================
    Home AlbumLink Styles
    =============================================
-   Styles for the home page's AlbumLink.
-   The album link should be styled to meet the following requirements:
-    - When aligned horizontally with the featured social media post, the album link should match the post's height
-    - When stacked vertically with the featured social media post, the album link should shrink to stay within its content container
+   Styles for the music page's AlbumLink.
 */
 
-$static-dimensions: 580px;
+$static-dimensions: 450px;
 $responsive-dimensions: 80vw;
-  
+
 .link-div {
   width: $static-dimensions;
   height: $static-dimensions;

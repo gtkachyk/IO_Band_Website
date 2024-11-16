@@ -1,11 +1,12 @@
 import NavBar from "../Components/NavBar";
-import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
-import '../styles/music.scss';
+import '../styles/music/local.scss';
 import { fetchData } from '../js/api';
 import { music } from '../assets/music.js';
 import { constants } from '../assets/constants.js';
-import parse from 'html-react-parser';
+import ContentUnit from "../Components/ContentUnit.jsx";
+import MainContainer from "../Components/MainContainer.jsx";
+import AlbumLink from "../Components/AlbumLink.jsx";
 
 function Music() {
     // Set page background
@@ -25,46 +26,24 @@ function Music() {
     }
     const albums = data[0];
 
-    // Needed to make the album links align vertically when there are an odd number of albums
-    var invisibleElementHtml = ``;
-    if (albums.length % 2 !== 0) {
-        invisibleElementHtml = `
-        <li class="invisible-element">
-            <a href="#">
-                <img src="${constants.routesPathToPublic}images/invisible_album_link_image_for_debugging_only.jpg" alt="Invisible Album" />
-                <h2 class="album-link-h2">This should never be seen</h2>
-            </a>
-        </li>`;
+    // Create content units
+    const contentUnits = [
+      {
+        columns: [],
+      },
+    ];
+
+    for (var i = 0; i < albums.length; i++) {
+      contentUnits[0].columns.push({content: <AlbumLink title={albums[i].display_name} image={constants.routesPathToPublic + 'images/albums/' + albums[i].name + '/music_link.jpg'} link={constants.websiteLink + 'music/' + albums[i].name} styleSheet={`../styles/music/album_link.scss`}></AlbumLink>, id: 'link-column'});
     }
 
     return (
-        <>
-            <div className="music-page-container">
-                <NavBar></NavBar>
-                <div id="album-links">
-                    <h1>Albums</h1> {/*This header is invisible and only exists to push the album links down past the nav bar.*/}
-                    <nav className="album-links-nav">
-                        {albums.length ? (
-                            <ul>
-                                {albums.map((album) => (
-                                    <li key={album.name}>
-                                        <Link reloadDocument to={`${album.name}`}>
-                                            <img src = {constants.routesPathToPublic + 'images/albums/' + album.name + '/music_link.jpg'}></img>
-                                            <h2 className="album-link-h2">{album.display_name}</h2>
-                                        </Link>
-                                    </li>
-                                ))}
-                                {parse(invisibleElementHtml)}
-                            </ul>
-                        ) : (
-                            <p>
-                                <i>No albums</i>
-                            </p>
-                        )}
-                    </nav>
-                </div>
-            </div>
-        </>
+      <>
+        <NavBar></NavBar>
+        <MainContainer styleSheet={`../styles/music/content_unit.scss`}>
+          <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
+        </MainContainer>
+      </>
     );
 }
 

@@ -48,16 +48,6 @@ function Root() {
           {header: 'Grotesque Beings', content: <Slideshow></Slideshow>, id: 'grotesque-beings-column'},
         ],
       },
-      // Music page example
-      {
-        title: 'Albums Page',
-        columns: [
-          { content: '*Insert album link*', width: '50%' },
-          { content: '*Insert album link*', width: '50%' },
-          { content: '*Insert album link*', width: '50%' },
-          { content: '*Insert album link*', width: '50%' },
-        ],
-      },
     ];
 
     return (
@@ -68,7 +58,6 @@ function Root() {
           <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
           <ContentUnit title={contentUnits[1].title} columns={contentUnits[1].columns}></ContentUnit>
           <ContentUnit title={contentUnits[2].title} columns={contentUnits[2].columns}></ContentUnit>
-          <ContentUnit title={contentUnits[3].title} columns={contentUnits[3].columns}></ContentUnit>
         </MainContainer>
       </>
     );
