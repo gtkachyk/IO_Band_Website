@@ -1,0 +1,71 @@
+/* =============================================
+   Modifiable ContentUnit Styles
+   =============================================
+   A template for implementing additional ContentUnit styles.
+   This file should not be used to style a ContentUnit directly.
+   Instead, copy it into styles/your-page and rename it to 'content_unit.scss'.
+*/
+
+// Variables
+$youtube-column-width: 50%;
+$youtube-column-min-width: 650px;
+
+// Unit title styles
+.unit-title {
+  color: #1eff00;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+}
+
+// Shared column styles
+.column-header {
+  color: rgb(240, 240, 240);
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  letter-spacing: 10px;
+  font-size: 25px;
+  text-shadow: 1px 1px #47474786;
+}
+
+.content-column {
+  overflow: hidden;
+}
+
+// Column specific styles
+#youtube-column {
+  width: $youtube-column-width;
+  min-width: $youtube-column-min-width;
+  flex: 1 1 calc($youtube-column-width - 1rem);
+}
+
+// Media queries
+@media (max-width: 1385px) {
+  #youtube-column {
+    min-width: 550px;
+  }
+}
+
+@media (max-width: 1180px) {
+  #youtube-column {
+    min-width: 650px;
+  }
+}
+
+@media (max-width: 680px) {
+  #youtube-column {
+    min-width: 550px;
+  }
+}
+
+@media (max-width: 580px) {
+  #youtube-column {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 320px) {
+  #youtube-column {
+    min-width: 250px;
+  }
+}

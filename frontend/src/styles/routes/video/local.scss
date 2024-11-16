@@ -1,81 +1,40 @@
-$video-page-debug: false;
+/* =============================================
+   Video styles
+   =============================================
+   Styles the video page.
+*/
 
-@mixin video-page-container-debug-border {
-  border: solid #ffffff;
-}
-@mixin video-table-container-debug-border {
-  border: solid #fbff00;
-}
-@mixin video-table-debug-border {
-  border: solid #ff5100;
-}
-@mixin video-table-row-debug-border {
-  border: solid green;
-}
-@mixin video-left-col-debug-border {
-  border: solid #e100ff;
-}
-@mixin video-right-col-debug-border {
-  border: solid #2600ff;
-}
+/**********************/
+/***** Background *****/
+/**********************/
 
-$main-container-width: 1400px;
+$background-directory: '../public/images/backgrounds/default';
 
-.video-page-container {
+body {
+  background-image: url($background-directory + '/large.jpg');
   background-size: cover;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  overflow: visible;
-  display: flex;
-  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
-  @if $video-page-debug {
-    @include video-page-container-debug-border;
+@media (max-width: 1280px) {
+  body {
+    background-image: url($background-directory + '/medium.jpg');
+    background-attachment: fixed;
   }
 }
 
-.video-table-container {
-  background-color: #000000;
-  position: relative;
-  display: inline-block;
-  height: fit-content;
-  width: $main-container-width;
-
-  @if $video-page-debug {
-    @include video-table-container-debug-border;
+@media (max-width: 640px) {
+  body {
+    background-image: url($background-directory + '/small.jpg');
+    background-attachment: fixed;
   }
 }
 
-.video-table {
-  padding: 110px 15px;
-  min-width: 100%;
-  max-width: 100%;
-  text-align: center;
-
-  @if $video-page-debug {
-    @include video-table-debug-border;
-  }
-}
-
-.video-table-row {
-  @if $video-page-debug {
-    @include video-table-row-debug-border;
-  }
-}
-
-.video-left-col {
-  padding-right: 10px;
-
-  @if $video-page-debug {
-    @include video-left-col-debug-border;
-  }
-}
-
-.video-right-col {
-  padding-left: 10px;
-
-  @if $video-page-debug {
-    @include video-right-col-debug-border;
+@media (min-width: 1921px) {
+  body {
+    background-image: url($background-directory + '/extra_large.jpg');
+    background-attachment: fixed;
   }
 }
