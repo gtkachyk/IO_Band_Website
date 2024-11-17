@@ -15,28 +15,9 @@ $link-column-min-width: 450px;
   width: 85%;
 }
 
-// Unit title styles
-.unit-title {
-  color: #1eff00;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-}
-
 // Shared column styles
-.column-header {
-  color: rgb(240, 240, 240);
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-  font-size: 25px;
-  text-shadow: 1px 1px #47474786;
-}
-
 .content-column {
-  overflow: hidden;
   padding-bottom: 25px;
-  // background-color: #94d300;
 }
 
 // Column specific styles

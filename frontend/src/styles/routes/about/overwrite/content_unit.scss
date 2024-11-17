@@ -6,26 +6,14 @@
    Instead, copy it into styles/your-page and rename it to 'content_unit.scss'.
 */
 
+// Imports
+@import '../../../fonts.scss';
+
 // Variables
 $summary-column-width: 100%;
 
-// Unit title styles
-.unit-title {
-  color: #4d0505;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-}
-
-// Shared column styles
-.content-column {
-  overflow: hidden;
-}
-
 .column-content {
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 2rem;
+  @include about;
 }
 
 // Column specific styles
@@ -42,8 +30,6 @@ $summary-column-width: 100%;
 // Media queries
 @media (max-width: 485px) {
   .column-content {
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5rem;
+    font-size: 20px;
   }
 }

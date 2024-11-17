@@ -21,6 +21,7 @@
  */
 
 import React, { useEffect } from 'react';
+import parse from 'html-react-parser';
 
 function ContentUnit({ title, columns }) {
   // Set the column header heights
@@ -57,7 +58,7 @@ function ContentUnit({ title, columns }) {
         {columns.map((column, index) => {
           return (
             <div key={index} className="content-column" id={column.id}>
-              {column.header && <h3 className="column-header">{column.header}</h3>}
+              {column.header && <h3 lang='en' className="column-header">{parse(column.header)}</h3>}
               <div className="column-content">{column.content}</div>
             </div>
           );

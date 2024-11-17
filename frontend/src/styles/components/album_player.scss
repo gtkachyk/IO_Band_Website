@@ -72,45 +72,36 @@ $progress-box-debug: false;
   }
 }
 
-/* Reusable, toolbox kind of class */
 .screen-reader-text {
   position: absolute;
   top: -9999px;
   left: -9999px;
 }
 
-.disabled {
-  color: #666;
-  cursor: default;
-}
-
-.show {
-  display: inline-block !important;
-}
-
 .container {
   display: flex;
   flex-direction: column;
-  font-family: arial, helvetica, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1em;
   min-width: 100%;
   max-width: 100%;
+  gap: 10px;
 
   .player {
     display: flex;
     flex-direction: row;
 
     .large-toggle-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 2px;
-      float: left;
       font-size: 1.5em;
       height: 50px;
       margin: 0 10px 0 0;
-      padding: 5px 0 0 0;
-      text-align: center;
-      vertical-align: bottom;
       min-width: 54px;
       border: solid rgb(255, 255, 255);
+      border-width: 2px;
       color: white;
 
       .large-play-btn {
@@ -120,9 +111,7 @@ $progress-box-debug: false;
         }
 
         cursor: pointer;
-        display: inline-block;
-        position: relative;
-        top: -27%;
+        width: 100%;
       }
 
       .large-pause-btn {
@@ -132,9 +121,7 @@ $progress-box-debug: false;
         }
 
         cursor: pointer;
-        display: inline-block;
-        position: relative;
-        top: -27%;
+        width: 100%;
       }
     }
 
@@ -143,20 +130,23 @@ $progress-box-debug: false;
       flex-direction: column;
       justify-content: flex-end;
       width: 100%;
+      text-wrap: nowrap;
 
       .track-info-box {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
-        font-size: 12px;
+        font-size: 14px;
         margin: 0 0 6px 0;
         visibility: hidden;
 
         .track-title-text {
+          color: white;
         }
 
         .audio-time {
           padding: 0 0 0 5px;
+          color: white;
         }
 
         @include clearfix();
@@ -213,6 +203,7 @@ $progress-box-debug: false;
           font: 1em 'FontAwesome';
         }
         cursor: pointer;
+        margin-bottom: -8px;
       }
 
       .next-track-btn {
@@ -223,6 +214,7 @@ $progress-box-debug: false;
           font: 1em 'FontAwesome';
         }
         cursor: pointer;
+        margin-bottom: -8px;
       }
     }
 
@@ -230,13 +222,15 @@ $progress-box-debug: false;
   }
 
   .play-list {
-    display: block;
-    margin: 0 auto 20px auto;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     overflow-x: visible;
+    gap: 4px;
 
     .play-list-row {
-      display: inline-block;
+      // display: inline-block;
+      display: flex;
       width: 100%;
       white-space: nowrap;
 
@@ -250,17 +244,16 @@ $progress-box-debug: false;
       }
 
       .small-toggle-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        width: 20px;
         border-radius: 2px;
         cursor: pointer;
-        display: inline-block;
-        height: 20px;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-        text-align: center;
-        vertical-align: middle;
-        width: 20px;
         color: white;
+        border: solid white;
+        border-width: 1px;
 
         .small-play-btn {
           &:before {
@@ -268,8 +261,6 @@ $progress-box-debug: false;
             font: 0.85em 'FontAwesome';
           }
           display: inline-block;
-          position: relative;
-          top: -15%;
         }
 
         .small-pause-btn {
@@ -278,8 +269,6 @@ $progress-box-debug: false;
             font: 0.85em 'FontAwesome';
           }
           display: inline-block;
-          position: relative;
-          top: -15%;
         }
       }
 
@@ -341,6 +330,10 @@ $progress-box-debug: false;
   .container .player .progress-box {
     min-width: 180px;
   }
+
+  .container .player .info-box .track-info-box {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 350px) {
@@ -358,5 +351,7 @@ $progress-box-debug: false;
 .album-player-na {
   margin-top: 0px;
   width: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: lighter;
   color: white;
 }

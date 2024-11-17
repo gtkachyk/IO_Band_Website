@@ -83,11 +83,11 @@ function Album () {
 
   const contentUnits = [
     {
-      title: 'Album Page',
+      title: album.display_name,
       columns: [
-        { header: 'Tracks', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1' },
-        { header: 'Artwork', content: <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2' },
-        { header: 'Lyrics', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3' },
+        { header: 'Tra&shy;c&shy;k&shy;s', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1' },
+        { header: 'Art&shy;w&shy;o&shy;r&shy;k', content: <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2' },
+        { header: 'Lyr&shy;i&shy;c&shy;s', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3' },
         { header: 'Tabs', content: <FileList path={constants.routesPathToPublic + 'tabs/' + album_name + '/'} files={tabs}></FileList>, id: 'column-4' },
       ],
     },

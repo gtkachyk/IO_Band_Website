@@ -4,6 +4,8 @@
    Styles for the home page's ContentUnit.
 */
 
+@import '../../../fonts.scss';
+
 // Variables
 $featured-column-1-width: 55%;
 $featured-column-2-width: 45%;
@@ -11,24 +13,7 @@ $column-min-width: 490px;
 $guestbook-column-width: 100%;
 $grotesque-beings-column-width: 100%;
 
-// Unit title styles
-.unit-title {
-  color: #4d0505;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-}
-
 // Shared column styles
-.column-header {
-  color: rgb(240, 240, 240);
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-  font-size: 25px;
-  text-shadow: 1px 1px #47474786;
-}
-
 .content-column {
   min-width: $column-min-width;
   overflow: visible; // Sometimes TikTok embeds need to overflow on very narrow devices

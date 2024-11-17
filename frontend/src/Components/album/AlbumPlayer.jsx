@@ -26,7 +26,7 @@ function AlbumPlayer({ source_tags, div_tags }) {
             <div className="track-info-box">
               <div className="track-title-text"></div>
               <div className="audio-time">
-                <span className="current-time">00:00</span> /&nbsp;
+                <span className="current-time">&nbsp;00:00</span> /&nbsp;
                 <span className="duration">00:00</span>
               </div>
             </div>

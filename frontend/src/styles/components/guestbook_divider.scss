@@ -12,7 +12,8 @@ $debug: false;
 
 .divider {
   color: white;
-  border: solid rgb(0, 0, 0);
+  border: solid rgb(12, 12, 12);
+  border-width: 2px;
   min-width: 100%;
 
   @if $debug {

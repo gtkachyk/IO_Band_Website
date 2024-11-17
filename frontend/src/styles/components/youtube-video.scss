@@ -1,11 +1,11 @@
 .youtube-video {
-  width: 650px;
+  width: 700px;
   height: 375px;
 }
 
-@media (max-width: 1385px) {
+@media (max-width: 1500px) {
   .youtube-video {
-    width: 550px;
+    width: 650px;
   }
 }
 
@@ -23,11 +23,11 @@
 
 @media (max-width: 580px) {
   .youtube-video {
-    width: 250px;
+    width: 350px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   .youtube-video {
     width: 240px;
   }

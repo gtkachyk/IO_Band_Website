@@ -9,11 +9,6 @@ import MainContainer from '../Components/MainContainer.jsx';
 import AlbumLink from '../Components/AlbumLink.jsx';
 
 function Music () {
-  // Set page background
-  useEffect(() => {
-    document.body.style.backgroundImage = `url('${music.background_image}')`;
-  }, []);
-
   // State variables
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

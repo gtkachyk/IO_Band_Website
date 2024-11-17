@@ -10,28 +10,6 @@ $large-column-min-width: 435px;
 $small-column-width: 20%;
 $small-column-min-width: 150px;
 
-// Unit title styles
-.unit-title {
-  color: #5900ff;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-}
-
-// Shared column styles
-.column-header {
-  color: rgb(240, 240, 240);
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  letter-spacing: 10px;
-  font-size: 25px;
-  text-shadow: 1px 1px #47474786;
-}
-
-.content-column {
-  overflow: hidden;
-}
-
 // Column specific styles
 #column-1 {
   width: $large-column-width;

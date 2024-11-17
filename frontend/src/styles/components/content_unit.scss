@@ -1,3 +1,6 @@
+// Imports
+@import '../fonts.scss';
+
 /*******************************/
 /******** Debugging code *******/
 /*******************************/
@@ -34,10 +37,11 @@ $debug: false;
   box-sizing: border-box;
 
   .unit-title {
-    font-size: 2rem;
     margin-bottom: 1rem;
     margin-top: 0;
     text-align: center;
+    @include default-font;
+    @include content-unit-headers;
   }
 
   .content-container {
@@ -65,6 +69,8 @@ $debug: false;
         justify-content: center; // Center the text horizontally
         min-height: 3rem; // Set a reasonable minimum height to avoid wrapping pushing content
         margin-top: 0;
+        @include default-font;
+        @include content-unit-column-headers;
       }
 
       .column-content {
@@ -78,6 +84,7 @@ $debug: false;
         word-wrap: break-word;
         overflow-wrap: break-word;
         white-space: normal;
+        @include content-unit-content;
       }
     }
   }

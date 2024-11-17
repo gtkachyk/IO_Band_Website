@@ -1,0 +1,41 @@
+/* =============================================
+   Demos Album Styles
+   =============================================
+   Styles the 'Demos' album page
+*/
+
+/**********************/
+/***** Background *****/
+/**********************/
+
+$album: 'demos';
+$background-directory: '../public/images/albums/' + $album + '/backgrounds/current';
+
+body {
+  background-image: url($background-directory + '/large.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (max-width: 1280px) {
+  body {
+    background-image: url($background-directory + '/medium.jpg');
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    background-image: url($background-directory + '/small.jpg');
+    background-attachment: fixed;
+  }
+}
+
+@media (min-width: 1921px) {
+  body {
+    background-image: url($background-directory + '/extra_large.jpg');
+    background-attachment: fixed;
+  }
+}

@@ -1,0 +1,44 @@
+$default-white: #f5f5f5;
+$default-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+@mixin default-font {
+  font-family: $default-font;
+  color: $default-white;
+  text-shadow: 1px 1px #47474786;
+  letter-spacing: 10px;
+}
+
+@mixin navbar {
+  font-family: $default-font;
+  color: $default-white;
+  font-size: xx-large;
+  font-weight: lighter;
+}
+
+@mixin content-unit-headers {
+  font-size: 40px;
+}
+
+@mixin content-unit-column-headers {
+  font-style: italic;
+  font-size: 25px;
+}
+
+@mixin content-unit-content {
+  color: $default-white;
+  font-family: $default-font;
+  font-weight: lighter;
+}
+
+@mixin guestbook {
+  color: $default-white;
+  font-size: 16px;
+}
+
+@mixin album-na {
+  font-weight: lighter;
+}
+
+@mixin about {
+  font-size: 25px;
+}
