@@ -12,5 +12,5 @@ export const home = {
     instagram: 'https://www.instagram.com/p/CrAjRCuu3Sr/',
   },
   slideshow_images: [constants.assetsPathToPublic + 'images/slideshow/grotesque_being_r_small.jpg', constants.assetsPathToPublic + 'images/slideshow/grotesque_being_g_small.jpg'],
-  main_container_styles: `../styles/routes/root/overwrite/content_unit.scss`,
+  main_container_styles: '/styles/routes/root/overwrite/content_unit.scss',
 };
