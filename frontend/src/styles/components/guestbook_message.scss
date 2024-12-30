@@ -27,7 +27,7 @@ $padding: 10px;
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  padding: $padding calc($padding * 2) $padding $padding;
+  padding: calc($padding/2) calc($padding * 2) 0 $padding;
 
   @if $debug {
     @include first-line-debug-border;
@@ -79,7 +79,7 @@ $padding: 10px;
 
 .message {
   width: 100%;
-  padding: $padding $padding $padding $padding;
+  padding: 0 $padding $padding $padding;
   @if $debug {
     @include message-debug-border;
   }

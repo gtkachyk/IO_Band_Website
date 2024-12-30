@@ -6,14 +6,13 @@ function GuestBookMessage({ post }) {
       <div className="first-line">
         <div className="greeting">
           Dearest Band,
-          <br></br>
-          <br></br>
         </div>
         <div className="date">
           {post.date} at {post.time}
         </div>
       </div>
       <div className="message">
+        <br></br>
         {post.message}
         <br></br>
         <br></br>
