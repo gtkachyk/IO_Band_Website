@@ -38,6 +38,13 @@ $small-column-min-width: 150px;
 // Media queries
 @media (max-width: 485px) {
   #column-1 {
+    // Don't allow the album player column to get too small too quickly or else the vertically aligned column below might horizontally align itself with the album player column
+    min-width: 375px;
+  }
+}
+
+@media (max-width: 400px) {
+  #column-1 {
     min-width: 275px;
   }
 }

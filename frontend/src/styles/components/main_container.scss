@@ -18,6 +18,7 @@ $main-container-width: 1200px;
   margin: 0 auto; // Center the container
   box-sizing: border-box;
   background-color: #80808067;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 1rem; // Adjust padding for smaller screens

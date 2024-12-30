@@ -28,7 +28,7 @@ img {
 }
 
 .slideshow-container {
-  width: 100%;
+  width: 90%;
 
   @if $debug {
     @include container-debug-border;

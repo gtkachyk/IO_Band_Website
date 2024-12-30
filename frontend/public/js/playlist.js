@@ -91,12 +91,14 @@ var audioPlayer = function () {
    *
    * @param e The event object
    **/
-  var touchStart = function(e) {
-    e.preventDefault();
-
-    window.addEventListener("touchmove", moveProgressIndicator);
-    audio.removeEventListener("timeupdate", trackTimeChanged, false);
-    playAHead = true;
+  var touchStart = function (e) {
+    // Prevent default if event is inside playlist
+    if (elements.progressBar.contains(e.target) || elements.trackInfoBox.contains(e.target)) {
+      e.preventDefault();
+      window.addEventListener("touchmove", moveProgressIndicator);
+      audio.removeEventListener("timeupdate", trackTimeChanged, false);
+      playAHead = true;
+    }
   };
 
   /**
@@ -104,16 +106,18 @@ var audioPlayer = function () {
    *
    * @param e The event object
    **/
-  var touchEnd = function(e) {
-    e.preventDefault();
-
-    if (playAHead === true) {
-      var duration = parseFloat(audio.duration);
-      var progressIndicatorClick = parseFloat(handleProgressIndicatorClick(e));
-      window.removeEventListener("touchmove", moveProgressIndicator);
-      audio.currentTime = duration * progressIndicatorClick;
-      audio.addEventListener("timeupdate", trackTimeChanged, false);
-      playAHead = false;
+  var touchEnd = function (e) {
+    // Prevent default if event is inside playlist
+    if (elements.progressBar.contains(e.target) || elements.trackInfoBox.contains(e.target)) {
+      e.preventDefault();
+      if (playAHead === true) {
+        var duration = parseFloat(audio.duration);
+        var progressIndicatorClick = parseFloat(handleProgressIndicatorClick(e));
+        window.removeEventListener("touchmove", moveProgressIndicator);
+        audio.currentTime = duration * progressIndicatorClick;
+        audio.addEventListener("timeupdate", trackTimeChanged, false);
+        playAHead = false;
+      }
     }
   };
   

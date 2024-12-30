@@ -5,8 +5,15 @@
 */
 
 .featured-tiktok {
-  width: 329px;
+  max-width: 329px;
+  width: 92%;
   height: 580px;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 8px;
 }
+
+// @media (min-width: 345px) {
+//   .featured-tiktok {
+//     min-width: 329px;
+//   }
+// }

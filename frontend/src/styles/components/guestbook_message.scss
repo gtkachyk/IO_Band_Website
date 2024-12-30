@@ -19,7 +19,7 @@ $debug: false;
   border: solid #3700ff;
 }
 
-$padding: 5px;
+$padding: 10px;
 
 .first-line {
   display: flex;
@@ -27,7 +27,7 @@ $padding: 5px;
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  padding: $padding calc($padding * 4) $padding $padding;
+  padding: $padding calc($padding * 2) $padding $padding;
 
   @if $debug {
     @include first-line-debug-border;
@@ -40,7 +40,7 @@ $padding: 5px;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 450px) {
   .first-line {
     font-size: small;
     padding: $padding $padding $padding $padding;
@@ -51,14 +51,14 @@ $padding: 5px;
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 380px) {
   .first-line {
-    font-size: x-small;
+    font-size: 11px;
     padding: $padding $padding $padding $padding;
   }
 
   .message {
-    font-size: x-small;
+    font-size: 11px;
   }
 }
 
@@ -79,7 +79,7 @@ $padding: 5px;
 
 .message {
   width: 100%;
-  padding: $padding $padding calc($padding * 2) $padding;
+  padding: $padding $padding $padding $padding;
   @if $debug {
     @include message-debug-border;
   }
