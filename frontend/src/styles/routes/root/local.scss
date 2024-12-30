@@ -8,7 +8,7 @@
 /***** Background *****/
 /**********************/
 
-$background-directory: '/public/images/backgrounds/default';
+$background-directory: '../../public/images/backgrounds/default';
 
 body {
   background-image: url($background-directory + '/large.jpg');
