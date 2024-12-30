@@ -26,25 +26,11 @@ function Album () {
   // State variables
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [styles, setStyles] = useState(null);
 
-  // Dynamically import the album's stylesheet
-  const styleSheet = `../styles/routes/album/${album_name}/local.scss`;
-  useEffect(() => {
-    const importStyles = async () => {
-      try {
-        const res = await import(`${styleSheet}`);
-        setStyles(res);
-      } catch (error) {
-        // Fallback to the default stylesheet if import fails
-        console.error('Error importing stylesheet in album.jsx: ' + error);
-        const defaultStyles = await import('../styles/routes/album/local.scss');
-        setStyles(defaultStyles);
-      }
-    };
-
-    importStyles();
-  }, [styleSheet]);
+  // Import scss for this album
+  let styles;
+  const album_scss = `../styles/routes/album/${album_name}/local.scss`;
+  import(album_scss).then((res) => {styles = res;}).catch((error) => {import(`../styles/routes/album/local.scss`).then((res) => {styles = res;})});
 
   // Get album and all songs belonging to album
   useEffect(() => {
