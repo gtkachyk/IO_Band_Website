@@ -15,7 +15,7 @@ export async function loader ({ params }) {
   return params.name;
 }
 
-// TODO: add release date in bottom left of page
+// TODO: add release date
 function Album () {
   // Get album name
   const album_name = useLoaderData();
@@ -26,11 +26,35 @@ function Album () {
   // State variables
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [styles, setStyles] = useState(null);
 
-  // Import scss for this album
-  let styles;
-  const album_scss = `../styles/routes/album/${album_name}/local.scss`;
-  import(album_scss).then((res) => {styles = res;}).catch((error) => {import(`../styles/routes/album/local.scss`).then((res) => {styles = res;})});
+  // All known stylesheets
+  const all_styles = {
+    into_the_grave: () => import(`../styles/routes/album/into_the_grave/local.scss`),
+    II_0_II_III: () => import(`../styles/routes/album/II_0_II_III/local.scss`),
+  };
+
+  // Import the album's stylesheet
+  useEffect(() => {
+    const importStyles = async () => {
+      try {
+        // Check if the album_name exists in the styles object
+        if (album_name in all_styles) {
+          const res = await all_styles[album_name]();
+          setStyles(res);
+        } else {
+          // Fallback to the default stylesheet if the key is missing
+          console.warn(`Unknown album_name: "${album_name}", loading default styles.`);
+          const defaultStyles = await import('../styles/routes/album/local.scss');
+          setStyles(defaultStyles);
+        }
+      } catch (error) {
+        console.error('Error importing stylesheet in Album component:', error);
+      }
+    };
+
+    importStyles();
+  }, [album_name]); // Run effect when album_name changes
 
   // Get album and all songs belonging to album
   useEffect(() => {
