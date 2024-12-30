@@ -21,7 +21,7 @@ const MainContainer = ({ children, page, id }) => {
     };
 
     importStyles();
-  }, [styleSheet]);
+  }, [page.main_container_styles]);
   return <div className="main-container" id={id}>{children}</div>;
 };
 
