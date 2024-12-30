@@ -10,7 +10,7 @@ const MainContainer = ({ children, styleSheet, id }) => {
     // Dynamically import the provided stylesheet
     const importStyles = async () => {
       try {
-        const res = await import(`${styleSheet}`);
+        const res = await import(`../styles/routes/root/overwrite/content_unit.scss`);
         setStyles(res);
       } catch (error) {
         // Fallback to the default stylesheet if import fails
