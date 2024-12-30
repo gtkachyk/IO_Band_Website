@@ -50,7 +50,7 @@ function Root () {
     <>
       <NavBar></NavBar>
       <SocialMediaBar></SocialMediaBar>
-      <MainContainer styleSheet={home.main_container_styles}>
+      <MainContainer styleSheet={'root'}>
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
         <ContentUnit title={contentUnits[1].title} columns={contentUnits[1].columns}></ContentUnit>
         <ContentUnit title={contentUnits[2].title} columns={contentUnits[2].columns}></ContentUnit>
