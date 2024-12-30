@@ -9,6 +9,7 @@ import { fetchData } from '../js/api';
 import { constants } from '../assets/constants.js';
 import ContentUnit from '../Components/ContentUnit.jsx';
 import MainContainer from '../Components/MainContainer.jsx';
+import '../styles/routes/album/overwrite/content_unit.scss';
 
 export async function loader ({ params }) {
   return params.name;
@@ -96,7 +97,7 @@ function Album () {
   return (
     <>
       <NavBar></NavBar>
-      <MainContainer styleSheet={`../styles/routes/album/overwrite/content_unit.scss`}>
+      <MainContainer id={'album-container'}>
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
       </MainContainer>
     </>

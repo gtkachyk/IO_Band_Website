@@ -5,6 +5,7 @@ import MainContainer from '../Components/MainContainer.jsx';
 import ContentUnit from '../Components/ContentUnit.jsx';
 import '../styles/routes/about/local.scss';
 import '../styles/routes/about/overwrite/main_container.scss'
+import '../styles/routes/about/overwrite/content_unit.scss';
 
 function About () {
   // State variables

@@ -17,22 +17,22 @@ $small-column-min-width: 150px;
   flex: 1 1 calc($large-column-width - 1rem);
 }
 
-#column-2 {
-  width: $small-column-width;
-  min-width: $small-column-min-width;
-  flex: 1 1 calc($small-column-width - 1rem);
-}
-
-#column-3 {
-  width: $small-column-width;
-  min-width: $small-column-min-width;
-  flex: 1 1 calc($small-column-width - 1rem);
-}
-
+#column-2,
+#column-3,
 #column-4 {
   width: $small-column-width;
   min-width: $small-column-min-width;
   flex: 1 1 calc($small-column-width - 1rem);
+}
+
+#column-1 .column-content,
+#column-2 .column-content {
+  font-size: 20px;
+}
+
+#column-3 .column-content,
+#column-4 .column-content {
+  font-size: 16px;
 }
 
 // Media queries

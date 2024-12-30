@@ -7,6 +7,7 @@ import Music from './routes/music';
 import Video from './routes/video';
 import About from './routes/about';
 import Album, { loader as albumLoader } from './routes/album';
+import './styles/components/content_unit.scss';
 
 const router = createBrowserRouter([
   {

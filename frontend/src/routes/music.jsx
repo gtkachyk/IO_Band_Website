@@ -7,6 +7,8 @@ import { constants } from '../assets/constants.js';
 import ContentUnit from '../Components/ContentUnit.jsx';
 import MainContainer from '../Components/MainContainer.jsx';
 import AlbumLink from '../Components/AlbumLink.jsx';
+import '../styles/routes/music/overwrite/content_unit.scss';
+import '../styles/routes/music/overwrite/album_link.scss';
 
 function Music () {
   // State variables
@@ -37,7 +39,7 @@ function Music () {
   return (
     <>
       <NavBar></NavBar>
-      <MainContainer styleSheet={`../styles/routes/music/overwrite/content_unit.scss`}>
+      <MainContainer>
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
       </MainContainer>
     </>

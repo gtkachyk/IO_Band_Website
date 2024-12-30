@@ -6,6 +6,7 @@ import ContentUnit from '../Components/ContentUnit.jsx';
 import YoutubeVideo from '../Components/video/YoutubeVideo.jsx';
 import '../styles/routes/video/local.scss';
 import '../styles/routes/video/overwrite/main_container.scss'
+import '../styles/routes/video/overwrite/content_unit.scss';
 
 function Video () {
   // Create content units
@@ -22,7 +23,7 @@ function Video () {
   return (
     <>
       <NavBar></NavBar>
-      <MainContainer styleSheet={`../styles/routes/video/overwrite/content_unit.scss`} id={'video'}>
+      <MainContainer id={'video'}>
         <ContentUnit title={contentUnits[0].title} columns={contentUnits[0].columns}></ContentUnit>
       </MainContainer>
     </>

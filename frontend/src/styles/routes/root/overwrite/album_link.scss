@@ -10,7 +10,7 @@
 $static-dimensions: 580px;
 $responsive-dimensions: 80vw;
 
-.link-div {
+#featured-album-link {
   width: $static-dimensions;
   height: $static-dimensions;
   max-width: $static-dimensions;
@@ -23,7 +23,7 @@ $responsive-dimensions: 80vw;
 
 // Defines the point at which the album link shrinks
 @media (max-width: 650px) {
-  .link-div {
+  #featured-album-link {
     width: $responsive-dimensions;
     height: $responsive-dimensions;
   }
