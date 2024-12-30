@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/components/main_container.scss';
 import '../styles/components/content_unit.scss';
 
-const MainContainer = ({ children, styleSheet, id }) => {
+const MainContainer = ({ children, page, id }) => {
   // State to hold the dynamically imported stylesheet
   const [styles, setStyles] = useState(null);
 
@@ -10,7 +10,7 @@ const MainContainer = ({ children, styleSheet, id }) => {
     // Dynamically import the provided stylesheet
     const importStyles = async () => {
       try {
-        const res = await import('../styles/routes/' + styleSheet + '/overwrite/content_unit.scss');
+        const res = await import(page.main_container_styles);
         setStyles(res);
       } catch (error) {
         // Fallback to the default stylesheet if import fails
