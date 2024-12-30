@@ -9,7 +9,7 @@
 /**********************/
 
 $album: 'II_0_II_III';
-$background-directory: '../public/images/albums/' + $album + '/backgrounds/current';
+$background-directory: '/public/images/albums/' + $album + '/backgrounds/current';
 
 body {
   background-image: url($background-directory + '/large.jpg');
