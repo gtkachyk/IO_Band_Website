@@ -6,7 +6,6 @@ import FileList from '../Components/album/FileList';
 import React, { useEffect, useState } from 'react';
 import { generatePlaylistHTML, getFiles } from '../js/albums';
 import { fetchData } from '../js/api';
-import { constants } from '../assets/constants.js';
 import ContentUnit from '../Components/ContentUnit.jsx';
 import MainContainer from '../Components/MainContainer.jsx';
 import '../styles/routes/album/overwrite/content_unit.scss';
@@ -97,9 +96,9 @@ function Album () {
       title: album.display_name,
       columns: [
         { header: 'Tra&shy;c&shy;k&shy;s', content: <AlbumPlayer source_tags={source_tags} div_tags={div_tags}></AlbumPlayer>, id: 'column-1' },
-        { header: 'Art&shy;w&shy;o&shy;r&shy;k', content: <ArtworkList art_path={constants.routesPathToPublic + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2' },
-        { header: 'Lyr&shy;i&shy;c&shy;s', content: <FileList path={constants.routesPathToPublic + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3' },
-        { header: 'Tabs', content: <FileList path={constants.routesPathToPublic + 'tabs/' + album_name + '/'} files={tabs}></FileList>, id: 'column-4' },
+        { header: 'Art&shy;w&shy;o&shy;r&shy;k', content: <ArtworkList art_path={import.meta.env.VITE_ROUTES_PATH_TO_PUBLIC + 'images/albums/' + album_name + '/downloadable/'} downloadable_artwork={album.downloadable_artwork}></ArtworkList>, id: 'column-2' },
+        { header: 'Lyr&shy;i&shy;c&shy;s', content: <FileList path={import.meta.env.VITE_ROUTES_PATH_TO_PUBLIC + 'lyric_sheets/' + album_name + '/'} files={lyrics}></FileList>, id: 'column-3' },
+        { header: 'Tabs', content: <FileList path={import.meta.env.VITE_ROUTES_PATH_TO_PUBLIC + 'tabs/' + album_name + '/'} files={tabs}></FileList>, id: 'column-4' },
       ],
     },
   ];

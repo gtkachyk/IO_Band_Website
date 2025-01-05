@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import '../styles/routes/music/local.scss';
 import { fetchData } from '../js/api';
 import { music } from '../assets/music.js';
-import { constants } from '../assets/constants.js';
 import ContentUnit from '../Components/ContentUnit.jsx';
 import MainContainer from '../Components/MainContainer.jsx';
 import AlbumLink from '../Components/AlbumLink.jsx';
@@ -33,7 +32,7 @@ function Music () {
   ];
 
   for (var i = 0; i < albums.length; i++) {
-    contentUnits[0].columns.push({ content: <AlbumLink title={albums[i].display_name} image={constants.routesPathToPublic + 'images/albums/' + albums[i].name + '/music_link.jpg'} link={constants.websiteLink + 'music/' + albums[i].name} styleSheet={`../styles/routes/music/overwrite/album_link.scss`}></AlbumLink>, id: 'link-column' });
+    contentUnits[0].columns.push({ content: <AlbumLink title={albums[i].display_name} image={import.meta.env.VITE_ROUTES_PATH_TO_PUBLIC + 'images/albums/' + albums[i].name + '/music_link.jpg'} link={import.meta.env.VITE_WEBSITE_LINK + 'music/' + albums[i].name} styleSheet={`../styles/routes/music/overwrite/album_link.scss`}></AlbumLink>, id: 'link-column' });
   }
 
   return (

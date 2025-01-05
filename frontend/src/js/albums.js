@@ -1,5 +1,3 @@
-import { constants } from '../assets/constants.js';
-
 // TODO: add run times next to song titles
 export function generatePlaylistHTML(album, album_songs) {
   var source_tags = ``;
@@ -10,7 +8,7 @@ export function generatePlaylistHTML(album, album_songs) {
       display_name = display_name.slice(0, 47) + '...';
     }
 
-    source_tags += `<source src=${'"' + constants.jsPathToPublic + 'audio/' + album.name + '/' + album_songs[i].audio_file_name + '"'} type="audio/${constants.audioType}" data-track-number=${'"' + album_songs[i].track_number + '"'}/>`;
+    source_tags += `<source src=${'"' + import.meta.env.VITE_JS_PATH_TO_PUBLIC + 'audio/' + album.name + '/' + album_songs[i].audio_file_name + '"'} type="audio/${import.meta.env.VITE_AUDIO_TYPE}" data-track-number=${'"' + album_songs[i].track_number + '"'}/>`;
     div_tags += `<div className=\"playlist-row-content-container\">
                   <div className=\"play-list-row\" data-track-row=${'"' + album_songs[i].track_number + '"'}>
                     <div className=\"small-toggle-btn\">

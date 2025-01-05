@@ -1,10 +1,8 @@
-import { constants } from '../assets/constants.js';
-
 export const fetchData = async (endpoints, setData, setLoading) => {
   try {
     const responses = await Promise.all(
       endpoints.map(async (endpoint) => {
-        const response = await fetch(`${constants.apiLink}${endpoint}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
         if (!response.ok) {
           throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
         }
@@ -21,7 +19,7 @@ export const fetchData = async (endpoints, setData, setLoading) => {
 
 export const postGuestBookEntry = async (user_uuid, ip, name, message, date, time, setError, setErrorMessage) => {
   try {
-    const response = await fetch(`${constants.apiLink}guest_book_entries/`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}guest_book_entries/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
